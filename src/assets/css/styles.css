@@ -1,5 +1,5 @@
 .header-container {
-  max-width: 1100px;
+  max-width: 78rem;
   margin: 0 auto;
   padding: 0 15px;
   display: flex;
@@ -11,7 +11,7 @@
 .navbar {
   min-height: 60px;
   padding: 30px 0px;
-  background-color: #fff;
+  background-color: var(--clr-white);
   position: relative;
 }
 
@@ -25,7 +25,7 @@
 }
 
 .nav-elements {
-    flex: 0.75;
+  flex: 0.75;
 }
 
 .nav-elements ul {
@@ -41,8 +41,8 @@
 } */
 
 .nav-elements ul a {
-  color: #000;
-  font-family: Inter;
+  color: var(--clr-black);
+  /* font-family: Inter; */
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
@@ -131,11 +131,11 @@
 }
 
 .btn-default {
-  background-color: #8ce200;
+  background-color: var(--clr-lemon);
 }
 
 .btn .btn-default::hover {
-  background-color: #a7cf67;
+  background-color: var(--clr-lemon-hover);
 }
 
 .btn.btn-default .btn-text {

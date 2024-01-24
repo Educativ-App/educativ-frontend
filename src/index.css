@@ -1,11 +1,26 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  --clr-lemon: #8ce200;
+  --clr-lemon-hover: #a7cf67;
+  --clr-teal-green: #30ba99;
+  --clr-pink: #ff8dbd;
+  --clr-yellow: #fbd718;
+  --clr-gray: #808080;
+  --clr-white: #ffffff;
+  --clr-black: #000;
 }
 
-
-body {
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+body {
+  font-family: "Inter-Regular", Helvetica;
 }
