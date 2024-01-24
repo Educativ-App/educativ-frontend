@@ -8,6 +8,9 @@ import Hero from "./pages/components/hero";
 import girlImage from "./assets/images/girl-image.png";
 import books from "./assets/images/books.png";
 import boyImage from "./assets/images/boy-image.png";
+import testimonial1 from "./assets/images/testimonial1.jpeg";
+import testimonial2 from "./assets/images/testimonial2.png";
+import testimonial3 from "./assets/images/testimonial3.jpeg";
 
 const features = [
   {
@@ -33,6 +36,29 @@ const features = [
     info: "Explore together with your parents",
     link: "Learn more",
     colour: "yellow",
+  },
+];
+const testimonies = [
+  {
+    name: "Benjamin",
+    job: "High School Student",
+    description:
+      "This platform revolutionized my study routine! The interactive exam-taking feature made learning engaging, and the detailed score analysis helped me identify areas for improvement. It's like having a personal tutor, guiding me towards success. Highly recommended!",
+    profile: testimonial1,
+  },
+  {
+    name: "Ms. Sophia",
+    job: "High School Teacher",
+    description:
+      "The features offered by this platform have transformed my teaching methods. The ease of exam creation, combined with the detailed score analysis, allows me to provide targeted feedback to each student. It has undoubtedly elevated the learning experience in my classroom.",
+    profile: testimonial2,
+  },
+  {
+    name: "Dr. Johnson",
+    job: "Parent",
+    description:
+      "I love the Parental Access feature! It allows me to stay connected with my child's academic journey, track their progress, and support their learning at home. It's a fantastic way to bridge the gap between school and home life.",
+    profile: testimonial3,
   },
 ];
 
@@ -116,6 +142,30 @@ function App() {
               </p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* CMT: TESTIMONIALS */}
+      <section className="testimonial-sect">
+        <Headings head="Testimonial" />
+
+        <div className="testimonies">
+          {testimonies.map((testimonial, index) => (
+            <article key={index} className="testimony-card">
+              <div className="testimonial_pic">
+                <img
+                  src={testimonial.profile}
+                  alt={`${testimonial.name} photo`}
+                />
+              </div>
+              <h2 className="testimonial-title">
+                {testimonial.name}, {testimonial.job}
+              </h2>
+              <p className="testimonial-description">
+                {testimonial.description}
+              </p>
+            </article>
+          ))}
         </div>
       </section>
     </>

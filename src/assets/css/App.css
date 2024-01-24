@@ -19,14 +19,17 @@
 .main-section .features {
   margin-top: 4.5rem;
   max-width: 77.5rem;
+  width: 90%;
   display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
   justify-content: space-between;
-  padding-inline: 3.75rem;
   margin-inline: auto;
 }
 
 .features .features-card {
-  width: 16rem;
+  max-width: 16rem;
+  width: 100%;
   height: 22.5rem;
   padding: 3.12rem 1.88rem;
   text-align: center;
@@ -64,6 +67,7 @@
 
 .two-grid {
   max-width: 70rem;
+  width: 90%;
   margin-top: 3rem;
   margin-inline: auto;
   column-gap: 5rem;
@@ -111,4 +115,90 @@
   font-style: normal;
   font-weight: 400;
   line-height: 1.75rem;
+}
+
+/* TESTIMONIAL SECTION */
+
+.testimonial-sect {
+  margin-block: 5rem 10rem;
+}
+
+.testimonial-sect .testimonies {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.65rem;
+  max-width: 77.5rem;
+  width: 90%;
+  margin-inline: auto;
+  margin-top: 4.44rem;
+}
+
+.testimonies .testimony-card {
+  max-width: 24rem;
+  width: 100%;
+  /* height: 27rem; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  background: var(--clr-dark-gray);
+  border-radius: 1.25rem;
+  padding: 1.2rem 1.5rem;
+  text-align: center;
+  box-shadow: 5px 5px 8px 2px rgba(0, 0, 0, 0.2);
+}
+.testimony-card .testimonial_pic {
+  width: 6.25rem;
+  height: 6.25rem;
+  border-radius: 100%;
+  overflow: hidden;
+}
+.testimony-card .testimonial_pic img {
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 100%;
+}
+
+.testimony-card .testimonial-title {
+  font-size: 1.5rem;
+}
+
+.testimony-card .testimonial-description {
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.76375rem;
+  letter-spacing: 0.015rem;
+}
+
+/* MOBILE DESIGN */
+
+@media (max-width: 600px) {
+  .main-section .features {
+    justify-content: center;
+  }
+
+  .benefits_sect {
+    margin-top: 4.5rem;
+  }
+
+  .two-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .two-grid .text-content {
+    margin-top: 0;
+  }
+
+  .two-grid:nth-child(2) .image-content,
+  .two-grid:nth-child(4) .image-content {
+    order: 1;
+  }
+
+  .testimonial-sect .testimonies {
+    justify-content: center;
+  }
 }
