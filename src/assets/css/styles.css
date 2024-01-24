@@ -1,7 +1,7 @@
 .header-container {
-  max-width: 78rem;
+  max-width: 1100px;
+  padding: 0 50px;
   margin: 0 auto;
-  padding: 0 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -25,24 +25,24 @@
 }
 
 .nav-elements {
-  flex: 0.75;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .nav-elements ul {
   width: 100%;
   flex: 1;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   list-style-type: none;
 }
 
-/* .nav-elements ul li:not(:last-child) {
-  margin-right: 60px;
-} */
+
 
 .nav-elements ul a {
   color: var(--clr-black);
-  /* font-family: Inter; */
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
@@ -73,20 +73,27 @@
 }
 
 @media (max-width: 600px) {
+  .header-container {
+    padding: 0 14px;
+  }
   .menu-icon {
     display: block;
     cursor: pointer;
+  }
+  .menu-btn {
+    display: none;
   }
 
   .nav-elements {
     position: absolute;
     right: 0;
-    top: 60px;
-    background-color: #fef7e5;
+    top: 80px;
+    background-color: #8ce200;
     width: 0px;
-    height: calc(100vh - 60px);
+    height: calc(100vh - 80px);
     transition: all 0.3s ease-in;
     overflow: hidden;
+    align-items: start;
   }
 
   .nav-elements.active {
@@ -113,21 +120,26 @@
   display: flex;
   gap: 10px;
   justify-content: center;
-  padding: 15px;
+  padding: 10px;
   position: relative;
-  width: 160px;
+  width: 140px;
   cursor: pointer;
 }
 
 .btn .btn-text {
-  font-family: "Inter-Regular", Helvetica;
-  font-size: 24px;
+  color: #481717;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
   font-weight: 400;
-  letter-spacing: 0;
   line-height: normal;
-  margin-top: -1px;
-  position: relative;
-  width: fit-content;
+}
+
+@media (max-width: 600px) {
+  .btn {
+    padding: 10px;
+    width: 100px;
+  }
 }
 
 .btn-default {
@@ -147,3 +159,13 @@
 }
 
 /* end button */
+
+/* custom shortcut css */
+.d-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* end custom shortcut css */

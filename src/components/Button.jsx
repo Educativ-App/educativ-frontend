@@ -9,7 +9,7 @@ const Button = ({ type = "default", text = "Log In", onClick }) => {
       className={`btn btn-${type}`}
       onClick={() => onClick }
     >
-      <div className="btn-text">{text}</div>
+      <span className="btn-text">{text}</span>
     </button>
   );
 };
