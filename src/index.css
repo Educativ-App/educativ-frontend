@@ -21,6 +21,11 @@ a {
   color: inherit;
 }
 
+img {
+  max-width: 100%;
+  display: block;
+}
+
 body {
   font-family: "Inter-Regular", Helvetica;
 }

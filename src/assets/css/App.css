@@ -1,9 +1,23 @@
 .main-section {
   margin-top: 1.7rem;
+  position: relative;
+}
+
+.main-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--clr-lemon);
+  width: 100%;
+  height: 100%;
+  z-index: -10;
+  opacity: 20%;
+  top: 8%;
+  clip-path: polygon(0 15%, 100% 64%, 100% 92%, 0 75%);
 }
 
 .main-section .features {
-  margin-top: 3rem;
+  margin-top: 4.5rem;
   max-width: 77.5rem;
   display: flex;
   justify-content: space-between;
@@ -12,7 +26,7 @@
 }
 
 .features .features-card {
-  width: 15.5rem;
+  width: 16rem;
   height: 22.5rem;
   padding: 3.12rem 1.88rem;
   text-align: center;
@@ -36,4 +50,65 @@
 }
 .features-card.yellow {
   background-color: var(--clr-yellow);
+}
+
+.features-card .features-card__title {
+  font-size: 1.5rem;
+}
+
+/* BENEFIT SECTION */
+
+.benefits_sect {
+  margin-top: 9.5rem;
+}
+
+.two-grid {
+  max-width: 70rem;
+  margin-top: 3rem;
+  margin-inline: auto;
+  column-gap: 5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* align-items: center; */
+}
+
+.two-grid .image-content {
+  border-radius: 15rem;
+  max-height: 35rem;
+  overflow: hidden;
+}
+
+.two-grid .image-content img {
+  object-fit: cover;
+  width: 100%;
+  object-position: center;
+  height: 100%;
+}
+
+.two-grid .image-content:has(.book_image) {
+  overflow: unset;
+}
+.image-content .book_image {
+  object-fit: cover;
+  position: relative;
+  bottom: 15%;
+}
+
+.two-grid .text-content {
+  margin-top: 5rem;
+}
+.two-grid .text-content .heading {
+  color: var(--clr-black);
+  font-size: 2.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 2.8125rem;
+  margin-bottom: 1.5rem;
+}
+.two-grid .text-content .text {
+  color: var(--clr-gray);
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.75rem;
 }
