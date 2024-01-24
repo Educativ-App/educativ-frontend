@@ -18,7 +18,7 @@
 
 .main-section .features {
   margin-top: 4.5rem;
-  max-width: 77.5rem;
+  max-width: 70.5rem;
   width: 90%;
   display: flex;
   flex-wrap: wrap;
@@ -191,6 +191,15 @@
 
   .two-grid .text-content {
     margin-top: 0;
+  }
+
+  .two-grid .text-content .heading {
+    font-size: 1.8rem;
+    line-height: 1.8rem;
+    margin-bottom: 1rem;
+  }
+  .two-grid .text-content .text {
+    font-size: 1.2rem;
   }
 
   .two-grid:nth-child(2) .image-content,
