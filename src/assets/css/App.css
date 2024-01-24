@@ -1,0 +1,39 @@
+.main-section {
+  margin-top: 1.7rem;
+}
+
+.main-section .features {
+  margin-top: 3rem;
+  max-width: 77.5rem;
+  display: flex;
+  justify-content: space-between;
+  padding-inline: 3.75rem;
+  margin-inline: auto;
+}
+
+.features .features-card {
+  width: 15.5rem;
+  height: 22.5rem;
+  padding: 3.12rem 1.88rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  background-color: var(--clr-gray);
+  border-radius: 1rem;
+}
+
+.features-card.pink {
+  background-color: var(--clr-pink);
+}
+.features-card.lemon {
+  background-color: var(--clr-lemon);
+}
+.features-card.teal {
+  background-color: var(--clr-teal-green);
+}
+.features-card.yellow {
+  background-color: var(--clr-yellow);
+}
