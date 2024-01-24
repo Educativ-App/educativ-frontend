@@ -1,0 +1,33 @@
+.heading_comp {
+  max-width: 34rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.heading_title {
+  color: var(--clr-gray);
+  opacity: 20%;
+  font-size: 8rem;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.heading_subtitle {
+  align-self: end;
+  font-size: 1.5rem;
+  font-weight: 600;
+  max-width: 27rem;
+  width: 90%;
+  line-height: 1.5625rem;
+}
+
+/* MOBILE DESIGN */
+@media (max-width: 600px) {
+  .heading_title {
+    font-size: 4rem;
+  }
+
+  .heading_subtitle {
+    font-size: 1rem;
+  }
+}
