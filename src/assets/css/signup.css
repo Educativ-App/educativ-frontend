@@ -1,0 +1,47 @@
+.form_heading {
+  padding-bottom: 1rem;
+  border-bottom: 2px dashed var(--clr-lemon);
+}
+
+.form_container {
+  margin-block: 1.2rem;
+  width: 95%;
+  margin-inline: auto;
+
+  .form {
+    padding-inline: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    height: 23rem;
+    overflow-y: auto;
+  }
+}
+
+.signup_link {
+  border-top: 2px dashed var(--clr-lemon);
+  padding-top: 2rem;
+}
+
+.link {
+  color: var(--clr-lemon);
+  text-decoration: underline;
+}
+.back_btn {
+  margin-top: 1rem;
+  margin-inline: auto;
+  width: fit-content;
+}
+
+/* MOBILE DESIGN */
+@media (max-width: 600px) {
+  .form_container {
+    width: 100%;
+    margin-block: 0.8rem;
+  }
+
+  .form_container .form {
+    gap: 0.6rem;
+    height: 25rem;
+  }
+}
