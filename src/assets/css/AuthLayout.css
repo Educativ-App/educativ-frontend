@@ -1,0 +1,48 @@
+.auth-section {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+}
+
+.auth-section .auth_image__section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.auth_image__section::before,
+.auth_image__section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--clr-lemon);
+  opacity: 25%;
+  z-index: -5;
+}
+.auth_image__section::before {
+  clip-path: polygon(41% 0, 80% 0, 88% 22%, 0 31%, 0 20%);
+}
+.auth_image__section::after {
+  clip-path: polygon(0 63%, 100% 100%, 73% 100%, 0 100%);
+}
+
+.auth_image__section .auth_bg {
+  width: 34rem;
+  height: 37rem;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.auth_nav {
+  padding: 5rem 2.2rem;
+}
+
+.auth_nav .auth_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1.5rem;
+  border-bottom: 3px solid var(--clr-lemon);
+  margin-bottom: 3rem;
+}
