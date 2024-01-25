@@ -17,3 +17,10 @@
     }
   }
 }
+
+/* MOBILE DESIGN */
+@media (max-width: 600px) {
+  .student_dashboard {
+    grid-template-columns: 1fr;
+  }
+}

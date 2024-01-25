@@ -16,3 +16,10 @@
     }
   }
 }
+
+/* MOBILE DESIGN */
+@media (max-width: 600px) {
+  .dashboard {
+    margin-inline: 1rem;
+  }
+}
