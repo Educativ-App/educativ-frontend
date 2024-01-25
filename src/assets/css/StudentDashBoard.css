@@ -1,0 +1,19 @@
+.student_dashboard {
+  display: grid;
+  grid-template-columns: 2.2fr 1fr;
+  width: 100%;
+  column-gap: 2rem;
+
+  .tasks_section {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    .tasks {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.5rem;
+    }
+  }
+}

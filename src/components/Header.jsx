@@ -3,8 +3,10 @@ import Button from "./Button";
 import "../assets/css/styles.css";
 import { MdOutlineMenu } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
   const [showNavbar, setShowNavbar] = React.useState(false);
 
   const handleShowNavbar = () => {
@@ -33,16 +35,12 @@ const Header = () => {
             </li>
           </ul>
         </div>
-          <div className='menu-btn'>
-            <Button text="Sign Up" />
-          </div>
-    
-          <div className="menu-icon" onClick={handleShowNavbar}>
-            {
-                !showNavbar ? <MdOutlineMenu size={32} /> : <IoClose size={24}/>
-            }
-            
-         
+        <div className="menu-btn">
+          <Button text="Sign Up" onClick={() => navigate("/signup")} />
+        </div>
+
+        <div className="menu-icon" onClick={handleShowNavbar}>
+          {!showNavbar ? <MdOutlineMenu size={32} /> : <IoClose size={24} />}
         </div>
       </div>
     </nav>

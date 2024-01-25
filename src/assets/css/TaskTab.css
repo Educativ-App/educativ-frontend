@@ -1,0 +1,55 @@
+.task_tab {
+  width: 11rem;
+  height: 10rem;
+  background: var(--bg);
+  padding: 0.5rem 0.6rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &.yellow {
+    --bg: linear-gradient(
+      180deg,
+      rgba(251, 215, 24, 0.4) 0%,
+      rgba(251, 215, 24, 0.33) 62%,
+      rgba(251, 215, 24, 0) 100%
+    );
+    box-shadow: 8px 8px 13px 0px rgba(12, 171, 137, 0.318);
+  }
+
+  &.lemon {
+    --bg: rgba(140, 226, 0, 0.4);
+    box-shadow: 8px 8px 13px 0px rgba(255, 141, 189, 0.37);
+  }
+
+  &.pink {
+    --bg: rgba(255, 141, 189, 0.4);
+    box-shadow: 8px 8px 13px 0px rgba(12, 171, 137, 0.318);
+  }
+  &.teal {
+    --bg: var(--clr-teal-green);
+    box-shadow: 8px 8px 13px 0px rgba(255, 141, 189, 0.37);
+  }
+
+  .task_prefix {
+    font-family: var(--ff-itim);
+    font-size: 0.7rem;
+    opacity: 70%;
+  }
+
+  .task_title {
+    font-size: 1.25rem;
+    text-indent: 0.8rem;
+    font-weight: 500;
+  }
+
+  .task_img {
+    width: 5rem;
+    object-fit: cover;
+    margin-left: 2.5rem;
+    margin-top: 1rem;
+  }
+}

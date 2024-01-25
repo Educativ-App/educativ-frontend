@@ -35,7 +35,7 @@
 }
 
 .auth_nav {
-  padding: 5rem 2.2rem;
+  padding: 3.5rem 2.2rem;
 }
 
 .auth_nav .auth_header {
@@ -44,5 +44,41 @@
   justify-content: space-between;
   padding-bottom: 1.5rem;
   border-bottom: 3px solid var(--clr-lemon);
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
+
+  .circle_logo {
+    width: 5rem;
+    height: 4.5rem;
+    object-fit: cover;
+  }
+}
+
+/* MOBILE DESIGN */
+@media (max-width: 600px) {
+  .auth-section {
+    grid-template-columns: 1fr;
+  }
+  .auth-section .auth_image__section {
+    display: none;
+  }
+
+  .auth_nav {
+    position: relative;
+    padding: 2.5rem 2rem;
+  }
+  .auth_nav::before,
+  .auth_nav::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--clr-lemon);
+    opacity: 25%;
+    z-index: -5;
+  }
+  .auth_nav::before {
+    clip-path: polygon(41% 0, 100% 0, 100% 26%, 0 9%, 36% 0);
+  }
+  .auth_nav::after {
+    clip-path: polygon(0 63%, 100% 100%, 73% 100%, 0 100%);
+  }
 }

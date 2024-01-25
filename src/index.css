@@ -1,5 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Itim&display=swap");
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
   --clr-lemon: #8ce200;
   --clr-lemon-hover: #a7cf67;
   --clr-teal-green: #30ba99;
@@ -10,6 +12,8 @@
   --clr-black: #000;
   --clr-dark-gray: #d9d9d9;
   --clr-red: #ff0000;
+  --ff-intel: "Inter", system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --ff-itim: "Itim", cursive;
 }
 
 * {
@@ -29,5 +33,5 @@ img {
 }
 
 body {
-  font-family: "Inter-Regular", Helvetica;
+  font-family: var(--ff-intel);
 }

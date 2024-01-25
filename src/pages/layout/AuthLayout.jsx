@@ -13,10 +13,12 @@ const AuthLayout = ({ children }) => {
       </div>
       <div className="auth_nav">
         <nav className="auth_header">
-          <h1>logo</h1>
+          <Link to="/">
+            <img className="circle_logo" src="/circle_logo.png" alt="logo" />
+          </Link>
 
           <Link to="/">
-            <img className="logo" src="/Logo.png" alt="logo" />
+            <img className="logo" src="/old-Logo.png" alt="logo" />
           </Link>
         </nav>
         <Outlet />
