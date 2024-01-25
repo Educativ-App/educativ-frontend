@@ -11,6 +11,7 @@ import boyImage from "./assets/images/boy-image.png";
 import testimonial1 from "./assets/images/testimonial1.jpeg";
 import testimonial2 from "./assets/images/testimonial2.png";
 import testimonial3 from "./assets/images/testimonial3.jpeg";
+import Footer from "./components/Footer";
 
 const features = [
   {
@@ -168,6 +169,7 @@ function App() {
           ))}
         </div>
       </section>
+      <Footer/>
     </>
   );
 }
