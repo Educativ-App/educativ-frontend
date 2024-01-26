@@ -1,8 +1,9 @@
 .task_tab {
-  width: 11rem;
+  width: 10.5rem;
   height: 10rem;
   background: var(--bg);
   padding: 0.5rem 0.6rem;
+  border-radius: 0.5rem;
   cursor: pointer;
   transition: all 0.3s ease;
 

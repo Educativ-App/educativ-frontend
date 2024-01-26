@@ -19,19 +19,42 @@ const Profile = ({ img = "https://picsum.photos/200", user }) => {
         </div>
       </div>
       <div className="content">
-        <table style={{ width: "100%", borderSpacing: '12px' }}>
-          <tr>
-            <td align="left">Staff Number</td>
-            <td align="right">{user.mat_no}</td>
-          </tr>
-          <tr>
-            <td align="left">Session</td>
-            <td align="right">{user.session}</td>
-          </tr>
-          <tr>
-            <td align="left">Semester</td>
-            <td align="right">{user.semester}</td>
-          </tr>
+        <table style={{ width: "100%", borderSpacing: "12px" }}>
+          {user.role === "teacher" ? (
+            <>
+              <tr>
+                <td align="left">Staff Number</td>
+                <td align="right">{user.mat_no}</td>
+              </tr>
+              <tr>
+                <td align="left">Session</td>
+                <td align="right">{user.session}</td>
+              </tr>
+              <tr>
+                <td align="left">Semester</td>
+                <td align="right">{user.semester}</td>
+              </tr>
+            </>
+          ) : (
+            <>
+              <tr>
+                <td align="left">Level</td>
+                <td align="right">{user.level}</td>
+              </tr>
+              <tr>
+                <td align="left">Matric. Number</td>
+                <td align="right">{user.mat_no}</td>
+              </tr>
+              <tr>
+                <td align="left">Session</td>
+                <td align="right">{user.session}</td>
+              </tr>
+              <tr>
+                <td align="left">Semester</td>
+                <td align="right">{user.semester}</td>
+              </tr>
+            </>
+          )}
         </table>
       </div>
     </div>
@@ -44,9 +67,11 @@ Profile.propTypes = {
     name: PropTypes.string,
     faculty: PropTypes.string,
     dept: PropTypes.string,
+    level: PropTypes.string,
     mat_no: PropTypes.string,
     session: PropTypes.string,
     semester: PropTypes.string,
+    role: PropTypes.string,
   }),
 };
 export default Profile;

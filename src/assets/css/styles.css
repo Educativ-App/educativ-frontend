@@ -110,6 +110,19 @@
   }
 }
 
+/* BACKDROP */
+
+.backdrop {
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  top: 11%;
+  z-index: 10;
+}
+
+/* END OF BACKDROP */
+
 /* button */
 
 .btn {
@@ -301,13 +314,12 @@
     object-fit: cover;
   }
 
-  .profile-name{
+  .profile-name {
     font-size: 1.5em;
     font-weight: 700;
   }
 
-  .profile-info > *{
-
+  .profile-info > * {
     margin-top: 10px;
   }
 
@@ -317,9 +329,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding:10px;
+    padding: 10px;
     font-size: small;
-    
   }
 }
 

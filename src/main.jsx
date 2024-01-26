@@ -9,6 +9,7 @@ import Login from "./pages/login.jsx";
 import SignUp from "./pages/SignUp.jsx";
 import DashBoardLayout from "./pages/layout/DashBoardLayout.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
+import QuizPage from "./pages/QuizPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -35,7 +36,11 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Dashboard />,
-      }
+      },
+      {
+        path: "quiz",
+        element: <QuizPage />,
+      },
     ],
   },
 ]);

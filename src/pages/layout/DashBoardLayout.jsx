@@ -1,11 +1,22 @@
 import React from "react";
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 
 import "../../assets/css/DashBoardLayout.css";
 import { sideBarLinks } from "../../data/linkData";
+import { checkInLocation } from "../../utils/helpers";
 
 const DashBoardLayout = () => {
+  const navigate = useNavigate();
+
+  const clickHandler = (url) => {
+    if (url === "dashboard") {
+      navigate(".");
+      return;
+    }
+    navigate(url);
+  };
+
   return (
     <div className="dashboard_layout">
       <div className="nav_header">
@@ -14,9 +25,16 @@ const DashBoardLayout = () => {
       <aside className="sidebar">
         <div className="sidebar_links">
           {sideBarLinks.map((sidebar, index) => (
-            <NavLink to={sidebar.link} key={index} className="sidebar_link">
+            <button
+              onClick={() => clickHandler(sidebar.link)}
+              key={index}
+              className={`sidebar_link ${
+                checkInLocation(sidebar.link) && "active"
+              }`}
+              disabled={sidebar?.disabled}
+            >
               {sidebar.title}
-            </NavLink>
+            </button>
           ))}
         </div>
       </aside>
