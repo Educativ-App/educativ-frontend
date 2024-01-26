@@ -31,7 +31,7 @@ const Hero = () => {
       </div>
       <div className="hero-section__image">
         <div className="hero-image">
-          <img src={heroImg} alt="Hero Image" />
+          <img src={heroImg} alt="Hero Image" loading="lazy" />
         </div>
       </div>
     </section>
