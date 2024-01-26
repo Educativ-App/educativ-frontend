@@ -1,6 +1,8 @@
 .dashboard {
   margin: 0.5rem 3rem;
 
+ 
+
   .user_profile {
     margin-bottom: 1.5rem;
 
@@ -14,5 +16,12 @@
       font-style: normal;
       font-weight: 300;
     }
+  }
+}
+
+
+@media (max-width: 600px) {
+  .dashboard {
+    margin: 0.5rem !important;
   }
 }

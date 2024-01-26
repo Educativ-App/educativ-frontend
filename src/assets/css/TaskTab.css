@@ -34,6 +34,15 @@
     box-shadow: 8px 8px 13px 0px rgba(255, 141, 189, 0.37);
   }
 
+  &.gradient {
+    --bg: linear-gradient(
+      180deg,
+      rgba(140, 226, 0, 0.58) 0%,
+      rgba(140, 226, 0, 0) 100%
+    );
+    box-shadow: 8px 8px 13px 0px rgba(255, 141, 189, 0.37);
+  }
+
   .task_prefix {
     font-family: var(--ff-itim);
     font-size: 0.7rem;
@@ -51,5 +60,19 @@
     object-fit: cover;
     margin-left: 2.5rem;
     margin-top: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .task_tab {
+    width: 7rem;
+    height: 7rem;
+
+    .task_img {
+      width: 3rem;
+      object-fit: cover;
+      margin-left: 0.5rem;
+      margin-top: 0.5rem;
+    }
   }
 }

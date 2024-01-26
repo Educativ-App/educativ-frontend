@@ -12,6 +12,7 @@ Button.propTypes = {
   type: PropTypes.oneOf(["default", "success", "danger", "info", "warning"]),
   text: PropTypes.string,
   onClick: PropTypes.any,
+  className: PropTypes.string
 };
 
 export default Button;

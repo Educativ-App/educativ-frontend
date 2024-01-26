@@ -16,9 +16,9 @@ const Header = () => {
   return (
     <nav className="navbar">
       <div className="header-container">
-        <div>
+        <a href="/" >
           <img className="logo" src="/Logo.png" alt="logo" />
-        </div>
+        </a>
         <div className={`nav-elements  ${showNavbar && "active"}`}>
           <ul>
             <li>
