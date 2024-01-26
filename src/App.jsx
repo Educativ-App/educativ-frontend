@@ -73,7 +73,7 @@ function App() {
         <div>
           <Headings
             head="Features"
-            subhead="Educative Simplifies the examination process for students and teachers. "
+            subhead="Educativ Simplifies the examination process for students and teachers. "
           />
           <div className="features">
             {features.map((features, index) => (
@@ -93,7 +93,7 @@ function App() {
         <div className="benefits_sect">
           <Headings
             head="Benefits"
-            subhead="Educative Simplifies the examination process for students and teachers."
+            subhead="Educativ Simplifies the examination process for students and teachers."
           />
           <div className="two-grid">
             <div className="image-content">
