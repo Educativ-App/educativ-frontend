@@ -3,7 +3,7 @@ import "./assets/css/App.css";
 
 import Header from "./components/Header";
 import Headings from "./pages/components/Headings";
-import Hero from "./pages/components/hero";
+import Hero from "./pages/components/Hero";
 
 import girlImage from "./assets/images/girl-image.png";
 import books from "./assets/images/books.png";
@@ -169,7 +169,7 @@ function App() {
           ))}
         </div>
       </section>
-      <Footer/>
+      <Footer />
     </>
   );
 }
