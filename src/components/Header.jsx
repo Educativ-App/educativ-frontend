@@ -4,7 +4,7 @@ import "../assets/css/styles.css";
 import { MdOutlineMenu } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { getPage } from "../utils/helpers";
+import { checkInLocation, getPage } from "../utils/helpers";
 import { sideBarLinks } from "../data/linkData";
 import useClickOutiside from "../hooks/use-clickOutside";
 
@@ -61,7 +61,12 @@ const Header = () => {
               <ul>
                 {sideBarLinks.map((sidebar, index) => (
                   <li key={index}>
-                    <NavLink to={sidebar.link}>{sidebar.title}</NavLink>
+                    <Link
+                      to={sidebar.link}
+                      className={`${checkInLocation(sidebar.link) && "active"}`}
+                    >
+                      {sidebar.title}
+                    </Link>
                   </li>
                 ))}
               </ul>
