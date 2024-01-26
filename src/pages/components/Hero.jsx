@@ -1,7 +1,7 @@
 import React from "react";
 
 import "../../assets/css/hero.css";
-import heroImg from "../../assets/images/hero-image.png";
+// import heroImg from "../../assets/images/hero-image.png";
 import Button from "../../components/Button";
 import { useNavigate } from "react-router-dom";
 
@@ -31,7 +31,7 @@ const Hero = () => {
       </div>
       <div className="hero-section__image">
         <div className="hero-image">
-          <img src={heroImg} alt="Hero Image" loading="lazy" />
+          <img src="/hero-image.png" alt="Hero Image" loading="lazy" />
         </div>
       </div>
     </section>
