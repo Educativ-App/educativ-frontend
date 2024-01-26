@@ -23,10 +23,9 @@ const Header = () => {
   };
 
   useMemo(() => {
-    // let body = document.body.style.overflowY;
     showNavbar
-      ? (document.body.style.overflowY = "hidden")
-      : (document.body.style.overflowY = "auto");
+      ? document.body.classList.add("hidden")
+      : document.body.classList.remove("hidden");
   }, [showNavbar]);
 
   const dashboardPage = getPage("dashboard");
