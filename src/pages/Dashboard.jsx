@@ -4,6 +4,7 @@ import StudentDashBoard from "./components/StudentDashBoard";
 import TeacherDashBoard from "./components/TeacherDashBoard";
 
 let user = { name: "Adaeze", role: "student" };
+// let user = { name: "Mr. Monday", role: "teacher" };
 
 const Dashboard = () => {
   return (

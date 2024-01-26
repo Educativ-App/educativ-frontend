@@ -1,6 +1,8 @@
 .dashboard {
   margin: 0.5rem 3rem;
 
+ 
+
   .user_profile {
     margin-bottom: 1.5rem;
 
@@ -16,6 +18,7 @@
     }
   }
 }
+
 
 /* MOBILE DESIGN */
 @media (max-width: 600px) {
