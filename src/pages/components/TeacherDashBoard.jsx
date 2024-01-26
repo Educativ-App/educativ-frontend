@@ -15,6 +15,7 @@ var user = {
   mat_no: "150203031",
   session: "2023/24",
   semester: "First",
+  role: "teacher",
 };
 
 var tasks = [
