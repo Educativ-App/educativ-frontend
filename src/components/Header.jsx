@@ -1,65 +1,86 @@
-import React from "react";
+import React, { useMemo } from "react";
 import Button from "./Button";
 import "../assets/css/styles.css";
 import { MdOutlineMenu } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
-import { NavLink, useNavigate } from "react-router-dom";
-import { getLocation } from "../utils/helpers";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { getPage } from "../utils/helpers";
 import { sideBarLinks } from "../data/linkData";
+import useClickOutiside from "../hooks/use-clickOutside";
 
 const Header = () => {
   const navigate = useNavigate();
-  const [showNavbar, setShowNavbar] = React.useState(false);
+  // const [showNavbar, setShowNavbar] = React.useState(false);
+
+  const {
+    visible: showNavbar,
+    setVisible: setShowNavbar,
+    ref,
+  } = useClickOutiside(false);
 
   const handleShowNavbar = () => {
     setShowNavbar(!showNavbar);
   };
 
-  const location = getLocation();
+  useMemo(() => {
+    // let body = document.body.style.overflowY;
+    showNavbar
+      ? (document.body.style.overflowY = "hidden")
+      : (document.body.style.overflowY = "auto");
+  }, [showNavbar]);
+
+  const dashboardPage = getPage("dashboard");
 
   return (
-    <nav className="navbar">
-      <div className="header-container">
-        <div>
-          <img className="logo" src="/Logo.png" alt="logo" />
-        </div>
-        <div className={`nav-elements  ${showNavbar && "active"}`}>
-          {location !== "dashboard" && (
-            <ul>
-              <li>
-                <NavLink to="/">Home</NavLink>
-              </li>
-              <li>
-                <NavLink to="/about">About</NavLink>
-              </li>
-              <li>
-                <NavLink to="/features">Features</NavLink>
-              </li>
-              <li>
-                <NavLink to="/contact">Contact Us</NavLink>
-              </li>
-            </ul>
-          )}
-          {location === "dashboard" && showNavbar && (
-            <ul>
-              {sideBarLinks.map((sidebar, index) => (
-                <li key={index}>
-                  <NavLink to={sidebar.link}>{sidebar.title}</NavLink>
+    <>
+      <nav className="navbar">
+        <div className="header-container" ref={ref}>
+          <Link to="/">
+            <img className="logo" src="/Logo.png" alt="logo" />
+          </Link>
+          <div className={`nav-elements  ${showNavbar && "active"}`}>
+            {!dashboardPage && (
+              <ul>
+                <li>
+                  <NavLink to="/">Home</NavLink>
                 </li>
-              ))}
-            </ul>
-          )}
-        </div>
+                <li>
+                  <NavLink to="/about">About</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/features">Features</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/dashboard">Dashboard</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/contact">Contact Us</NavLink>
+                </li>
+              </ul>
+            )}
+            {dashboardPage && showNavbar && (
+              <ul>
+                {sideBarLinks.map((sidebar, index) => (
+                  <li key={index}>
+                    <NavLink to={sidebar.link}>{sidebar.title}</NavLink>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
 
-        <div className="menu-btn">
-          <Button text="Sign Up" onClick={() => navigate("/signup")} />
-        </div>
+          <div className="menu-btn">
+            <Button text="Sign Up" onClick={() => navigate("/signup")} />
+          </div>
 
-        <div className="menu-icon" onClick={handleShowNavbar}>
-          {!showNavbar ? <MdOutlineMenu size={32} /> : <IoClose size={24} />}
+          <div className="menu-icon" onClick={handleShowNavbar}>
+            {!showNavbar ? <MdOutlineMenu size={32} /> : <IoClose size={24} />}
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+
+      {showNavbar && <div className="backdrop" />}
+    </>
   );
 };
 

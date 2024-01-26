@@ -5,22 +5,26 @@ export const sideBarLinks = [
   },
   {
     title: "My Dashboard",
-    link: "/dashboard",
+    link: "dashboard",
   },
   {
     title: "My Courses",
-    link: "/",
+    link: "courses",
+    disabled: true,
   },
   {
     title: "My Tests",
-    link: "/",
+    link: "tests",
+    disabled: true,
   },
   {
     title: "My Exams",
-    link: "/",
+    link: "exams",
+    disabled: true,
   },
   {
     title: "Settings",
-    link: "/",
+    link: "settings",
+    disabled: true,
   },
 ];
