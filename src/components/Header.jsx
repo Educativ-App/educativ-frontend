@@ -4,7 +4,7 @@ import "../assets/css/styles.css";
 import { MdOutlineMenu } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
 import { NavLink, useNavigate } from "react-router-dom";
-import { getLocation } from "../utils/helpers";
+import { getPage } from "../utils/helpers";
 import { sideBarLinks } from "../data/linkData";
 
 const Header = () => {
@@ -15,7 +15,7 @@ const Header = () => {
     setShowNavbar(!showNavbar);
   };
 
-  const location = getLocation();
+  const dashboardPage = getPage("dashboard");
 
   return (
     <nav className="navbar">
@@ -24,7 +24,7 @@ const Header = () => {
           <img className="logo" src="/Logo.png" alt="logo" />
         </div>
         <div className={`nav-elements  ${showNavbar && "active"}`}>
-          {location !== "dashboard" && (
+          {!dashboardPage && (
             <ul>
               <li>
                 <NavLink to="/">Home</NavLink>
@@ -40,7 +40,7 @@ const Header = () => {
               </li>
             </ul>
           )}
-          {location === "dashboard" && showNavbar && (
+          {dashboardPage && showNavbar && (
             <ul>
               {sideBarLinks.map((sidebar, index) => (
                 <li key={index}>
