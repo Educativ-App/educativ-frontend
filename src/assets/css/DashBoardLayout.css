@@ -55,3 +55,17 @@
     margin-top: 7.5rem;
   }
 }
+
+/* MOBILE DESIGN */
+@media (max-width: 600px) {
+  .dashboard_layout {
+    grid-template-columns: 1fr;
+    .sidebar {
+      display: none;
+    }
+
+    .dashboard_layout__main {
+      /* width: 100%; */
+    }
+  }
+}

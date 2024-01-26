@@ -3,7 +3,9 @@ import Button from "./Button";
 import "../assets/css/styles.css";
 import { MdOutlineMenu } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { getLocation } from "../utils/helpers";
+import { sideBarLinks } from "../data/linkData";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -13,6 +15,8 @@ const Header = () => {
     setShowNavbar(!showNavbar);
   };
 
+  const location = getLocation();
+
   return (
     <nav className="navbar">
       <div className="header-container">
@@ -20,21 +24,33 @@ const Header = () => {
           <img className="logo" src="/Logo.png" alt="logo" />
         </a>
         <div className={`nav-elements  ${showNavbar && "active"}`}>
-          <ul>
-            <li>
-              <a href="/">Home</a>
-            </li>
-            <li>
-              <a href="#about">About</a>
-            </li>
-            <li>
-              <a href="#features">Features</a>
-            </li>
-            <li>
-              <a href="#contact">Contact Us</a>
-            </li>
-          </ul>
+          {location !== "dashboard" && (
+            <ul>
+              <li>
+                <NavLink to="/">Home</NavLink>
+              </li>
+              <li>
+                <NavLink to="/about">About</NavLink>
+              </li>
+              <li>
+                <NavLink to="/features">Features</NavLink>
+              </li>
+              <li>
+                <NavLink to="/contact">Contact Us</NavLink>
+              </li>
+            </ul>
+          )}
+          {location === "dashboard" && showNavbar && (
+            <ul>
+              {sideBarLinks.map((sidebar, index) => (
+                <li key={index}>
+                  <NavLink to={sidebar.link}>{sidebar.title}</NavLink>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
+
         <div className="menu-btn">
           <Button text="Sign Up" onClick={() => navigate("/signup")} />
         </div>

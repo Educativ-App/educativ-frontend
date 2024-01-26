@@ -20,8 +20,9 @@
 }
 
 
+/* MOBILE DESIGN */
 @media (max-width: 600px) {
   .dashboard {
-    margin: 0.5rem !important;
+    margin-inline: 1rem;
   }
 }

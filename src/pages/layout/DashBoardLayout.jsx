@@ -3,33 +3,7 @@ import { Link, NavLink, Outlet } from "react-router-dom";
 import Header from "../../components/Header";
 
 import "../../assets/css/DashBoardLayout.css";
-
-const sideBarLinks = [
-  {
-    title: "Home",
-    link: "/",
-  },
-  {
-    title: "My Dashboard",
-    link: "/dashboard",
-  },
-  {
-    title: "My Courses",
-    link: "/",
-  },
-  {
-    title: "My Tests",
-    link: "/",
-  },
-  {
-    title: "My Exams",
-    link: "/",
-  },
-  {
-    title: "Settings",
-    link: "/",
-  },
-];
+import { sideBarLinks } from "../../data/linkData";
 
 const DashBoardLayout = () => {
   return (
