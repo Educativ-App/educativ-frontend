@@ -21,7 +21,7 @@ const Footer = () => {
               Become a partner
             </a>
             <a href="#">Careers</a>
-            <a href="#">support@educative.com</a>
+            <a href="#">support@educativ.com</a>
             <div className="item">
               <MdLocalPhone size={28} />
               <div className="text-wrapper">(323) 943-1606</div>
@@ -44,7 +44,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="bottom-footer">
-        <div className="text-wrapper">© 2023 EDUCATIVE</div>
+        <div className="text-wrapper">© 2023 EDUCATIV</div>
         {/* <p className="link-CSLB-license">CSLB license number # 1104018</p> */}
       </div>
     </>
