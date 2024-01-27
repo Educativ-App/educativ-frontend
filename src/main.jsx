@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
-import "./assets/css/grid.css"
+import "./assets/css/grid.css";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AuthLayout from "./pages/layout/AuthLayout.jsx";
@@ -12,6 +12,7 @@ import DashBoardLayout from "./pages/layout/DashBoardLayout.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import QuizPage from "./pages/QuizPage.jsx";
 import About from "./pages/About.jsx";
+import NotFound from "./pages/NotFound.jsx";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
   {
     path: "/about-us",
     element: <About />,
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   },
   {
     element: <AuthLayout />,

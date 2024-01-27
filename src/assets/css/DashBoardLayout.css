@@ -62,6 +62,8 @@
 
   .dashboard_layout__main {
     margin-top: 7.5rem;
+    height: calc(100vh - 8rem);
+    overflow-y: auto;
   }
 }
 
