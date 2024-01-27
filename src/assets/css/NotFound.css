@@ -1,0 +1,42 @@
+.not_found-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 2.5rem 2rem;
+
+  > .not_found-page--container {
+    /* margin-top: 8rem; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    text-align: center;
+
+    > h1 {
+      text-transform: uppercase;
+      letter-spacing: 0.5rem;
+    }
+
+    .btn {
+      width: 100%;
+    }
+  }
+}
+
+.not_found-page::before,
+.not_found-page::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--clr-lemon);
+  opacity: 25%;
+  z-index: -5;
+}
+.not_found-page::before {
+  clip-path: polygon(0 0, 100% 31%, 100% 0);
+}
+.not_found-page::after {
+  clip-path: polygon(0 63%, 100% 100%, 73% 100%, 0 100%);
+}
