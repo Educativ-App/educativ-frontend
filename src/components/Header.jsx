@@ -1,12 +1,13 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import Button from "./Button";
 import "../assets/css/styles.css";
 import { MdOutlineMenu } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { checkInLocation, getPage } from "../utils/helpers";
+import { checkInLocation } from "../utils/helpers";
 import { sideBarLinks } from "../data/linkData";
 import useClickOutiside from "../hooks/use-clickOutside";
+import { useCheckLocation } from "../hooks/useCheckLocation";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ const Header = () => {
       : document.body.classList.remove("hidden");
   }, [showNavbar]);
 
-  const dashboardPage = getPage("dashboard");
+  const dashboardPage = useCheckLocation("/dashboard");
 
   return (
     <>
@@ -40,11 +41,9 @@ const Header = () => {
           <div className={`nav-elements  ${showNavbar && "active"}`}>
             {!dashboardPage && (
               <ul>
+            
                 <li>
                   <NavLink to="/">Home</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/about">About</NavLink>
                 </li>
                 <li>
                   <NavLink to="/features">Features</NavLink>
@@ -53,7 +52,10 @@ const Header = () => {
                   <NavLink to="/dashboard">Dashboard</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/contact">Contact Us</NavLink>
+                  <NavLink to="/about-us">About Us</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/contact-us">Contact Us</NavLink>
                 </li>
               </ul>
             )}
