@@ -1,6 +1,7 @@
 import { MdLocalPhone } from "react-icons/md";
 import { FaFacebook, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import { FaXTwitter, FaThreads } from "react-icons/fa6";
+import {NavLink} from "react-router-dom"
 
 const Footer = () => {
   return (
@@ -8,9 +9,9 @@ const Footer = () => {
       <div className="top-footer">
         <div className="div-grid">
           <div className="list">
-            <a href="#" className="text-wrapper">
+            <NavLink to="/about-us" className="text-wrapper">
               About
-            </a>
+            </NavLink>
             <a href="#">FAQ</a>
             <a href="#">Blog</a>
             <a href="#">Privacy Policy</a>
