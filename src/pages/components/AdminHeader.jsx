@@ -1,6 +1,8 @@
 import React from "react";
 import Button from "../../components/Button";
+
 import { IoSearch } from "react-icons/io5";
+import { FaPlus } from "react-icons/fa6";
 
 import "../../assets/css/AdminHeader.css";
 
@@ -23,7 +25,12 @@ const AdminHeader = (props) => {
       </div>
 
       <div className="btn_container">
-        <Button text={props.btnText} type="default" onClick={props.onClick} />
+        <Button
+          text={props.btnText}
+          type="default"
+          onClick={props.onClick}
+          icon={<FaPlus />}
+        />
       </div>
     </div>
   );

@@ -29,6 +29,11 @@
       }
     }
   }
+  .btn_container {
+    > button {
+      width: 100%;
+    }
+  }
 }
 
 /* MOBILE DESIGN */
