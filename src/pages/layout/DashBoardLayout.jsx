@@ -5,18 +5,11 @@ import Header from "../../components/Header";
 import "../../assets/css/DashBoardLayout.css";
 import { adminLinks, sideBarLinks } from "../../data/linkData";
 import { checkInLocation } from "../../utils/helpers";
-
-// STUDENT USER
-// let user = { name: "Adaeze", role: "student" };
-
-// ADMIN USER
-let user = { role: "admin" };
-
-// TEACHER USER
-// let user = { name: "Mr. Monday", role: "teacher" };
+import { useAuth } from "../../Contexts/AuthContext";
 
 const DashBoardLayout = () => {
   const navigate = useNavigate();
+  const { authUser: user } = useAuth();
 
   const clickHandler = (url) => {
     if (url === "dashboard") {
