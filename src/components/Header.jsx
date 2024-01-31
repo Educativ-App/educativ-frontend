@@ -3,8 +3,8 @@ import Button from "./Button";
 import "../assets/css/styles.css";
 import { MdOutlineMenu } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
-import { Link, NavLink, useNavigate, useNavigation } from "react-router-dom";
-import { checkInLocation, getPage } from "../utils/helpers";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { checkInLocation } from "../utils/helpers";
 import { adminLinks, sideBarLinks } from "../data/linkData";
 import useClickOutiside from "../hooks/use-clickOutside";
 import { useCheckLocation } from "../hooks/useCheckLocation";
@@ -21,9 +21,9 @@ import { useAuth } from "../Contexts/AuthContext";
 
 const Header = () => {
   const navigate = useNavigate();
-  const dashboardPage = getPage();
+  const dashboardPage = useCheckLocation("/dashboard");
 
-  const { isLoggedIn, signOut, authUser : user } = useAuth();
+  const { isLoggedIn, signOut, authUser: user } = useAuth();
 
   const {
     visible: showNavbar,
@@ -80,18 +80,29 @@ const Header = () => {
             )}
             {dashboardPage &&
               showNavbar &&
-              (user.role !== "admin" ? (
+              (user?.role !== "admin" ? (
                 <ul>
                   {sideBarLinks?.map((sidebar, index) => (
                     <li key={index}>
-                      <Link
-                        to={sidebar.link}
-                        className={`${
-                          checkInLocation(sidebar.link) && "active"
-                        }`}
-                      >
-                        {sidebar.title}
-                      </Link>
+                      {sidebar.type === "button" ? (
+                        <>
+                          <button
+                            onClick={() => signOut()}
+                            className={`navBtn`}
+                          >
+                            {sidebar.title}
+                          </button>
+                        </>
+                      ) : (
+                        <Link
+                          to={sidebar.link}
+                          className={`${
+                            checkInLocation(sidebar.link) && "active"
+                          }`}
+                        >
+                          {sidebar.title}
+                        </Link>
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -112,13 +123,24 @@ const Header = () => {
                 </ul>
               ))}
           </div>
-
-          {isLoggedIn ? (
+          {!dashboardPage ? (
             <div className="menu-btn">
-              <Button text="Log Out" onClick={() => signOut()} />
+              {isLoggedIn ? (
+                <Button text="Log Out" onClick={() => signOut()} />
+              ) : (
+                <Button text="Log in" onClick={() => navigate("/login")} />
+              )}
             </div>
           ) : (
-            ""
+            <div className="menu-btn">
+              <h3>
+                {user?.role === "student"
+                  ? "Student's Dashboard"
+                  : user?.role === "teacher"
+                  ? "Teacher's Dashboard"
+                  : "Admin's Dashboard"}
+              </h3>
+            </div>
           )}
 
           <div className="menu-icon" onClick={handleShowNavbar}>

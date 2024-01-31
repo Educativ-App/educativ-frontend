@@ -27,6 +27,10 @@ export const sideBarLinks = [
     link: "settings",
     disabled: true,
   },
+  {
+    title: "Log out",
+    type: "button",
+  },
 ];
 export const adminLinks = [
   {
@@ -44,5 +48,9 @@ export const adminLinks = [
   {
     title: "Courses",
     link: "admin/courses",
+  },
+  {
+    title: "Log out",
+    link: "/#",
   },
 ];

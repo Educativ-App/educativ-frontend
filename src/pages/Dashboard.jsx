@@ -15,7 +15,6 @@ import AdminDashBoard from "./components/AdminDashBoard";
 // TEACHER USER
 // let user = { name: "Mr. Monday", role: "teacher" };
 
-
 const Dashboard = () => {
   const { authUser: user } = useAuth();
 
@@ -30,7 +29,7 @@ const Dashboard = () => {
   return user ? (
     <section className="dashboard">
       <div className="user_profile">
-        <h2>Hello, {user?.name ?? "Admin"}</h2>
+        <h2>Hello, {user?.name ?? ""}</h2>
         <p>What will you do today? </p>
       </div>
       {user.role === "student" ? (
