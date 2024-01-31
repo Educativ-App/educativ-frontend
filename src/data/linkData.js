@@ -28,3 +28,21 @@ export const sideBarLinks = [
     disabled: true,
   },
 ];
+export const adminLinks = [
+  {
+    title: "Home",
+    link: "/",
+  },
+  {
+    title: "My Dashboard",
+    link: "dashboard",
+  },
+  {
+    title: "Teachers",
+    link: "admin/teachers",
+  },
+  {
+    title: "Courses",
+    link: "admin/courses",
+  },
+];

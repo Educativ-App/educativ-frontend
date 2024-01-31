@@ -5,14 +5,20 @@ const Button = ({
   text = "Log In",
   onClick,
   className,
-  loading = false,
+    icon,
+  loading = false
 }) => {
   return (
     <button
+    
       disabled={loading}
+
       className={`btn btn-${type} ${className}`}
+      
+      
       onClick={onClick}
     >
+      {icon && icon}
       <span className="btn-text">{!loading ? text : <Spinner />}</span>
     </button>
   );
@@ -42,6 +48,7 @@ Button.propTypes = {
   onClick: PropTypes.any,
   className: PropTypes.string,
   loading: PropTypes.boolean,
+  icon: PropTypes.element
 };
 
 export default Button;

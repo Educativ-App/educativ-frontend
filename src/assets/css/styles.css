@@ -39,22 +39,28 @@
   list-style-type: none;
 }
 
-.nav-elements ul a {
+.nav-elements ul a,
+.navBtn {
   color: var(--clr-black);
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   text-decoration: none;
+  outline: none;
+  border: none;
+  background: none;
 }
 
-.nav-elements ul a.active {
+.nav-elements ul a.active,
+.navBtn.active {
   color: #574c4c;
   font-weight: 500;
   position: relative;
 }
 
-.nav-elements ul a.active::after {
+.nav-elements ul a.active::after,
+.navBtn.active::after {
   content: "";
   position: absolute;
   bottom: -4px;
@@ -150,6 +156,10 @@
   .btn {
     padding: 10px;
     width: 100px;
+
+    .btn-text {
+      white-space: nowrap;
+    }
   }
 
   .nav-elements > * {
