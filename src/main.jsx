@@ -13,6 +13,9 @@ import Dashboard from "./pages/Dashboard.jsx";
 import QuizPage from "./pages/QuizPage.jsx";
 import About from "./pages/About.jsx";
 import NotFound from "./pages/NotFound.jsx";
+import AdminProtectedRoutes from "./pages/protectedRoute/AdminProtectedRoutes.jsx";
+import AllTeacher from "./pages/AllTeacher.jsx";
+import AllCourses from "./pages/AllCourses.jsx";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +54,20 @@ const router = createBrowserRouter([
       {
         path: "quiz",
         element: <QuizPage />,
+      },
+      {
+        path: "admin",
+        element: <AdminProtectedRoutes />,
+        children: [
+          {
+            path: "teachers",
+            element: <AllTeacher />,
+          },
+          {
+            path: "courses",
+            element: <AllCourses />,
+          },
+        ],
       },
     ],
   },

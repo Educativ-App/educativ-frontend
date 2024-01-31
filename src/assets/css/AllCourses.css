@@ -1,0 +1,10 @@
+.admin_courses {
+  margin: 0.5rem 3rem;
+}
+
+/* MOBILE DESIGN */
+@media (max-width: 600px) {
+  .admin_courses {
+    margin-inline: 1rem;
+  }
+}
