@@ -3,15 +3,23 @@ import Button from "./Button";
 import "../assets/css/styles.css";
 import { MdOutlineMenu } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
-import { Link, NavLink, useNavigate } from "react-router-dom";
-import { checkInLocation } from "../utils/helpers";
-import { sideBarLinks } from "../data/linkData";
+import { Link, NavLink, useNavigate, useNavigation } from "react-router-dom";
+import { checkInLocation, getPage } from "../utils/helpers";
+import { adminLinks, sideBarLinks } from "../data/linkData";
 import useClickOutiside from "../hooks/use-clickOutside";
-import { useCheckLocation } from "../hooks/useCheckLocation";
+
+// STUDENT USER
+// let user = { name: "Adaeze", role: "student" };
+
+// ADMIN USER
+let user = { role: "admin" };
+
+// TEACHER USER
+// let user = { name: "Mr. Monday", role: "teacher" };
 
 const Header = () => {
   const navigate = useNavigate();
-  // const [showNavbar, setShowNavbar] = React.useState(false);
+  const dashboardPage = getPage();
 
   const {
     visible: showNavbar,
@@ -29,7 +37,15 @@ const Header = () => {
       : document.body.classList.remove("hidden");
   }, [showNavbar]);
 
-  const dashboardPage = useCheckLocation("/dashboard");
+  const navNavigator = (to) => {
+    setShowNavbar(false);
+    if (to === "dashboard") {
+      navigate(".");
+      return;
+    }
+
+    navigate(to);
+  };
 
   return (
     <>
@@ -41,7 +57,6 @@ const Header = () => {
           <div className={`nav-elements  ${showNavbar && "active"}`}>
             {!dashboardPage && (
               <ul>
-            
                 <li>
                   <NavLink to="/">Home</NavLink>
                 </li>
@@ -59,25 +74,46 @@ const Header = () => {
                 </li>
               </ul>
             )}
-            {dashboardPage && showNavbar && (
-              <ul>
-                {sideBarLinks.map((sidebar, index) => (
-                  <li key={index}>
-                    <Link
-                      to={sidebar.link}
-                      className={`${checkInLocation(sidebar.link) && "active"}`}
-                    >
-                      {sidebar.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            )}
+            {dashboardPage &&
+              showNavbar &&
+              (user.role !== "admin" ? (
+                <ul>
+                  {sideBarLinks?.map((sidebar, index) => (
+                    <li key={index}>
+                      <Link
+                        to={sidebar.link}
+                        className={`${
+                          checkInLocation(sidebar.link) && "active"
+                        }`}
+                      >
+                        {sidebar.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <ul>
+                  {adminLinks?.map((sidebar, index) => (
+                    <li key={index}>
+                      <button
+                        onClick={() => navNavigator(sidebar.link)}
+                        className={`navBtn ${
+                          checkInLocation(sidebar.link) && "active"
+                        }`}
+                      >
+                        {sidebar.title}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              ))}
           </div>
 
-          <div className="menu-btn">
-            <Button text="Sign Up" onClick={() => navigate("/signup")} />
-          </div>
+          {!dashboardPage && (
+            <div className="menu-btn">
+              <Button text="Sign Up" onClick={() => navigate("/signup")} />
+            </div>
+          )}
 
           <div className="menu-icon" onClick={handleShowNavbar}>
             {!showNavbar ? <MdOutlineMenu size={32} /> : <IoClose size={24} />}
