@@ -7,6 +7,12 @@ import { Link, NavLink, useNavigate, useNavigation } from "react-router-dom";
 import { checkInLocation, getPage } from "../utils/helpers";
 import { adminLinks, sideBarLinks } from "../data/linkData";
 import useClickOutiside from "../hooks/use-clickOutside";
+import { useCheckLocation } from "../hooks/useCheckLocation";
+import { useAuth } from "../Contexts/AuthContext";
+
+
+
+
 
 // STUDENT USER
 // let user = { name: "Adaeze", role: "student" };
@@ -20,6 +26,12 @@ let user = { role: "admin" };
 const Header = () => {
   const navigate = useNavigate();
   const dashboardPage = getPage();
+
+
+  const { isLoggedIn, signOut} = useAuth();
+
+
+  
 
   const {
     visible: showNavbar,
@@ -109,10 +121,13 @@ const Header = () => {
               ))}
           </div>
 
-          {!dashboardPage && (
+          {isLoggedIn ? (
             <div className="menu-btn">
-              <Button text="Sign Up" onClick={() => navigate("/signup")} />
+              <Button text="Log Out" onClick={() => signOut()} />
             </div>
+          ) : (
+            ""
+
           )}
 
           <div className="menu-icon" onClick={handleShowNavbar}>
