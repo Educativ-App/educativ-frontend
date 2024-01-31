@@ -10,15 +10,11 @@ import useClickOutiside from "../hooks/use-clickOutside";
 import { useCheckLocation } from "../hooks/useCheckLocation";
 import { useAuth } from "../Contexts/AuthContext";
 
-
-
-
-
 // STUDENT USER
 // let user = { name: "Adaeze", role: "student" };
 
 // ADMIN USER
-let user = { role: "admin" };
+// let user = { role: "admin" };
 
 // TEACHER USER
 // let user = { name: "Mr. Monday", role: "teacher" };
@@ -27,11 +23,7 @@ const Header = () => {
   const navigate = useNavigate();
   const dashboardPage = getPage();
 
-
-  const { isLoggedIn, signOut} = useAuth();
-
-
-  
+  const { isLoggedIn, signOut, authUser : user } = useAuth();
 
   const {
     visible: showNavbar,
@@ -127,7 +119,6 @@ const Header = () => {
             </div>
           ) : (
             ""
-
           )}
 
           <div className="menu-icon" onClick={handleShowNavbar}>

@@ -45,9 +45,9 @@ const Spinner = () => {
 Button.propTypes = {
   type: PropTypes.oneOf(["default", "success", "danger", "info", "warning"]),
   text: PropTypes.string,
-  onClick: PropTypes.any,
+  onClick: PropTypes.func,
   className: PropTypes.string,
-  loading: PropTypes.boolean,
+  loading: PropTypes.bool,
   icon: PropTypes.element
 };
 
