@@ -1,0 +1,27 @@
+.admin_dashboard {
+  display: flex;
+  gap: 2.3rem;
+
+  .admin_left_container {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 2.7rem;
+
+    .admin_top_container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+      gap: 1rem;
+    }
+  }
+  .admin_right_container {
+    flex: 1;
+  }
+}
+
+/* MOBILE DESIGN */
+@media (max-width: 600px) {
+  .admin_dashboard {
+    flex-direction: column;
+  }
+}

@@ -3,10 +3,11 @@ import Button from "./Button";
 import "../assets/css/styles.css";
 import { MdOutlineMenu } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
-import { Link, NavLink, useNavigate, useNavigation } from "react-router-dom";
-import { checkInLocation, getPage } from "../utils/helpers";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { checkInLocation } from "../utils/helpers";
 import { adminLinks, sideBarLinks } from "../data/linkData";
 import useClickOutiside from "../hooks/use-clickOutside";
+import { useCheckLocation } from "../hooks/useCheckLocation";
 
 // STUDENT USER
 // let user = { name: "Adaeze", role: "student" };
@@ -19,7 +20,7 @@ let user = { role: "admin" };
 
 const Header = () => {
   const navigate = useNavigate();
-  const dashboardPage = getPage();
+  const dashboardPage = useCheckLocation("/dashboard");
 
   const {
     visible: showNavbar,
