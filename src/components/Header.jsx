@@ -80,18 +80,29 @@ const Header = () => {
             )}
             {dashboardPage &&
               showNavbar &&
-              (user.role !== "admin" ? (
+              (user?.role !== "admin" ? (
                 <ul>
                   {sideBarLinks?.map((sidebar, index) => (
                     <li key={index}>
-                      <Link
-                        to={sidebar.link}
-                        className={`${
-                          checkInLocation(sidebar.link) && "active"
-                        }`}
-                      >
-                        {sidebar.title}
-                      </Link>
+                      {sidebar.type === "button" ? (
+                        <>
+                          <button
+                            onClick={() => signOut()}
+                            className={`navBtn`}
+                          >
+                            {sidebar.title}
+                          </button>
+                        </>
+                      ) : (
+                        <Link
+                          to={sidebar.link}
+                          className={`${
+                            checkInLocation(sidebar.link) && "active"
+                          }`}
+                        >
+                          {sidebar.title}
+                        </Link>
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -123,9 +134,9 @@ const Header = () => {
           ) : (
             <div className="menu-btn">
               <h3>
-                {user.role === "student"
+                {user?.role === "student"
                   ? "Student's Dashboard"
-                  : user.role === "teacher"
+                  : user?.role === "teacher"
                   ? "Teacher's Dashboard"
                   : "Admin's Dashboard"}
               </h3>

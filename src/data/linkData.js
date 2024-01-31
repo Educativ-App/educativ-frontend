@@ -29,7 +29,7 @@ export const sideBarLinks = [
   },
   {
     title: "Log out",
-    link: "/#",
+    type: "button",
   },
 ];
 export const adminLinks = [

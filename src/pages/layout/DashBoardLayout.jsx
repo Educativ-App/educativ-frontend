@@ -9,9 +9,20 @@ import { useAuth } from "../../Contexts/AuthContext";
 
 const DashBoardLayout = () => {
   const navigate = useNavigate();
-  const { authUser: user } = useAuth();
+  const { authUser: user, signOut } = useAuth();
 
-  const clickHandler = (url) => {
+  React.useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [user]);
+
+  const clickHandler = (url, type) => {
+    if (type === "button") {
+      signOut();
+      navigate("/");
+      return;
+    }
     if (url === "dashboard") {
       navigate(".");
       return;
@@ -26,10 +37,10 @@ const DashBoardLayout = () => {
       </div>
       <aside className="sidebar">
         <div className="sidebar_links">
-          {user.role !== "admin" &&
+          {user?.role !== "admin" &&
             sideBarLinks?.map((sidebar, index) => (
               <button
-                onClick={() => clickHandler(sidebar.link)}
+                onClick={() => clickHandler(sidebar.link, sidebar?.type)}
                 key={index}
                 className={`sidebar_link ${
                   checkInLocation(sidebar.link) && "active"
@@ -39,7 +50,7 @@ const DashBoardLayout = () => {
                 {sidebar.title}
               </button>
             ))}
-          {user.role === "admin" &&
+          {user?.role === "admin" &&
             adminLinks?.map((sidebar, index) => (
               <button
                 onClick={() => clickHandler(sidebar.link)}
