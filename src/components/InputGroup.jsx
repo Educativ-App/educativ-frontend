@@ -1,5 +1,7 @@
+/* eslint-disable react/display-name */
 import React, { forwardRef, useState } from "react";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
+import PropTypes from "prop-types"
 
 import "../assets/css/InputGroup.css";
 
@@ -36,5 +38,14 @@ const InputGroup = forwardRef((props, ref) => {
     </div>
   );
 });
+
+
+InputGroup.propTypes = {
+  error : PropTypes.any, 
+  errorMessage: PropTypes.any, 
+  label: PropTypes.string, 
+  type: PropTypes.string, 
+  id : PropTypes.string
+}
 
 export default InputGroup;

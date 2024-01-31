@@ -2,12 +2,21 @@ import React from "react";
 import "../assets/css/Dashboard.css";
 import StudentDashBoard from "./components/StudentDashBoard";
 import TeacherDashBoard from "./components/TeacherDashBoard";
-
-let user = { name: "Adaeze", role: "student" };
-// let user = { name: "Mr. Monday", role: "teacher" };
+import { useAuth } from "../Contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
-  return (
+  const { authUser: user } = useAuth();
+
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [user]);
+
+  return user ? (
     <section className="dashboard">
       <div className="user_profile">
         <h2>Hello, {user?.name}</h2>
@@ -15,6 +24,8 @@ const Dashboard = () => {
       </div>
       {user?.role == "student" ? <StudentDashBoard /> : <TeacherDashBoard />}
     </section>
+  ) : (
+    <></>
   );
 };
 

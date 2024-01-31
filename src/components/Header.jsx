@@ -3,15 +3,20 @@ import Button from "./Button";
 import "../assets/css/styles.css";
 import { MdOutlineMenu } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { checkInLocation } from "../utils/helpers";
 import { sideBarLinks } from "../data/linkData";
 import useClickOutiside from "../hooks/use-clickOutside";
 import { useCheckLocation } from "../hooks/useCheckLocation";
+import { useAuth } from "../Contexts/AuthContext";
 
 const Header = () => {
-  const navigate = useNavigate();
   // const [showNavbar, setShowNavbar] = React.useState(false);
+
+  const { isLoggedIn,signOut} = useAuth();
+
+
+  
 
   const {
     visible: showNavbar,
@@ -41,7 +46,6 @@ const Header = () => {
           <div className={`nav-elements  ${showNavbar && "active"}`}>
             {!dashboardPage && (
               <ul>
-            
                 <li>
                   <NavLink to="/">Home</NavLink>
                 </li>
@@ -74,10 +78,13 @@ const Header = () => {
               </ul>
             )}
           </div>
-
-          <div className="menu-btn">
-            <Button text="Sign Up" onClick={() => navigate("/signup")} />
-          </div>
+          {isLoggedIn ? (
+            <div className="menu-btn">
+              <Button text="Log Out" onClick={() => signOut()} />
+            </div>
+          ) : (
+            ""
+          )}
 
           <div className="menu-icon" onClick={handleShowNavbar}>
             {!showNavbar ? <MdOutlineMenu size={32} /> : <IoClose size={24} />}
