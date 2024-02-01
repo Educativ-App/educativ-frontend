@@ -53,7 +53,7 @@ const DashBoardLayout = () => {
           {user?.role === "admin" &&
             adminLinks?.map((sidebar, index) => (
               <button
-                onClick={() => clickHandler(sidebar.link)}
+                onClick={() => clickHandler(sidebar.link, sidebar.type)}
                 key={index}
                 className={`sidebar_link ${
                   checkInLocation(sidebar.link) && "active"

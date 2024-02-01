@@ -36,21 +36,26 @@ export const adminLinks = [
   {
     title: "Home",
     link: "/",
+    type: "link"
   },
   {
     title: "My Dashboard",
     link: "dashboard",
+    type: "link"
   },
   {
     title: "Teachers",
     link: "admin/teachers",
+    type: "link"
   },
   {
     title: "Courses",
     link: "admin/courses",
+    type: "link"
   },
   {
     title: "Log out",
     link: "/#",
+    type: "button"
   },
 ];
