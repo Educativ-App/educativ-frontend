@@ -7,7 +7,9 @@ export function useAuthService() {
     try {
       var res = await axiosClient.post("users/login", { email, password });
       var data = jwtDecode(res.data.token);
-      const user = await getUserById(data.user.userId);
+      localStorage.setItem("token", res.data.token);
+      // const user = await getUserById(data.user);
+      const user = data.user;
       return user;
     } catch (error) {
       if (error.response.status) {
@@ -16,9 +18,24 @@ export function useAuthService() {
     }
   };
 
-  const getUserById = async (id) => {
+  const getUserById = async (user) => {
+    console.log(user);
     try {
-      var res = await axiosClient.get(`users/${id}`);
+      var url = "users";
+      switch (user.role) {
+        case "student":
+          url = "students";
+          break;
+        case "admin":
+          url = "users";
+          break;
+        case "teacher":
+          url = "teachers";
+          break;
+      }
+
+      const res = await axiosClient.get(`${url}/${user.userId}`);
+
       return res.data;
     } catch (error) {
       if (error.response.status) {
