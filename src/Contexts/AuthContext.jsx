@@ -31,6 +31,7 @@ export function AuthProvider(props) {
 
   const signOut = () => {
     localStorage.removeItem("user");
+    localStorage.removeItem("token");
     localStorage.removeItem("isLoggedIn");
     setIsloggedIn(false);
     setAuthUser(null);
