@@ -110,14 +110,25 @@ const Header = () => {
                 <ul>
                   {adminLinks?.map((sidebar, index) => (
                     <li key={index}>
-                      <button
-                        onClick={() => navNavigator(sidebar.link)}
-                        className={`navBtn ${
-                          checkInLocation(sidebar.link) && "active"
-                        }`}
-                      >
-                        {sidebar.title}
-                      </button>
+                      {sidebar.type === "button" ? (
+                        <>
+                          <button
+                            onClick={() => signOut()}
+                            className={`navBtn`}
+                          >
+                            {sidebar.title}
+                          </button>
+                        </>
+                      ) : (
+                        <button
+                          onClick={() => navNavigator(sidebar.link)}
+                          className={`navBtn ${
+                            checkInLocation(sidebar.link) && "active"
+                          }`}
+                        >
+                          {sidebar.title}
+                        </button>
+                      )}
                     </li>
                   ))}
                 </ul>

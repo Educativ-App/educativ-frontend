@@ -51,6 +51,6 @@ export const adminLinks = [
   },
   {
     title: "Log out",
-    link: "/#",
+    type: "button",
   },
 ];
