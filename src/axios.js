@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosClient = axios.create({
-  baseURL: "https://educativ.onrender.com/api/v1/",
+  baseURL: import.meta.env.VITE_BASE_URL,
 });
 
 // Add a request interceptor
@@ -16,7 +16,6 @@ axiosClient.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-
 // Add a response interceptor
 axiosClient.interceptors.response.use(
   (response) => response,
@@ -25,7 +24,13 @@ axiosClient.interceptors.response.use(
 
     // If the error status is 401 and there is no originalRequest._retry flag,
     // it means the token has expired and we need to refresh it
-    if (error.response.status === 401 && !originalRequest._retry) {
+
+    // error.response.data.error !== "Ivalid credentials".... login errors are not intercepted
+    if (
+      error.response.status === 401 &&
+      !originalRequest._retry &&
+      error.response.data.error !== "Ivalid credentials"
+    ) {
       originalRequest._retry = true;
 
       // try {
@@ -48,6 +53,5 @@ axiosClient.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-
 
 export default axiosClient;

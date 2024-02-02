@@ -41,8 +41,13 @@ const Header = () => {
       : document.body.classList.remove("hidden");
   }, [showNavbar]);
 
-  const navNavigator = (to) => {
+  const navNavigator = (to, type) => {
     setShowNavbar(false);
+    if (type === "button") {
+      signOut();
+      navigate("/");
+      return;
+    }
     if (to === "dashboard") {
       navigate(".");
       return;
@@ -76,6 +81,23 @@ const Header = () => {
                 <li>
                   <NavLink to="/contact-us">Contact Us</NavLink>
                 </li>
+                {showNavbar && (
+                  <li>
+                    {isLoggedIn ? (
+                      <Button
+                        text="Log Out"
+                        onClick={() => navNavigator("/", "button")}
+                        type="info"
+                      />
+                    ) : (
+                      <Button
+                        text="Log in"
+                        type="info"
+                        onClick={() => navigate("/login")}
+                      />
+                    )}
+                  </li>
+                )}
               </ul>
             )}
             {dashboardPage &&
@@ -86,12 +108,13 @@ const Header = () => {
                     <li key={index}>
                       {sidebar.type === "button" ? (
                         <>
-                          <button
-                            onClick={() => signOut()}
-                            className={`navBtn`}
-                          >
-                            {sidebar.title}
-                          </button>
+                          <Button
+                            text={sidebar.title}
+                            onClick={() =>
+                              navNavigator(sidebar.link, sidebar?.type)
+                            }
+                            type="info"
+                          />
                         </>
                       ) : (
                         <Link
@@ -112,16 +135,19 @@ const Header = () => {
                     <li key={index}>
                       {sidebar.type === "button" ? (
                         <>
-                          <button
-                            onClick={() => signOut()}
-                            className={`navBtn`}
-                          >
-                            {sidebar.title}
-                          </button>
+                          <Button
+                            text={sidebar.title}
+                            onClick={() =>
+                              navNavigator(sidebar.link, sidebar?.type)
+                            }
+                            type="info"
+                          />
                         </>
                       ) : (
                         <button
-                          onClick={() => navNavigator(sidebar.link)}
+                          onClick={() =>
+                            navNavigator(sidebar.link, sidebar?.type)
+                          }
                           className={`navBtn ${
                             checkInLocation(sidebar.link) && "active"
                           }`}

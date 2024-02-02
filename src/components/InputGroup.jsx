@@ -1,12 +1,12 @@
 /* eslint-disable react/display-name */
 import React, { forwardRef, useState } from "react";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 
 import "../assets/css/InputGroup.css";
 
 const InputGroup = forwardRef((props, ref) => {
-  const { error, errorMessage, label, type, id } = props;
+  const { error, errormessage, label, type, id } = props;
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -34,18 +34,17 @@ const InputGroup = forwardRef((props, ref) => {
           </button>
         )}
       </div>
-      {error && <h5 className="error_message">{errorMessage}</h5>}
+      {error && <h5 className="error_message">{errormessage}</h5>}
     </div>
   );
 });
 
-
 InputGroup.propTypes = {
-  error : PropTypes.any, 
-  errorMessage: PropTypes.any, 
-  label: PropTypes.string, 
-  type: PropTypes.string, 
-  id : PropTypes.string
-}
+  error: PropTypes.bool,
+  errormessage: PropTypes.string,
+  label: PropTypes.string,
+  type: PropTypes.string,
+  id: PropTypes.string,
+};
 
 export default InputGroup;

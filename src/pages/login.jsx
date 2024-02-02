@@ -1,11 +1,18 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
+
+import "../assets/css/Login.css";
+
 import InputGroup from "../components/InputGroup";
 import Button from "../components/Button";
+
 import { Link, useNavigate } from "react-router-dom";
-import "../assets/css/Login.css";
 import { useAuthService } from "../hooks/authHooks";
 import { useAuth } from "../Contexts/AuthContext";
 import { toast } from "react-toastify";
+
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { loginSchema } from "../schema";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -14,16 +21,11 @@ const Login = () => {
   const { loginUser } = useAuthService();
   const { saveLoggedInUser } = useAuth();
 
-  const emailRef = useRef("");
-  const passwordRef = useRef("");
+  // HDR:-------------------------FORM SUBMISSION-----------------------------------------
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    var email = emailRef.current.value;
-    var password = passwordRef.current.value;
-
+  const submitHandler = async (formData) => {
     setLoading(true);
-    const user = await loginUser(email, password);
+    const user = await loginUser(formData.email, formData.password);
     setLoading(false);
     if (user != null) {
       saveLoggedInUser(user);
@@ -32,25 +34,43 @@ const Login = () => {
     }
   };
 
+  // HDR:-------------------------FORM VALIDATION-----------------------------------------
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({
+    resolver: zodResolver(loginSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
   return (
     <div>
       <h1>Login</h1>
 
       <div className="form_section">
-        <form className="form" onSubmit={handleSubmit}>
+        <form className="form" onSubmit={handleSubmit(submitHandler)}>
           <InputGroup
-            ref={emailRef}
             label="Email"
             name="email"
             id="email"
             type="email"
+            error={errors.email}
+            errormessage={errors.email?.message}
+            {...register("email")}
           />
           <InputGroup
-            ref={passwordRef}
             label="Password"
             name="password"
             id="password"
             type="password"
+            error={errors.password}
+            errormessage={errors.password?.message}
+            {...register("password")}
           />
 
           <p>

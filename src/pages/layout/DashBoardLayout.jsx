@@ -51,31 +51,18 @@ const DashBoardLayout = () => {
               </button>
             ))}
           {user?.role === "admin" &&
-            adminLinks?.map((sidebar, index) =>
-              sidebar?.type === "button" ? (
-                <button
-                  onClick={() => signOut()}
-                  key={index}
-                  className={`sidebar_link ${
-                    checkInLocation(sidebar.link) && "active"
-                  }`}
-                  disabled={sidebar?.disabled}
-                >
-                  {sidebar.title}
-                </button>
-              ) : (
-                <button
-                  onClick={() => clickHandler(sidebar.link)}
-                  key={index}
-                  className={`sidebar_link ${
-                    checkInLocation(sidebar.link) && "active"
-                  }`}
-                  disabled={sidebar?.disabled}
-                >
-                  {sidebar.title}
-                </button>
-              )
-            )}
+            adminLinks?.map((sidebar, index) => (
+              <button
+                onClick={() => clickHandler(sidebar.link, sidebar?.type)}
+                key={index}
+                className={`sidebar_link ${
+                  checkInLocation(sidebar.link) && "active"
+                }`}
+                disabled={sidebar?.disabled}
+              >
+                {sidebar.title}
+              </button>
+            ))}
         </div>
       </aside>
       <main className="dashboard_layout__main">
