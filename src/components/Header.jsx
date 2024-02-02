@@ -5,13 +5,25 @@ import { MdOutlineMenu } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { checkInLocation } from "../utils/helpers";
-import { sideBarLinks } from "../data/linkData";
+import { adminLinks, sideBarLinks } from "../data/linkData";
 import useClickOutiside from "../hooks/use-clickOutside";
 import { useCheckLocation } from "../hooks/useCheckLocation";
+import { useAuth } from "../Contexts/AuthContext";
+
+// STUDENT USER
+// let user = { name: "Adaeze", role: "student" };
+
+// ADMIN USER
+// let user = { role: "admin" };
+
+// TEACHER USER
+// let user = { name: "Mr. Monday", role: "teacher" };
 
 const Header = () => {
   const navigate = useNavigate();
-  // const [showNavbar, setShowNavbar] = React.useState(false);
+  const dashboardPage = useCheckLocation("/dashboard");
+
+  const { isLoggedIn, signOut, authUser: user } = useAuth();
 
   const {
     visible: showNavbar,
@@ -29,7 +41,20 @@ const Header = () => {
       : document.body.classList.remove("hidden");
   }, [showNavbar]);
 
-  const dashboardPage = useCheckLocation("/dashboard");
+  const navNavigator = (to, type) => {
+    setShowNavbar(false);
+    if (type === "button") {
+      signOut();
+      navigate("/");
+      return;
+    }
+    if (to === "dashboard") {
+      navigate(".");
+      return;
+    }
+
+    navigate(to);
+  };
 
   return (
     <>
@@ -41,7 +66,6 @@ const Header = () => {
           <div className={`nav-elements  ${showNavbar && "active"}`}>
             {!dashboardPage && (
               <ul>
-            
                 <li>
                   <NavLink to="/">Home</NavLink>
                 </li>
@@ -57,27 +81,104 @@ const Header = () => {
                 <li>
                   <NavLink to="/contact-us">Contact Us</NavLink>
                 </li>
-              </ul>
-            )}
-            {dashboardPage && showNavbar && (
-              <ul>
-                {sideBarLinks.map((sidebar, index) => (
-                  <li key={index}>
-                    <Link
-                      to={sidebar.link}
-                      className={`${checkInLocation(sidebar.link) && "active"}`}
-                    >
-                      {sidebar.title}
-                    </Link>
+                {showNavbar && (
+                  <li>
+                    {isLoggedIn ? (
+                      <Button
+                        text="Log Out"
+                        onClick={() => navNavigator("/", "button")}
+                        type="info"
+                      />
+                    ) : (
+                      <Button
+                        text="Log in"
+                        type="info"
+                        onClick={() => navigate("/login")}
+                      />
+                    )}
                   </li>
-                ))}
+                )}
               </ul>
             )}
+            {dashboardPage &&
+              showNavbar &&
+              (user?.role !== "admin" ? (
+                <ul>
+                  {sideBarLinks?.map((sidebar, index) => (
+                    <li key={index}>
+                      {sidebar.type === "button" ? (
+                        <>
+                          <Button
+                            text={sidebar.title}
+                            onClick={() =>
+                              navNavigator(sidebar.link, sidebar?.type)
+                            }
+                            type="info"
+                          />
+                        </>
+                      ) : (
+                        <Link
+                          to={sidebar.link}
+                          className={`${
+                            checkInLocation(sidebar.link) && "active"
+                          }`}
+                        >
+                          {sidebar.title}
+                        </Link>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <ul>
+                  {adminLinks?.map((sidebar, index) => (
+                    <li key={index}>
+                      {sidebar.type === "button" ? (
+                        <>
+                          <Button
+                            text={sidebar.title}
+                            onClick={() =>
+                              navNavigator(sidebar.link, sidebar?.type)
+                            }
+                            type="info"
+                          />
+                        </>
+                      ) : (
+                        <button
+                          onClick={() =>
+                            navNavigator(sidebar.link, sidebar?.type)
+                          }
+                          className={`navBtn ${
+                            checkInLocation(sidebar.link) && "active"
+                          }`}
+                        >
+                          {sidebar.title}
+                        </button>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              ))}
           </div>
-
-          <div className="menu-btn">
-            <Button text="Sign Up" onClick={() => navigate("/signup")} />
-          </div>
+          {!dashboardPage ? (
+            <div className="menu-btn">
+              {isLoggedIn ? (
+                <Button text="Log Out" onClick={() => signOut()} />
+              ) : (
+                <Button text="Log in" onClick={() => navigate("/login")} />
+              )}
+            </div>
+          ) : (
+            <div className="menu-btn">
+              <h3>
+                {user?.role === "student"
+                  ? "Student's Dashboard"
+                  : user?.role === "teacher"
+                  ? "Teacher's Dashboard"
+                  : "Admin's Dashboard"}
+              </h3>
+            </div>
+          )}
 
           <div className="menu-icon" onClick={handleShowNavbar}>
             {!showNavbar ? <MdOutlineMenu size={32} /> : <IoClose size={24} />}

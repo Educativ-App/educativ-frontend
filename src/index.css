@@ -2,6 +2,7 @@
 
 :root {
   /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
+  --clr-light-lemon: #dcf6b0;
   --clr-lemon: #8ce200;
   --clr-lemon-hover: #a7cf67;
   --clr-teal-green: #30ba99;
@@ -42,5 +43,22 @@ body {
     inset: 0;
     overflow: hidden;
     overflow: -moz-hidden-unscrollable;
+  }
+}
+
+
+.spinner {
+  animation-name: spin;
+  animation-duration: 500ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }

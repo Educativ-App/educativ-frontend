@@ -45,7 +45,7 @@ const taskTab = [
 
 var user = {
   name: "Adaeze Igwe",
-  faculty: "Faculty of Business Administration",
+  faculty: "Business Administration",
   dept: "Accountancy Department",
   mat_no: "150203031",
   session: "2023/24",

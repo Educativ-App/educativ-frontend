@@ -12,7 +12,7 @@ var user = {
   name: "Monday Oshodi",
   faculty: "Management Science",
   dept: "Business Administration",
-  mat_no: "150203031",
+  staff_no: "150203031",
   session: "2023/24",
   semester: "First",
   role: "teacher",
