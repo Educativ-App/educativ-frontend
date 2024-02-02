@@ -13,7 +13,7 @@ export function useAuthService() {
       return user;
     } catch (error) {
       if (error.response.status) {
-        toast(error.response.data.error, { type: "error" });
+        toast(error.response.data.error, { type: "error", autoClose: 5000 });
       }
     }
   };

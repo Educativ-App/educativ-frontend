@@ -1,18 +1,11 @@
 import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import { getPage } from "../../utils/helpers";
-
-// STUDENT USER
-// let user = { name: "Adaeze", role: "student" };
-
-// ADMIN USER
-let user = { role: "admin" };
-
-// TEACHER USER
-// let user = { name: "Mr. Monday", role: "teacher" };
+import { useAuth } from "../../Contexts/AuthContext";
 
 const AdminProtectedRoutes = () => {
   const currentPage = getPage();
+  const { authUser: user } = useAuth();
 
   if (user?.role === "admin") {
     if (currentPage === "admin") {
