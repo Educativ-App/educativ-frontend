@@ -18,10 +18,10 @@ const Profile = ({
                 <span className="profile-name">{user.name}</span>
               </center>
               <center>
-                <span>{`Faculty of ${user.faculty}`}</span>
+                <span>{`Faculty of ${user?.faculty}`}</span>
               </center>
               <center>
-                <span> {`Department of ${user.dept}`}</span>
+                <span> {`Department of ${user?.dept}`}</span>
               </center>
             </>
           ) : (

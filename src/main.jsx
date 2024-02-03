@@ -19,6 +19,7 @@ import "react-toastify/dist/ReactToastify.min.css";
 import AdminProtectedRoutes from "./pages/protectedRoute/AdminProtectedRoutes.jsx";
 import AllTeacher from "./pages/AllTeacher.jsx";
 import AllCourses from "./pages/AllCourses.jsx";
+import CoursesPage from "./pages/Course/index.jsx";
 import AssessmentPage from "./pages/Assessment/index.jsx";
 import AssessmentCreate from "./pages/Assessment/create.jsx";
 import AssessmentCoursePage from "./pages/Assessment/course.jsx";
@@ -65,6 +66,8 @@ const router = createBrowserRouter([
         path: "quiz",
         element: <QuizPage />,
       },
+
+      // ADMIN PAGES
       {
         path: "admin",
         element: <AdminProtectedRoutes />,
@@ -79,31 +82,36 @@ const router = createBrowserRouter([
           },
         ],
       },
-    ],
-  },
-  {
-    element: <DashBoardLayout />,
-    path: "/teacher",
-    children: [
+
+      // TEACHERS PAGES
       {
-        path: "assessment",
-        element: <AssessmentPage />,
-      },
-      {
-        path: "assessment/create",
-        element: <AssessmentCreate />,
-      },
-      {
-        path: "course/:courseId",
-        element: <AssessmentCoursePage />,
-      },
-      {
-        path: "assessment/:assessmentId/add-questions",
-        element: <AddQuestions />,
-      },
-      {
-        path: "assessment/:assessmentId/view-questions",
-        element: <ViewQuestions />,
+        path: "teacher",
+        children: [
+          {
+            path: "courses",
+            element: <CoursesPage />,
+          },
+          {
+            path: "assessment",
+            element: <AssessmentPage />,
+          },
+          {
+            path: "assessment/create",
+            element: <AssessmentCreate />,
+          },
+          {
+            path: "assessment/:courseId",
+            element: <AssessmentCoursePage />,
+          },
+          {
+            path: "assessment/:assessmentId/add-questions",
+            element: <AddQuestions />,
+          },
+          {
+            path: "assessment/:assessmentId/view-questions",
+            element: <ViewQuestions />,
+          },
+        ],
       },
     ],
   },

@@ -1,15 +1,18 @@
 import Button from "./Button";
-import  PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import "../assets/css/CourseCard.css";
 import { useNavigate } from "react-router-dom";
 
 const CourseCard = ({ courseName, courseTitle, courseId }) => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   return (
     <div className="course-card">
       <h3>{courseName}</h3>
       <p>{courseTitle}</p>
-      <Button text="View Assessments" onClick={()=>navigate(`/teacher/course/${courseId}`)} />
+      <Button
+        text="View Assessments"
+        onClick={() => navigate(`/dashboard/teacher/assessment/${courseId}`)}
+      />
     </div>
   );
 };
@@ -17,7 +20,7 @@ const CourseCard = ({ courseName, courseTitle, courseId }) => {
 CourseCard.propTypes = {
   courseName: PropTypes.string,
   courseTitle: PropTypes.string,
-  courseId: PropTypes.string
+  courseId: PropTypes.string,
 };
 
 export default CourseCard;

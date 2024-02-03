@@ -7,7 +7,7 @@ const getTeacherCourses = async () => {
     return res.data;
   } catch (error) {
     if (error.response.status) {
-      toast(error.response.data.error, { type: "error", autoClose: 5000 });
+      // toast(error.response.data.error, { type: "error", autoClose: 5000 });
     }
   }
 };
@@ -41,7 +41,7 @@ const createQuestion = async (rows) => {
         console.error(error);
       });
 
-      return res
+    return res;
   } catch (error) {
     if (error.response.status) {
       toast(error.response.data.error, { type: "error", autoClose: 5000 });
@@ -71,7 +71,6 @@ const getQuestionsByAssessment = async (assessmentId) => {
   }
 };
 
-
 const updateQuestion = async (question) => {
   try {
     const res = await axiosClient.put(`questions`, question);
@@ -89,5 +88,5 @@ export {
   getTeacherAssessmentByCourse,
   createQuestion,
   getQuestionsByAssessment,
-  updateQuestion
+  updateQuestion,
 };
