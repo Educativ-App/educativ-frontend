@@ -14,12 +14,16 @@ import About from "./pages/About.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import { AuthProvider } from "./Contexts/AuthContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.min.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 import AdminProtectedRoutes from "./pages/protectedRoute/AdminProtectedRoutes.jsx";
 import AllTeacher from "./pages/AllTeacher.jsx";
 import AllCourses from "./pages/AllCourses.jsx";
-
+import AssessmentPage from "./pages/Assessment/index.jsx";
+import AssessmentCreate from "./pages/Assessment/create.jsx";
+import AssessmentCoursePage from "./pages/Assessment/course.jsx";
+import AddQuestions from "./pages/Assessment/AddQuestions.jsx";
+import ViewQuestions from "./pages/Assessment/ViewQuestions.jsx";
 
 const queryClient = new QueryClient();
 
@@ -77,6 +81,32 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    element: <DashBoardLayout />,
+    path: "/teacher",
+    children: [
+      {
+        path: "assessment",
+        element: <AssessmentPage />,
+      },
+      {
+        path: "assessment/create",
+        element: <AssessmentCreate />,
+      },
+      {
+        path: "course/:courseId",
+        element: <AssessmentCoursePage />,
+      },
+      {
+        path: "assessment/:assessmentId/add-questions",
+        element: <AddQuestions />,
+      },
+      {
+        path: "assessment/:assessmentId/view-questions",
+        element: <ViewQuestions />,
+      },
+    ],
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -84,7 +114,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <RouterProvider router={router} />
-        <ToastContainer/>
+        <ToastContainer />
       </AuthProvider>
     </QueryClientProvider>
   </React.StrictMode>

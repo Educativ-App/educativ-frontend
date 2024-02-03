@@ -5,8 +5,10 @@ import CourseList from "../../components/CourseList";
 import ExamList from "../../components/ExamList";
 import TaskTab from "../../components/TaskTab";
 import testBoard from "../../assets/images/testboard.png";
-import gradeBook from "../../assets/images/grade book.png";
+// import gradeBook from "../../assets/images/grade book.png";
 import penGrade from "../../assets/images/grade_book.png";
+import { NavLink } from "react-router-dom";
+
 
 var user = {
   name: "Monday Oshodi",
@@ -19,35 +21,35 @@ var user = {
 };
 
 var tasks = [
+  // {
+  //   pre: "",
+  //   task: "Test",
+  //   image: testBoard,
+  //   colour: "gradient",
+  //   links: [
+  //     {
+  //       text: "Create a new test",
+  //       url: "#",
+  //     },
+  //     {
+  //       text: "Manage Test",
+  //       url: "#",
+  //     },
+  //   ],
+  // },
   {
     pre: "",
-    task: "Test",
+    task: "Assessment",
     image: testBoard,
     colour: "gradient",
     links: [
       {
-        text: "Create a new test",
-        url: "#",
-      },
-      {
-        text: "Manage Test",
-        url: "#",
-      },
-    ],
-  },
-  {
-    pre: "",
-    task: "Result",
-    image: gradeBook,
-    colour: "gradient",
-    links: [
-      {
         text: "Create New Assessment",
-        url: "#",
+        url: "/teacher/assessment/create",
       },
       {
-        text: "Manage Assessment",
-        url: "#",
+        text: "Manage Assessment For Courses",
+        url: "/teacher/assessment",
       },
     ],
   },
@@ -70,6 +72,7 @@ var tasks = [
 ];
 
 const TeacherDashBoard = () => {
+
   return (
     <>
       <div className="d-grid">
@@ -89,7 +92,7 @@ const TeacherDashBoard = () => {
                 <ul id="item-1">
                   {task.links.map((link, i) => (
                     <li key={i}>
-                      <a href={link.url}>{link.text}</a>
+                      <NavLink to={link.url}>{link.text}</NavLink>
                     </li>
                   ))}
                 </ul>
