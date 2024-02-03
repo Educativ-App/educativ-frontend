@@ -4,9 +4,8 @@ import Header from "../../components/Header";
 
 import "../../assets/css/DashBoardLayout.css";
 import { adminLinks, sideBarLinks } from "../../data/linkData";
-import { checkInLocation } from "../../utils/helpers";
+import { checkInLocation, getPage } from "../../utils/helpers";
 import { useAuth } from "../../Contexts/AuthContext";
-
 
 const DashBoardLayout = () => {
   const navigate = useNavigate();
@@ -25,7 +24,7 @@ const DashBoardLayout = () => {
       return;
     }
     if (url === "dashboard") {
-      navigate(".");
+      navigate("/dashboard");
       return;
     }
     navigate(url);
@@ -67,8 +66,6 @@ const DashBoardLayout = () => {
         </div>
       </aside>
       <main className="dashboard_layout__main">
-        
-
         <Outlet />
       </main>
     </div>

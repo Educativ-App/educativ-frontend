@@ -31,29 +31,25 @@ const Index = () => {
         />
       </div>
 
-      <div>
-        <h4>Select a course to view assessment</h4>
-
-        <div>
-          <label htmlFor="courseId">Course ID:</label>
-          <select
-            id="courseId"
-            name="courseId"
-            // value={formData.courseId}
-            // onChange={handleChange}
-          >
-            <option value="">Select a course</option>
+      <div className="grid-wrapper">
+        <div className="container">
+          <div className="row">
             {courses ? (
-              courses.map((course, i) => (
-                <option key={i} value={course.course._id}>
-                  {`${course.course.courseTittle} (${course.course.courseCode})`}
-                </option>
+              courses.map((course) => (
+                <div key={course.course._id} className="col-md-4">
+                  <CourseCard
+                    courseName={course.course.courseTittle}
+                    courseTitle={course.course.courseCode}
+                    courseId={course.course._id}
+                  />
+                </div>
               ))
             ) : (
-              <option value="">Select a course</option>
+              <div className="center">
+                <h3>No Assigned Course</h3>
+              </div>
             )}
-            {/* Add your course options dynamically based on your data */}
-          </select>
+          </div>
         </div>
       </div>
     </div>

@@ -9,7 +9,6 @@ import testBoard from "../../assets/images/testboard.png";
 import penGrade from "../../assets/images/grade_book.png";
 import { NavLink } from "react-router-dom";
 
-
 var user = {
   name: "Monday Oshodi",
   faculty: "Management Science",
@@ -45,11 +44,11 @@ var tasks = [
     links: [
       {
         text: "Create New Assessment",
-        url: "/teacher/assessment/create",
+        url: "teacher/assessment/create",
       },
       {
         text: "Manage Assessment For Courses",
-        url: "/teacher/assessment",
+        url: "teacher/assessment",
       },
     ],
   },
@@ -72,7 +71,6 @@ var tasks = [
 ];
 
 const TeacherDashBoard = () => {
-
   return (
     <>
       <div className="d-grid">

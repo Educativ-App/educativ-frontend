@@ -1,6 +1,6 @@
 import Loading from "../../components/Loading";
 import { getTeacherAssessmentByCourse } from "../../service/courseService";
-import {  useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import AssessmentCard from "../../components/AssessmentCard";
 import { useEffect, useState } from "react";
 import BackButton from "../../components/BackButton";
@@ -8,11 +8,8 @@ import BackButton from "../../components/BackButton";
 const Course = () => {
   let { courseId } = useParams();
 
-
   const [isLoading, setIsLoading] = useState(true);
   const [assessments, setAssessments] = useState([]);
-
-
 
   const getAssessments = async () => {
     const res = await getTeacherAssessmentByCourse(courseId);
@@ -30,9 +27,21 @@ const Course = () => {
     return <Loading />;
   }
 
+  if (!assessments.length) {
+    return (
+      <div>
+        <BackButton />
+
+        <div className="center">
+          <h3>No assessment for the selected course</h3>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
-        <BackButton/>
+      <BackButton />
 
       <div className="grid-wrapper">
         <div className="container">

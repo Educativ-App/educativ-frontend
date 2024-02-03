@@ -9,19 +9,13 @@ export const sideBarLinks = [
   },
   {
     title: "My Courses",
-    link: "courses",
-    disabled: true,
+    link: "teacher/courses",
   },
   {
-    title: "My Tests",
-    link: "tests",
-    disabled: true,
+    title: "My Assessments",
+    link: "teacher/assessment",
   },
-  {
-    title: "My Exams",
-    link: "exams",
-    disabled: true,
-  },
+
   {
     title: "Settings",
     link: "settings",
