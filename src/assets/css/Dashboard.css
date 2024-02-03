@@ -5,6 +5,9 @@
 
   .user_profile {
     margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
     > h2 {
       font-size: 1.25rem;
