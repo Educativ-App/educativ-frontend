@@ -82,6 +82,17 @@ const updateQuestion = async (question) => {
   }
 };
 
+const updateAssessment = async (assessment) => {
+  try {
+    const res = await axiosClient.put(`assessments`, assessment);
+    return res.data;
+  } catch (error) {
+    if (error.response.status) {
+      toast(error.response.data.error, { type: "error", autoClose: 5000 });
+    }
+  }
+};
+
 export {
   getTeacherCourses,
   createAssessment,
@@ -89,4 +100,5 @@ export {
   createQuestion,
   getQuestionsByAssessment,
   updateQuestion,
+  updateAssessment
 };

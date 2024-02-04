@@ -50,3 +50,10 @@ export const parseArrayAnswerInt = (string) => {
 
   return stringArray
 };
+
+
+// get date string
+
+export const getDateValue = (originalDate)=>{
+  return new Date(originalDate).toISOString().slice(0, 10);
+}

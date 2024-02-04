@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import {
   getQuestionsByAssessment,
   updateQuestion,
@@ -12,6 +12,7 @@ import Modal from "../../components/Modal";
 import { parseAnswerInt, parseArrayAnswerInt } from "../../utils/helpers";
 import Button from "../../components/Button";
 import { toast } from "react-toastify";
+import { MdNoteAdd } from "react-icons/md";
 
 const ViewQuestions = () => {
   const { assessmentId } = useParams();
@@ -49,7 +50,6 @@ const ViewQuestions = () => {
   const saveEditQuestion = async (e) => {
     e.preventDefault();
     setIsUpdating(true);
-    console.log(editedQuestion);
     await updateQuestion(editedQuestion);
     toast("Update Successful", { type: "success", autoClose: 1000 });
     refetch();
@@ -59,7 +59,17 @@ const ViewQuestions = () => {
 
   return (
     <>
-      <BackButton />
+      <div className="d-flex">
+        <BackButton />
+        <div className="btn">
+          <NavLink
+            to={`/dashboard/teacher/assessment/${assessmentId}/add-questions`}
+          >
+            Add  
+          </NavLink><MdNoteAdd size={20}/>
+        </div>
+      </div>
+
       <div className="assessment-table-container">
         <table className="assessment-table">
           <thead>
