@@ -2,26 +2,16 @@ import Loading from "../../components/Loading";
 import { getTeacherAssessmentByCourse } from "../../service/courseService";
 import { useParams } from "react-router-dom";
 import AssessmentCard from "../../components/AssessmentCard";
-import { useEffect, useState } from "react";
 import BackButton from "../../components/BackButton";
+import { useQuery } from "@tanstack/react-query";
 
 const Course = () => {
   let { courseId } = useParams();
 
-  const [isLoading, setIsLoading] = useState(true);
-  const [assessments, setAssessments] = useState([]);
-
-  const getAssessments = async () => {
-    const res = await getTeacherAssessmentByCourse(courseId);
-    if (res) {
-      setAssessments(res);
-    }
-    setIsLoading(false);
-  };
-
-  useEffect(() => {
-    getAssessments();
-  }, []);
+  const { data: assessments, isLoading } = useQuery({
+    queryKey: ["teacher-assessments"],
+    queryFn: () => getTeacherAssessmentByCourse(courseId),
+  });
 
   if (isLoading) {
     return <Loading />;
