@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import {
   getQuestionsByAssessment,
@@ -37,11 +37,11 @@ const ViewQuestions = () => {
   }
 
   const handleEdit = (question) => {
-    setEditedQuestion({ ...question, "questionId" : question._id});
+    setEditedQuestion({ ...question, questionId: question._id });
     setIsModalOpen(true);
   };
 
-  const handleDelete = (id) => {
+  const handleDelete = () => {
     // Handle delete logic here
     // setQuestions(questions.filter(question => question.id !== id));
   };
@@ -51,7 +51,7 @@ const ViewQuestions = () => {
     setIsUpdating(true);
     console.log(editedQuestion);
     await updateQuestion(editedQuestion);
-    toast('Update Successful', { type: "success", autoClose: 1000 });
+    toast("Update Successful", { type: "success", autoClose: 1000 });
     refetch();
     setIsUpdating(false);
     setIsModalOpen(false);
