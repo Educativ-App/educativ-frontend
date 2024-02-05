@@ -25,6 +25,7 @@ import AssessmentCreate from "./pages/Assessment/create.jsx";
 import AssessmentCoursePage from "./pages/Assessment/course.jsx";
 import AddQuestions from "./pages/Assessment/AddQuestions.jsx";
 import ViewQuestions from "./pages/Assessment/ViewQuestions.jsx";
+import StoreProvider from "./Contexts/StoreContext.jsx";
 
 const queryClient = new QueryClient();
 
@@ -62,10 +63,6 @@ const router = createBrowserRouter([
         index: true,
         element: <Dashboard />,
       },
-      {
-        path: "quiz",
-        element: <QuizPage />,
-      },
 
       // ADMIN PAGES
       {
@@ -79,6 +76,16 @@ const router = createBrowserRouter([
           {
             path: "courses",
             element: <AllCourses />,
+          },
+        ],
+      },
+      // STUDENT PAGES
+      {
+        path: "students",
+        children: [
+          {
+            path: "quiz",
+            element: <QuizPage />,
           },
         ],
       },
@@ -121,8 +128,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <RouterProvider router={router} />
-        <ToastContainer />
+        <StoreProvider>
+          <RouterProvider router={router} />
+          <ToastContainer />
+        </StoreProvider>
       </AuthProvider>
     </QueryClientProvider>
   </React.StrictMode>

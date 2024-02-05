@@ -48,31 +48,35 @@ const ExamList = () => {
         </div>
       </div>
       <table>
-        <tr>
-          <th>SN</th>
-          <th>Course Code</th>
-          <th>Course</th>
-          <th>Due Date</th>
-          <th>Status</th>
-        </tr>
-        {courses.map((course, i) => (
-          <tr key={i}>
-            <td align="left">{`${i + 1}.`}</td>
-            <td align="left">{course.course_code}</td>
-            <td align="left">{course.course_title}</td>
-            <td align="left">{course.due}</td>
-            <td align="left">
-              <div
-                className={clsx(
-                  "status-box",
-                  course.status ? "bg-done" : "bg-pending"
-                )}
-              >
-                {course.status ? "Done" : "Pending"}
-              </div>
-            </td>
+        <thead>
+          <tr>
+            <th>SN</th>
+            <th>Course Code</th>
+            <th>Course</th>
+            <th>Due Date</th>
+            <th>Status</th>
           </tr>
-        ))}
+        </thead>
+        <tbody>
+          {courses.map((course, i) => (
+            <tr key={i}>
+              <td align="left">{`${i + 1}.`}</td>
+              <td align="left">{course.course_code}</td>
+              <td align="left">{course.course_title}</td>
+              <td align="left">{course.due}</td>
+              <td align="left">
+                <div
+                  className={clsx(
+                    "status-box",
+                    course.status ? "bg-done" : "bg-pending"
+                  )}
+                >
+                  {course.status ? "Done" : "Pending"}
+                </div>
+              </td>
+            </tr>
+          ))}
+        </tbody>
       </table>
     </div>
   );
