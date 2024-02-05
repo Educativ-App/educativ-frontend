@@ -3,7 +3,7 @@
 }
 
 .modal {
-  width: 25rem;
+  min-width: 25rem;
   padding: 2rem;
   border: 0;
   border-radius: 0.5rem;

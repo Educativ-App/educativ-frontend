@@ -22,4 +22,16 @@ const getStudentRecord = async () => {
   }
 };
 
-export { getTeachersRecord, getStudentRecord };
+const createUser = async (user) => {
+  try {
+    const res = await axiosClient.post(`users`, user);
+    toast(res.data.message, { type: "success", autoClose: 2000 });
+    return res.data;
+  } catch (error) {
+    if (error.response.status) {
+      toast(error.response.data.error, { type: "error", autoClose: 5000 });
+    }
+  }
+};
+
+export { getTeachersRecord, getStudentRecord , createUser};

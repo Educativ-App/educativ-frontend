@@ -50,7 +50,7 @@ const CourseList = () => {
             </tr>
           ))
         ) : (
-          <p value="">No Assigned Courses</p>
+          <tr value="">No Assigned Courses</tr>
         )}
       </table>
     </div>
