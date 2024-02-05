@@ -25,6 +25,7 @@ import AssessmentCreate from "./pages/Assessment/create.jsx";
 import AssessmentCoursePage from "./pages/Assessment/course.jsx";
 import AddQuestions from "./pages/Assessment/AddQuestions.jsx";
 import ViewQuestions from "./pages/Assessment/ViewQuestions.jsx";
+import Students from "./pages/Students/index.jsx";
 
 const queryClient = new QueryClient();
 
@@ -96,6 +97,10 @@ const router = createBrowserRouter([
             element: <AssessmentPage />,
           },
           {
+            path: "students",
+            element: <Students />,
+          },
+          {
             path: "assessment/create",
             element: <AssessmentCreate />,
           },
@@ -111,6 +116,7 @@ const router = createBrowserRouter([
             path: "assessment/:assessmentId/view-questions",
             element: <ViewQuestions />,
           },
+          
         ],
       },
     ],

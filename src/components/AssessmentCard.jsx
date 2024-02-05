@@ -39,7 +39,7 @@ const queryClient = useQueryClient();
 
   const mutation = useMutation({
     mutationFn: () => {
-      return updateAssessment(formData);
+       updateAssessment(formData);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["teacher-assessments"]})

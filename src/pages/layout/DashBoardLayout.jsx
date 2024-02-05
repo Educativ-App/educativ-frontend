@@ -3,7 +3,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 
 import "../../assets/css/DashBoardLayout.css";
-import { adminLinks, sideBarLinks } from "../../data/linkData";
+import { adminLinks, sideBarLinks, teacherLinks } from "../../data/linkData";
 import { checkInLocation, getPage } from "../../utils/helpers";
 import { useAuth } from "../../Contexts/AuthContext";
 
@@ -37,8 +37,21 @@ const DashBoardLayout = () => {
       </div>
       <aside className="sidebar">
         <div className="sidebar_links">
-          {user?.role !== "admin" &&
+          {user?.role === "student" &&
             sideBarLinks?.map((sidebar, index) => (
+              <button
+                onClick={() => clickHandler(sidebar.link, sidebar?.type)}
+                key={index}
+                className={`sidebar_link ${
+                  checkInLocation(sidebar.link) && "active"
+                }`}
+                disabled={sidebar?.disabled}
+              >
+                {sidebar.title}
+              </button>
+            ))}
+          {user?.role === "teacher" &&
+            teacherLinks?.map((sidebar, index) => (
               <button
                 onClick={() => clickHandler(sidebar.link, sidebar?.type)}
                 key={index}
