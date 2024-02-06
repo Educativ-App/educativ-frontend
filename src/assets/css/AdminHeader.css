@@ -5,7 +5,9 @@
   position: sticky;
   top: 0;
   background: var(--clr-white);
-  padding-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  width: 100%;
+  z-index: 999;
 
   .search_input_container {
     flex: 1;
@@ -45,6 +47,7 @@
   .admin_header {
     flex-direction: column;
     row-gap: 0.5rem;
+    width: 100%;
 
     .search_input_container {
       flex: 1;
@@ -68,13 +71,9 @@
       }
     }
 
-    .btn_container {
-      width: 100%;
-
-      > button {
-        float: right;
-        width: 40%;
-      }
+    .btn_container > button {
+      float: left;
+      width: 40%;
     }
   }
 }

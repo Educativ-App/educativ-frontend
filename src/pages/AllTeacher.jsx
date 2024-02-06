@@ -2,65 +2,71 @@ import AdminHeader from "./components/AdminHeader";
 
 import "../assets/css/AllTeacher.css";
 import Profile from "../components/Profile";
-
-const teachersList = [
-  {
-    name: "Monday Oshodi",
-    faculty: "Management Science",
-    dept: "Business Administration",
-    staff_no: "150203031",
-    session: "2023/24",
-    semester: "First",
-    role: "teacher",
-  },
-  {
-    name: "Ola Sunday",
-    faculty: "Science",
-    dept: "Botany",
-    staff_no: "150203031",
-    session: "2022/23",
-    semester: "Second",
-    role: "teacher",
-  },
-  {
-    name: "Adaeze Ugo",
-    faculty: "Engineering",
-    dept: "Civil Engineering",
-    staff_no: "150203031",
-    session: "2021/22",
-    semester: "First",
-    role: "teacher",
-  },
-  {
-    name: "Tuesday Testing",
-    faculty: "Art",
-    dept: "English",
-    staff_no: "150203031",
-    session: "2023/24",
-    semester: "First",
-    role: "teacher",
-  },
-  {
-    name: "Bolu Ige",
-    faculty: "Management Science",
-    dept: "Accounting",
-    staff_no: "150203031",
-    session: "2023/24",
-    semester: "Second",
-    role: "teacher",
-  },
-];
+import { useState } from "react";
+import Modal from "../components/Modal";
+import CreateUser from "../components/CreateUser";
+import { getAllTeachers } from "../service/userService";
+import { useQuery } from "@tanstack/react-query";
+import StudentCard from "../components/StudentCard";
+import TeacherCard from "../components/TeacherCard";
+import Loading from "../components/Loading";
 
 const AllTeacher = () => {
+  const [searchValue, setSearchValue] = useState("");
+
+  const [createModal, setCreateModal] = useState(false);
+
+  const { data: teachers, isLoading } = useQuery({
+    queryKey: ["teachers"],
+    queryFn: () => getAllTeachers(),
+  });
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <div className="admin_teacher">
-      <AdminHeader btnText="Add Teacher" type="teachers" />
+      <AdminHeader
+        btnText="Add Teacher"
+        type="teachers"
+        value={searchValue}
+        onChange={(e) => setSearchValue(e.target?.value)}
+        onClick={() => setCreateModal(true)}
+      />
 
       <div className="teachers_grid">
-        {teachersList.map((teacher, index) => (
-          <Profile key={index} user={teacher} />
-        ))}
+        {teachers
+          ?.filter((val) => {
+            if (
+              val.firstName
+                .toLowerCase()
+                .startsWith(searchValue.toLowerCase()) ||
+              val.middleName
+                .toLowerCase()
+                .startsWith(searchValue.toLowerCase()) ||
+              val.lastName.toLowerCase().startsWith(searchValue.toLowerCase())
+            ) {
+              return val;
+            }
+          })
+          ?.map((teacher, index) => (
+            <TeacherCard key={index} teacher={teacher} />
+          ))}
       </div>
+      {!teachers && (
+        <div className="center">
+          <h3>No Assigned Course</h3>
+        </div>
+      )}
+
+      <Modal
+        isOpen={createModal}
+        onClose={() => setCreateModal(false)}
+        hasCloseBtn={true}
+      >
+        <CreateUser role="teacher" setIsCreating={setCreateModal} />
+      </Modal>
     </div>
   );
 };

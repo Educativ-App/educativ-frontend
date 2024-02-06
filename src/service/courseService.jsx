@@ -59,6 +59,16 @@ const getTeacherAssessmentByCourse = async (courseId) => {
     }
   }
 };
+const getAssessmentByCourse = async (courseId) => {
+  try {
+    const res = await axiosClient.get(`assessments/course/${courseId}`);
+    return res.data;
+  } catch (error) {
+    if (error.response.status) {
+      toast(error.response.data.error, { type: "error", autoClose: 5000 });
+    }
+  }
+};
 
 const getQuestionsByAssessment = async (assessmentId) => {
   try {
@@ -82,11 +92,37 @@ const updateQuestion = async (question) => {
   }
 };
 
+const updateAssessment = async (assessment) => {
+  try {
+    const res = await axiosClient.put(`assessments`, assessment);
+    return res.data;
+  } catch (error) {
+    if (error.response.status) {
+      toast(error.response.data.error, { type: "error", autoClose: 5000 });
+    }
+  }
+};
+
+const getAllCourses = async () => {
+  try {
+    const res = await axiosClient.get("courses/");
+    toast(res.data.message, { type: "success", autoClose: 2000 });
+    return res.data;
+  } catch (error) {
+    if (error.response.status) {
+      toast(error.response.data.error, { type: "error", autoClose: 5000 });
+    }
+  }
+};
+
 export {
   getTeacherCourses,
   createAssessment,
   getTeacherAssessmentByCourse,
+  getAssessmentByCourse,
   createQuestion,
   getQuestionsByAssessment,
   updateQuestion,
+  updateAssessment,
+  getAllCourses,
 };

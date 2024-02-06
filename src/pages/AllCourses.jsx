@@ -1,63 +1,56 @@
 import AdminHeader from "./components/AdminHeader";
 import "../assets/css/AllCourses.css";
 import Profile from "../components/Profile";
-
-const coursesList = [
-  {
-    name: "CHM 432",
-    faculty: "Science",
-    total: 20,
-    dept: "BioChemistry",
-    course_code: "432",
-    session: "2023/24",
-    semester: "First",
-  },
-  {
-    name: "ACC 101",
-    total: 10,
-    dept: "Acoounting",
-    course_code: "101",
-    session: "2022/23",
-    semester: "Second",
-  },
-  {
-    name: "EEG 300",
-    faculty: "Engineering",
-    total: 40,
-    dept: "Civil Engineering",
-    course_code: "300",
-    session: "2021/22",
-    semester: "First",
-  },
-  {
-    name: "LIT 211",
-    faculty: "Art",
-    dept: "English",
-    total: 60,
-    course_code: "211",
-    session: "2023/24",
-    semester: "First",
-  },
-  {
-    name: "Bio 232",
-    faculty: "Science",
-    total: 20,
-    dept: "Zoology",
-    course_code: "232",
-    session: "2023/24",
-    semester: "Second",
-  },
-];
+import { getAllCourses } from "../service/courseService";
+import { useQuery } from "@tanstack/react-query";
+import Loading from "../components/Loading";
+import { useState } from "react";
+import CourseCard from "../components/CourseCard";
+import { useNavigate } from "react-router-dom";
 
 const AllCourses = () => {
+  const [searchValue, setSearchValue] = useState("");
+
+  const navigate = useNavigate();
+
+  const { data: courses, isLoading } = useQuery({
+    queryKey: ["courses"],
+    queryFn: () => getAllCourses(),
+  });
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <div className="admin_courses">
-      <AdminHeader btnText="Add Course" type="courses" />
+      <AdminHeader
+        btnText="Add Course"
+        type="courses"
+        value={searchValue}
+        onChange={(e) => setSearchValue(e.target?.value)}
+      />
 
       <div className="courses_grid">
-        {coursesList?.map((course, index) => (
-          <Profile key={index} course={course} type="course" />
-        ))}
+        {courses
+          ?.filter((val) => {
+            if (
+              val.courseTittle
+                .toLowerCase()
+                .startsWith(searchValue.toLowerCase()) ||
+              val.courseCode.toLowerCase().startsWith(searchValue.toLowerCase())
+            ) {
+              return val;
+            }
+          })
+          ?.map((course, index) => (
+            <CourseCard
+              key={index}
+              courseName={course.courseCode}
+              courseTitle={course.courseTittle}
+              onClick={() => navigate(`assessment/${course._id}`)}
+            />
+          ))}
       </div>
     </div>
   );

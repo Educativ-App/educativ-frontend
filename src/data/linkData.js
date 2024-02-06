@@ -27,8 +27,38 @@ export const sideBarLinks = [
     type: "button",
   },
 ];
+export const teacherLinks = [
+  {
+    title: "Home",
+    link: "/",
+  },
+  {
+    title: "My Dashboard",
+    link: "dashboard",
+  },
+  {
+    title: "My Courses",
+    link: "teacher/courses",
+  },
+  {
+    title: "My Assessments",
+    link: "teacher/assessment",
+  },
+  {
+    title: "My Students",
+    link: "teacher/students",
+  },
 
-// ADMIN LINK
+  {
+    title: "Settings",
+    link: "settings",
+    disabled: true,
+  },
+  {
+    title: "Log out",
+    type: "button",
+  },
+];
 export const adminLinks = [
   {
     title: "Home",

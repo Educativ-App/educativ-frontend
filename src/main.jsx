@@ -25,7 +25,8 @@ import AssessmentCreate from "./pages/Assessment/create.jsx";
 import AssessmentCoursePage from "./pages/Assessment/course.jsx";
 import AddQuestions from "./pages/Assessment/AddQuestions.jsx";
 import ViewQuestions from "./pages/Assessment/ViewQuestions.jsx";
-import StoreProvider from "./Contexts/StoreContext.jsx";
+import Students from "./pages/Students/index.jsx";
+import AdminAssessment from "./pages/Assessment/AdminAssessment.jsx";
 
 const queryClient = new QueryClient();
 
@@ -77,6 +78,10 @@ const router = createBrowserRouter([
             path: "courses",
             element: <AllCourses />,
           },
+          {
+            path: "courses/assessment/:courseId",
+            element: <AssessmentCoursePage />,
+          },
         ],
       },
       // STUDENT PAGES
@@ -101,6 +106,10 @@ const router = createBrowserRouter([
           {
             path: "assessment",
             element: <AssessmentPage />,
+          },
+          {
+            path: "students",
+            element: <Students />,
           },
           {
             path: "assessment/create",
@@ -128,10 +137,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <StoreProvider>
-          <RouterProvider router={router} />
-          <ToastContainer />
-        </StoreProvider>
+        <RouterProvider router={router} />
+        <ToastContainer />
       </AuthProvider>
     </QueryClientProvider>
   </React.StrictMode>

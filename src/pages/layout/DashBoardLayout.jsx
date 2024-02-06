@@ -3,7 +3,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 
 import "../../assets/css/DashBoardLayout.css";
-import { adminLinks, sideBarLinks, studentLinks } from "../../data/linkData";
+import { adminLinks, studentLinks, teacherLinks } from "../../data/linkData";
 import { checkInLocation, getPage } from "../../utils/helpers";
 import { useAuth } from "../../Contexts/AuthContext";
 
@@ -51,7 +51,7 @@ const DashBoardLayout = () => {
               </button>
             ))}
           {user?.role === "teacher" &&
-            sideBarLinks?.map((sidebar, index) => (
+            teacherLinks?.map((sidebar, index) => (
               <button
                 onClick={() => clickHandler(sidebar.link, sidebar?.type)}
                 key={index}

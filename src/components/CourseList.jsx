@@ -2,11 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import "../assets/css/courseList.css";
 import { getTeacherCourses } from "../service/courseService";
 
-const CourseList = ({ courses }) => {
-  // const { data: courses } = useQuery({
-  //   queryKey: ["teacher-courses"],
-  //   queryFn: () => getTeacherCourses(),
-  // });
+const CourseList = () => {
+  const { data: courses } = useQuery({
+    queryKey: ["teacher-courses"],
+    queryFn: () => getTeacherCourses(),
+  });
 
   return (
     <div className="course-list">

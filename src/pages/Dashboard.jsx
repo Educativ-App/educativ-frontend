@@ -25,7 +25,7 @@ const Dashboard = () => {
 
   // TEACHER'S DETAILS
 
-  if (user.role === "teacher") {
+  if (user && user.role === "teacher") {
     const { data } = useQuery({
       queryKey: ["user-details"],
       queryFn: () => getTeachersRecord(),
@@ -35,7 +35,7 @@ const Dashboard = () => {
   }
 
   // STUDENT'S DETAILS
-  if (user.role === "student") {
+  if (user && user.role === "student") {
     const { data } = useQuery({
       queryKey: ["user-details"],
       queryFn: () => getStudentRecord(),

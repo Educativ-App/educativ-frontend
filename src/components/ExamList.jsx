@@ -38,7 +38,7 @@ const ExamList = () => {
           onClick={() => setTab("test")}
           className={clsx("tabs", tab == "test" && "active")}
         >
-          <span>Tests</span>
+          <span>Assessments</span>
         </div>
         <div
           onClick={() => setTab("exam")}
