@@ -15,6 +15,8 @@ const Course = () => {
   let assessments;
   let isLoading;
 
+  console.log(`Course Id ${courseId}`);
+
   if (user && user.role === "teacher") {
     const { data, isLoading: teacherLoading } = useQuery({
       queryKey: ["teacher-assessments"],

@@ -25,15 +25,10 @@ const Students = () => {
     isFetching,
     refetch: refetchStudents,
   } = useQuery({
-    queryKey: ["students"],
-    queryFn: () => getStudentsByCourse(selectedCourse),
-    enabled: selectedCourse != "",
+    queryKey: ["students", selectedCourse],
+    queryFn: async () => await getStudentsByCourse(selectedCourse),
+    enabled: !!selectedCourse,
   });
-
-  useEffect(() => {
-    if (selectedCourse == "") return;
-    refetchStudents();
-  }, [selectedCourse]);
 
   if (isLoading) {
     return <Loading />;

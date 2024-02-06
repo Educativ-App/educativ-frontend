@@ -3,8 +3,8 @@ import Button from "../../components/Button";
 import { MdArrowBackIosNew } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { getTeacherCourses } from "../../service/courseService";
-import CourseCard from "../../components/CourseCard";
 import Loading from "../../components/Loading";
+import TeacherCourseCard from "../../components/TeacherCourseCard";
 
 const Index = () => {
   const navigate = useNavigate();
@@ -37,7 +37,7 @@ const Index = () => {
             {courses ? (
               courses.map((course) => (
                 <div key={course.course._id} className="col-md-4">
-                  <CourseCard
+                  <TeacherCourseCard
                     courseName={course.course.courseTittle}
                     courseTitle={course.course.courseCode}
                     onClick={() =>

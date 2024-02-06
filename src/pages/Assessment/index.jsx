@@ -7,6 +7,8 @@ import Loading from "../../components/Loading";
 import BackButton from "../../components/BackButton";
 import { useEffect, useState } from "react";
 import AssessmentCard from "../../components/AssessmentCard";
+import { NavLink } from "react-router-dom";
+import { FaPlusSquare } from "react-icons/fa";
 
 const Index = () => {
   const { data: courses, isLoading } = useQuery({
@@ -43,7 +45,16 @@ const Index = () => {
   return (
     <div className="grid-wrapper">
       <div className="container">
-        <BackButton />
+        <div className="d-flex">
+          <BackButton />
+          <NavLink
+            to={"/dashboard/teacher/assessment/create"}
+            className="btn btn-info"
+          >
+            <FaPlusSquare />
+            Add
+          </NavLink>
+        </div>
 
         <div className="form-wrapper">
           <h4>Select a course to view assessment</h4>
