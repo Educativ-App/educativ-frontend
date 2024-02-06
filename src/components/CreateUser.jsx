@@ -33,13 +33,13 @@ const CreateUser = ({ role, setIsCreating }) => {
 
   const mutation = useMutation({
     mutationFn: () => {
-       createUser(formData);
+      createUser(formData);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["students", "teachers"] });
       setIsCreating(false);
       setFormData(initialState);
-    }
+    },
   });
 
   const handleSubmit = (e) => {
@@ -137,7 +137,7 @@ const CreateUser = ({ role, setIsCreating }) => {
               <select
                 name="courseId"
                 required
-                value={formData.course}
+                value={formData.courseId}
                 onChange={handleChange}
               >
                 <option value="">Select Course</option>

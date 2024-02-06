@@ -1,14 +1,14 @@
 import "../assets/css/styles.css";
 import PropTypes from "prop-types";
 
-const StudentCard = ({ img = "https://picsum.photos/200", student }) => {
+const TeacherCard = ({ img = "https://picsum.photos/200", teacher }) => {
   return (
     <div className="profile-card">
       <div className="user-image">
         <img src={img} alt="userimage" />
         <div className="profile-info">
           <center>
-            <span className="profile-name">{`${student.firstName}  ${student.lastName}`}</span>
+            <span className="profile-name">{`${teacher.firstName}  ${teacher.lastName}`}</span>
           </center>
           <center>
             <span>{`Faculty of Management`}</span>
@@ -22,27 +22,23 @@ const StudentCard = ({ img = "https://picsum.photos/200", student }) => {
         <table style={{ width: "100%", borderSpacing: "12px" }}>
           <tr>
             <td align="left">FirstName</td>
-            <td align="right">{student.firstName}</td>
+            <td align="right">{teacher.firstName}</td>
           </tr>
           <tr>
             <td align="left">MiddleName</td>
-            <td align="right">{student.middleName}</td>
+            <td align="right">{teacher.middleName}</td>
           </tr>
           <tr>
             <td align="left">LastName</td>
-            <td align="right">{student.lastName}</td>
-          </tr>
-          <tr>
-            <td align="left">Email</td>
-            <td align="right">{student.user.email}</td>
+            <td align="right">{teacher.lastName}</td>
           </tr>
           <tr>
             <td align="left">Gender</td>
-            <td align="right">{student.gender}</td>
+            <td align="right">{teacher.gender}</td>
           </tr>
           <tr>
             <td align="left">Status</td>
-            <td align="right">{student.studentStatus}</td>
+            <td align="right">{teacher.teacherStatus}</td>
           </tr>
         </table>
       </div>
@@ -50,17 +46,14 @@ const StudentCard = ({ img = "https://picsum.photos/200", student }) => {
   );
 };
 
-StudentCard.propTypes = {
+TeacherCard.propTypes = {
   img: PropTypes.string,
-  student: PropTypes.shape({
+  teacher: PropTypes.shape({
     firstName: PropTypes.string,
     middleName: PropTypes.string,
     lastName: PropTypes.string,
     gender: PropTypes.string,
-    studentStatus: PropTypes.string,
-    user: PropTypes.shape({
-      email: PropTypes.string,
-    }),
+    teacherStatus: PropTypes.string,
   }),
 };
-export default StudentCard;
+export default TeacherCard;

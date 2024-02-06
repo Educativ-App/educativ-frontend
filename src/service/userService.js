@@ -34,4 +34,33 @@ const createUser = async (user) => {
   }
 };
 
-export { getTeachersRecord, getStudentRecord , createUser};
+const getAllTeachers = async () => {
+  try {
+    const res = await axiosClient.get("teachers/");
+    toast(res.data.message, { type: "success", autoClose: 2000 });
+    return res.data;
+  } catch (error) {
+    if (error.response.status) {
+      toast(error.response.data.error, { type: "error", autoClose: 5000 });
+    }
+  }
+};
+const getAllStudents = async () => {
+  try {
+    const res = await axiosClient.get("students/");
+    toast(res.data.message, { type: "success", autoClose: 2000 });
+    return res.data;
+  } catch (error) {
+    if (error.response.status) {
+      toast(error.response.data.error, { type: "error", autoClose: 5000 });
+    }
+  }
+};
+
+export {
+  getTeachersRecord,
+  getStudentRecord,
+  createUser,
+  getAllTeachers,
+  getAllStudents,
+};

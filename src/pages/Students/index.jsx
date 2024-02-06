@@ -11,7 +11,6 @@ import StudentCard from "../../components/StudentCard";
 const Students = () => {
   const [createModal, setCreateModal] = useState(false);
 
-
   const { data: courses, isLoading } = useQuery({
     queryKey: ["teacher-courses"],
     queryFn: () => getTeacherCourses(),
@@ -38,8 +37,6 @@ const Students = () => {
   if (isLoading) {
     return <Loading />;
   }
-
-  console.log(students);
 
   return (
     <>

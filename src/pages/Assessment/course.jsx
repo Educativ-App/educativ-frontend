@@ -1,23 +1,45 @@
 import Loading from "../../components/Loading";
-import { getTeacherAssessmentByCourse } from "../../service/courseService";
+import {
+  getAssessmentByCourse,
+  getTeacherAssessmentByCourse,
+} from "../../service/courseService";
 import { useParams } from "react-router-dom";
 import AssessmentCard from "../../components/AssessmentCard";
 import BackButton from "../../components/BackButton";
 import { useQuery } from "@tanstack/react-query";
+import { useAuth } from "../../Contexts/AuthContext";
 
 const Course = () => {
+  const { authUser: user } = useAuth();
   let { courseId } = useParams();
+  let assessments;
+  let isLoading;
 
-  const { data: assessments, isLoading } = useQuery({
-    queryKey: ["teacher-assessments"],
-    queryFn: () => getTeacherAssessmentByCourse(courseId),
-  });
+  if (user && user.role === "teacher") {
+    const { data, isLoading: teacherLoading } = useQuery({
+      queryKey: ["teacher-assessments"],
+      queryFn: () => getTeacherAssessmentByCourse(courseId),
+    });
+
+    assessments = data;
+    isLoading = teacherLoading;
+  }
+
+  if (user && user.role === "admin") {
+    const { data, isLoading: adminLoading } = useQuery({
+      queryKey: ["course-assessments"],
+      queryFn: () => getAssessmentByCourse(courseId),
+    });
+
+    assessments = data;
+    isLoading = adminLoading;
+  }
 
   if (isLoading) {
     return <Loading />;
   }
 
-  if (!assessments.length) {
+  if (!assessments) {
     return (
       <div>
         <BackButton />

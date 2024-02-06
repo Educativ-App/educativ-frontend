@@ -26,6 +26,7 @@ import AssessmentCoursePage from "./pages/Assessment/course.jsx";
 import AddQuestions from "./pages/Assessment/AddQuestions.jsx";
 import ViewQuestions from "./pages/Assessment/ViewQuestions.jsx";
 import Students from "./pages/Students/index.jsx";
+import AdminAssessment from "./pages/Assessment/AdminAssessment.jsx";
 
 const queryClient = new QueryClient();
 
@@ -63,10 +64,6 @@ const router = createBrowserRouter([
         index: true,
         element: <Dashboard />,
       },
-      {
-        path: "quiz",
-        element: <QuizPage />,
-      },
 
       // ADMIN PAGES
       {
@@ -80,6 +77,20 @@ const router = createBrowserRouter([
           {
             path: "courses",
             element: <AllCourses />,
+          },
+          {
+            path: "courses/assessment/:courseId",
+            element: <AssessmentCoursePage />,
+          },
+        ],
+      },
+      // STUDENT PAGES
+      {
+        path: "students",
+        children: [
+          {
+            path: "quiz",
+            element: <QuizPage />,
           },
         ],
       },
@@ -116,7 +127,6 @@ const router = createBrowserRouter([
             path: "assessment/:assessmentId/view-questions",
             element: <ViewQuestions />,
           },
-          
         ],
       },
     ],

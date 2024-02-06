@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import "../assets/css/Dashboard.css";
 import StudentDashBoard from "./components/StudentDashBoard";
 import TeacherDashBoard from "./components/TeacherDashBoard";
@@ -9,15 +9,6 @@ import Button from "../components/Button";
 import { MdArrowBackIos } from "react-icons/md";
 import { getStudentRecord, getTeachersRecord } from "../service/userService";
 import { useQuery } from "@tanstack/react-query";
-
-// STUDENT USER
-// let user = { name: "Adaeze", role: "student" };
-
-// ADMIN USER
-// let user = { role: "admin" };
-
-// TEACHER USER
-// let user = { name: "Mr. Monday", role: "teacher" };
 
 const Dashboard = () => {
   const { authUser: user } = useAuth();
@@ -32,6 +23,8 @@ const Dashboard = () => {
     }
   }, [user]);
 
+  // TEACHER'S DETAILS
+
   if (user && user.role === "teacher") {
     const { data } = useQuery({
       queryKey: ["user-details"],
@@ -41,6 +34,7 @@ const Dashboard = () => {
     userDetails = data;
   }
 
+  // STUDENT'S DETAILS
   if (user && user.role === "student") {
     const { data } = useQuery({
       queryKey: ["user-details"],
@@ -50,7 +44,6 @@ const Dashboard = () => {
     userDetails = data;
   }
 
-  // console.log(user);
   return user ? (
     <section className="dashboard">
       <div className="user_profile">

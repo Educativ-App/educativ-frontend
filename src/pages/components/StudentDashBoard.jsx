@@ -39,7 +39,7 @@ const taskTab = [
     task: "Quiz",
     image: Quiz,
     colour: "teal",
-    link: "/dashboard/quiz",
+    link: "/dashboard/students/quiz",
   },
 ];
 
