@@ -56,11 +56,10 @@ const CreateUser = ({
 
   const mutation = useMutation({
     mutationFn: () => {
-      createUser(formData, editing);
+      return createUser(formData, editing);
     },
     onSuccess: async () => {
-      // await queryClient.invalidateQueries({ queryKey: ["students", "teachers"] });
-      refetch()
+      await queryClient.invalidateQueries({ queryKey: ["students", "teachers"] });
       setIsCreating(false);
       setFormData(initialState);
     },

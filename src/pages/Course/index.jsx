@@ -38,6 +38,7 @@ const Index = () => {
               courses.map((course) => (
                 <div key={course.course._id} className="col-md-4">
                   <TeacherCourseCard
+                  
                     courseName={course.course.courseTittle}
                     courseTitle={course.course.courseCode}
                     courseId={course.course._id}
