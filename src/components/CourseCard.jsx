@@ -4,7 +4,7 @@ import "../assets/css/CourseCard.css";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { useState } from "react";
 import Modal from "./Modal";
-import CreateCourse from "./CreateCourse";
+import CreateCourse from "./CreateCourse.jsx";
 import ClickOutside from "./ClickOutside";
 import AssignTeacherCourse from "./AssignTeacherCourse";
 
