@@ -173,7 +173,7 @@ const Header = () => {
                           onClick={() =>
                             navNavigator(sidebar.link, sidebar?.type)
                           }
-                          className={`navBtn ${
+                          className={`navBtn  ${
                             checkInLocation(sidebar.link) && "active"
                           }`}
                         >

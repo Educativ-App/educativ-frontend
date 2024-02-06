@@ -19,7 +19,7 @@ const NotFound = () => {
             onClick={() => navigate("/")}
           />
           <Button
-            type="default"
+            type="info"
             text="Go back"
             className="btn"
             onClick={() => navigate(-1)}
