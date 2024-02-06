@@ -1,5 +1,5 @@
 .task_tab {
-  /* width: 10.5rem; */
+  max-width: 15.5rem;
   width: 100%;
   height: 10rem;
   background: var(--bg);
@@ -67,7 +67,7 @@
 
 @media (max-width: 600px) {
   .task_tab {
-    /* width: 7rem; */
+    max-width: 10.5rem;
     height: 7rem;
 
     .task_img {
@@ -75,6 +75,10 @@
       object-fit: cover;
       margin-left: 0.5rem;
       margin-top: 0.5rem;
+    }
+    .task_title {
+      font-size: 1.1rem;
+      text-indent: 0.2rem;
     }
   }
 }

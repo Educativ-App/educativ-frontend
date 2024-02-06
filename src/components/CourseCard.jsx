@@ -17,6 +17,7 @@ const CourseCard = ({ course, onClick }) => {
     setIsMenuOpen(!isMenuOpen);
   };
   return (
+
     <>
       <div className="course-card">
         <div className="menu">
@@ -61,6 +62,7 @@ const CourseCard = ({ course, onClick }) => {
        <AssignTeacherCourse courseId={course._id} setIsAssigning={setIsAssigning} courseName={course.courseTittle}/>
       </Modal>
     </>
+
   );
 };
 

@@ -11,12 +11,20 @@ const NotFound = () => {
     <main className="not_found-page">
       <div className="not_found-page--container">
         <h1>Page Not Found</h1>
-        <Button
-          type="default"
-          text="Back to Home"
-          className="btn"
-          onClick={() => navigate("/")}
-        />
+        <div className="center gap-2">
+          <Button
+            type="default"
+            text="Back to Home"
+            className="btn"
+            onClick={() => navigate("/")}
+          />
+          <Button
+            type="info"
+            text="Go back"
+            className="btn"
+            onClick={() => navigate(-1)}
+          />
+        </div>
       </div>
     </main>
   );

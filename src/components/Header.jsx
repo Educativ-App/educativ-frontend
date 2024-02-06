@@ -5,7 +5,7 @@ import { MdOutlineMenu } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { checkInLocation } from "../utils/helpers";
-import { adminLinks, sideBarLinks } from "../data/linkData";
+import { adminLinks, teacherLinks, studentLinks } from "../data/linkData";
 import useClickOutiside from "../hooks/use-clickOutside";
 import { useCheckLocation } from "../hooks/useCheckLocation";
 import { useAuth } from "../Contexts/AuthContext";
@@ -91,38 +91,14 @@ const Header = () => {
                 )}
               </ul>
             )}
+
+            {/* MOBILE NAVIGATION */}
+
             {dashboardPage &&
               showNavbar &&
-              (user?.role !== "admin" ? (
+              (user?.role === "teacher" ? (
                 <ul>
-                  {sideBarLinks?.map((sidebar, index) => (
-                    <li key={index}>
-                      {sidebar.type === "button" ? (
-                        <>
-                          <Button
-                            text={sidebar.title}
-                            onClick={() =>
-                              navNavigator(sidebar.link, sidebar?.type)
-                            }
-                            type="info"
-                          />
-                        </>
-                      ) : (
-                        <Link
-                          to={sidebar.link}
-                          className={`${
-                            checkInLocation(sidebar.link) && "active"
-                          }`}
-                        >
-                          {sidebar.title}
-                        </Link>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <ul>
-                  {adminLinks?.map((sidebar, index) => (
+                  {teacherLinks?.map((sidebar, index) => (
                     <li key={index}>
                       {sidebar.type === "button" ? (
                         <>
@@ -149,8 +125,67 @@ const Header = () => {
                     </li>
                   ))}
                 </ul>
+              ) : user?.role === "student" ? (
+                <ul>
+                  {studentLinks?.map((sidebar, index) => (
+                    <li key={index}>
+                      {sidebar.type === "button" ? (
+                        <>
+                          <Button
+                            text={sidebar.title}
+                            onClick={() =>
+                              navNavigator(sidebar.link, sidebar?.type)
+                            }
+                            type="info"
+                          />
+                        </>
+                      ) : (
+                        <button
+                          onClick={() =>
+                            navNavigator(sidebar.link, sidebar?.type)
+                          }
+                          className={`navBtn ${
+                            checkInLocation(sidebar.link) && "active"
+                          }`}
+                        >
+                          {sidebar.title}
+                        </button>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <ul>
+                  {adminLinks?.map((sidebar, index) => (
+                    <li key={index}>
+                      {sidebar.type === "button" ? (
+                        <>
+                          <Button
+                            text={sidebar.title}
+                            onClick={() =>
+                              navNavigator(sidebar.link, sidebar?.type)
+                            }
+                            type="info"
+                          />
+                        </>
+                      ) : (
+                        <button
+                          onClick={() =>
+                            navNavigator(sidebar.link, sidebar?.type)
+                          }
+                          className={`navBtn  ${
+                            checkInLocation(sidebar.link) && "active"
+                          }`}
+                        >
+                          {sidebar.title}
+                        </button>
+                      )}
+                    </li>
+                  ))}
+                </ul>
               ))}
           </div>
+
           {!dashboardPage ? (
             <div className="menu-btn">
               {isLoggedIn ? (

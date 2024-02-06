@@ -38,14 +38,13 @@ const AllTeacher = () => {
       <div className="teachers_grid">
         {teachers
           ?.filter((val) => {
+            let searchVal = searchValue.toLowerCase();
             if (
-              val.firstName
-                .toLowerCase()
-                .startsWith(searchValue.toLowerCase()) ||
-              val.middleName
-                .toLowerCase()
-                .startsWith(searchValue.toLowerCase()) ||
-              val.lastName.toLowerCase().startsWith(searchValue.toLowerCase())
+              val.firstName.toLowerCase().startsWith(searchVal) ||
+              val.middleName.toLowerCase().startsWith(searchVal) ||
+              val.gender.toLowerCase().startsWith(searchVal) ||
+              val.teacherStatus.toLowerCase().startsWith(searchVal) ||
+              val.lastName.toLowerCase().startsWith(searchVal)
             ) {
               return val;
             }

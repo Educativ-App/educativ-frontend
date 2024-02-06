@@ -6,12 +6,17 @@ import { FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { createQuestion } from "../../service/courseService";
 import BackButton from "../../components/BackButton";
+import { useStoreContext } from "../../Contexts/StoreContext";
 
 const AddQuestions = () => {
   let { assessmentId } = useParams();
-  const navigate = useNavigate();
-
   const [isLoading, setIsLoading] = useState(false);
+
+  const {
+    state: { assessmentTitle },
+  } = useStoreContext();
+
+  const navigate = useNavigate();
 
   const initialRow = {
     assessmentId: assessmentId,
@@ -69,13 +74,17 @@ const AddQuestions = () => {
         type: "success",
         autoClose: 1000,
       });
-      navigate(`/teacher/assessment/${assessmentId}/view-questions`);
+      navigate(`/dashboard/teacher/assessment/${assessmentId}/view-questions`);
     });
   };
 
   return (
-    <>
-     <BackButton/>
+    <div className="container">
+      <BackButton />
+
+      <div className="center">
+        <h2>{assessmentTitle}</h2>
+      </div>
 
       <form onSubmit={handleSubmit} className="assessment-form">
         <table style={{ width: "100%" }}>
@@ -190,7 +199,7 @@ const AddQuestions = () => {
           <Button loading={isLoading} text="Submit" onClick={handleSubmit} />
         </div>
       </form>
-    </>
+    </div>
   );
 };
 

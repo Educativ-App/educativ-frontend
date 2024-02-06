@@ -59,6 +59,7 @@ const Login = () => {
             name="email"
             id="email"
             type="email"
+            autoComplete="on"
             error={errors.email}
             errormessage={errors.email?.message}
             {...register("email")}
@@ -67,6 +68,7 @@ const Login = () => {
             label="Password"
             name="password"
             id="password"
+            autoComplete="off"
             type="password"
             error={errors.password}
             errormessage={errors.password?.message}
