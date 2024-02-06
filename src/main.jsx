@@ -14,12 +14,19 @@ import About from "./pages/About.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import { AuthProvider } from "./Contexts/AuthContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.min.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 import AdminProtectedRoutes from "./pages/protectedRoute/AdminProtectedRoutes.jsx";
 import AllTeacher from "./pages/AllTeacher.jsx";
 import AllCourses from "./pages/AllCourses.jsx";
-
+import CoursesPage from "./pages/Course/index.jsx";
+import AssessmentPage from "./pages/Assessment/index.jsx";
+import AssessmentCreate from "./pages/Assessment/create.jsx";
+import AssessmentCoursePage from "./pages/Assessment/course.jsx";
+import AddQuestions from "./pages/Assessment/AddQuestions.jsx";
+import ViewQuestions from "./pages/Assessment/ViewQuestions.jsx";
+import Students from "./pages/Students/index.jsx";
+import AdminAssessment from "./pages/Assessment/AdminAssessment.jsx";
 
 const queryClient = new QueryClient();
 
@@ -57,10 +64,8 @@ const router = createBrowserRouter([
         index: true,
         element: <Dashboard />,
       },
-      {
-        path: "quiz",
-        element: <QuizPage />,
-      },
+
+      // ADMIN PAGES
       {
         path: "admin",
         element: <AdminProtectedRoutes />,
@@ -73,6 +78,55 @@ const router = createBrowserRouter([
             path: "courses",
             element: <AllCourses />,
           },
+          {
+            path: "courses/assessment/:courseId",
+            element: <AssessmentCoursePage />,
+          },
+        ],
+      },
+      // STUDENT PAGES
+      {
+        path: "students",
+        children: [
+          {
+            path: "quiz",
+            element: <QuizPage />,
+          },
+        ],
+      },
+
+      // TEACHERS PAGES
+      {
+        path: "teacher",
+        children: [
+          {
+            path: "courses",
+            element: <CoursesPage />,
+          },
+          {
+            path: "assessment",
+            element: <AssessmentPage />,
+          },
+          {
+            path: "students",
+            element: <Students />,
+          },
+          {
+            path: "assessment/create",
+            element: <AssessmentCreate />,
+          },
+          {
+            path: "assessment/:courseId",
+            element: <AssessmentCoursePage />,
+          },
+          {
+            path: "assessment/:assessmentId/add-questions",
+            element: <AddQuestions />,
+          },
+          {
+            path: "assessment/:assessmentId/view-questions",
+            element: <ViewQuestions />,
+          },
         ],
       },
     ],
@@ -84,7 +138,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <RouterProvider router={router} />
-        <ToastContainer/>
+        <ToastContainer />
       </AuthProvider>
     </QueryClientProvider>
   </React.StrictMode>

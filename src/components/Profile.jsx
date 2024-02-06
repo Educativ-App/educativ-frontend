@@ -18,23 +18,23 @@ const Profile = ({
                 <span className="profile-name">{user.name}</span>
               </center>
               <center>
-                <span>{`Faculty of ${user.faculty}`}</span>
+                <span>{`Faculty of ${user?.faculty}`}</span>
               </center>
               <center>
-                <span> {`Department of ${user.dept}`}</span>
+                <span> {`Department of ${user?.dept}`}</span>
               </center>
             </>
           ) : (
             <>
               <center>
-                <span className="profile-name">{course.name}</span>
+                <span className="profile-name">{course.courseCode}</span>
               </center>
               <center>
-                <span>{`${course.dept}`}</span>
+                <span>{`${course.courseTittle}`}</span>
               </center>
-              <center>
+              {/* <center>
                 <span> {`${course.total} students enrolled`}</span>
-              </center>
+              </center> */}
             </>
           )}
         </div>
@@ -81,16 +81,16 @@ const Profile = ({
             <>
               <tr>
                 <td align="left">Course code</td>
-                <td align="right">{course.course_code}</td>
+                <td align="right">{course.courseCode}</td>
               </tr>
-              <tr>
+              {/* <tr>
                 <td align="left">Session</td>
                 <td align="right">{course.session}</td>
               </tr>
               <tr>
                 <td align="left">Semester</td>
                 <td align="right">{course.semester}</td>
-              </tr>
+              </tr> */}
             </>
           )}
         </table>

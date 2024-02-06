@@ -73,6 +73,10 @@
     height: calc(100vh - 8rem);
     overflow-y: auto;
   }
+
+  .dashboard_layout__main::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 /* MOBILE DESIGN */

@@ -1,7 +1,9 @@
 import { MdLocalPhone } from "react-icons/md";
 import { FaFacebook, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import { FaXTwitter, FaThreads } from "react-icons/fa6";
-import {NavLink} from "react-router-dom"
+import { NavLink } from "react-router-dom";
+
+let currentYear = new Date().getFullYear();
 
 const Footer = () => {
   return (
@@ -45,7 +47,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="bottom-footer">
-        <div className="text-wrapper">© 2023 EDUCATIV</div>
+        <div className="text-wrapper">&copy;{currentYear} EDUCATIV</div>
         {/* <p className="link-CSLB-license">CSLB license number # 1104018</p> */}
       </div>
     </>
