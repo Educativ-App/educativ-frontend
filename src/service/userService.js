@@ -22,8 +22,20 @@ const getStudentRecord = async () => {
   }
 };
 
-const createUser = async (user) => {
+const createUser = async (user, editing) => {
   try {
+    if (editing) {
+      if (user.role == "student") {
+        const res = await axiosClient.put(`students`, user);
+        toast("Update Succesful", { type: "success", autoClose: 2000 });
+        return res.data;
+      } else {
+        const res = await axiosClient.put(`teachers`, user);
+        toast("Update Successful", { type: "success", autoClose: 2000 });
+        return res.data;
+      }
+    }
+
     const res = await axiosClient.post(`users`, user);
     toast(res.data.message, { type: "success", autoClose: 2000 });
     return res.data;

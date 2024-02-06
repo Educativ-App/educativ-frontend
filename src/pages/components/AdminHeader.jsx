@@ -27,7 +27,7 @@ const AdminHeader = (props) => {
       <div className="btn_container">
         <Button
           text={props.btnText}
-          type="default"
+          type="info"
           onClick={props.onClick}
           icon={<FaPlus />}
         />
