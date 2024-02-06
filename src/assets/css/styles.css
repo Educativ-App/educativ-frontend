@@ -41,7 +41,7 @@
 
 .nav-elements ul a,
 .navBtn {
-  color: var(--clr-black);
+  color: var(--text-clr);
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
@@ -54,7 +54,6 @@
 
 .nav-elements ul a.active,
 .navBtn.active {
-  color: #574c4c;
   font-weight: 500;
   position: relative;
 }
@@ -67,7 +66,7 @@
   left: 0;
   width: 100%;
   height: 2px;
-  background-color: #574c4c;
+  background-color: var(--clr-lemon);
 }
 
 @media (max-width: 768px) {
@@ -143,10 +142,10 @@
   max-width: 160px;
   width: 100%;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .btn .btn-text {
-  color: #481717;
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
@@ -173,29 +172,37 @@
 }
 
 .btn-info {
-  background-color:  teal;
+  background-color: teal;
   color: white !important;
 }
 
-.btn-info > .btn-text{
+.btn-info > .btn-text {
   color: white !important;
 }
 
-.btn .btn-default::hover {
+.btn-outline {
+  border: 2px solid var(--clr-lemon);
+  background: none;
+
+  &:hover {
+    background-color: var(--clr-lemon);
+  }
+}
+
+.btn.btn-default:hover {
   background-color: var(--clr-lemon-hover);
-}
-
-.btn.btn-default .btn-text {
-  color: #481717;
-}
-
-.btn::hover .btn-text {
-  color: #254417;
 }
 
 /* end button */
 
 /* custom shortcut css */
+
+.container {
+  max-width: 85rem;
+  width: 95%;
+  margin-inline: auto;
+}
+
 .d-flex {
   display: flex;
   align-items: center;
@@ -215,6 +222,18 @@
   align-items: center;
   width: 100%;
   height: 100%;
+}
+
+.gap-2 {
+  gap: 0.6rem;
+}
+
+.teacher_link {
+  &:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.3rem;
+    text-decoration-color: var(--clr-lemon);
+  }
 }
 /* end custom shortcut css */
 
@@ -323,12 +342,10 @@
   margin-bottom: 50px;
   position: relative;
 
-
   .menu {
     position: absolute;
     top: 30px;
     right: 20px;
-   
   }
   .menu-list {
     position: absolute;
@@ -343,7 +360,7 @@
     padding: 0;
     z-index: 2;
   }
-  
+
   .menu-item {
     cursor: pointer;
     padding: 8px;

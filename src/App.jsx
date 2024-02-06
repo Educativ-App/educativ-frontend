@@ -83,7 +83,9 @@ function App() {
               >
                 <h3 className="features-card__title">{features.title}</h3>
                 <p>{features.info}</p>
-                <Link to="/">{features.link}</Link>
+                <Link to="/" className="feature_links">
+                  {features.link}
+                </Link>
               </article>
             ))}
           </div>

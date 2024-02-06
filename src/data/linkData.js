@@ -50,9 +50,8 @@ export const teacherLinks = [
   },
 
   {
-    title: "Settings",
-    link: "settings",
-    disabled: true,
+    title: "Results",
+    link: "teacher/results",
   },
   {
     title: "Log out",

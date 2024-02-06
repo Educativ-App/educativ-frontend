@@ -34,6 +34,10 @@ const Index = () => {
     refetchAssessments();
   }, [selectedCourse]);
 
+  useEffect(() => {
+    refetchAssessments();
+  }, []);
+
   if (isLoading) {
     return <Loading />;
   }
@@ -43,7 +47,10 @@ const Index = () => {
       <div className="container">
         <div className="d-flex">
           <BackButton />
-          <NavLink to={'/dashboard/teacher/assessment/create'} className="btn btn-info">
+          <NavLink
+            to={"/dashboard/teacher/assessment/create"}
+            className="btn btn-info"
+          >
             <FaPlusSquare />
             Add
           </NavLink>

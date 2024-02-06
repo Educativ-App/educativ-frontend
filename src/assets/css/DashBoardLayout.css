@@ -35,6 +35,7 @@
 
       .sidebar_link {
         background: none;
+        color: var(--text-clr);
         outline: none;
         cursor: pointer;
         padding: 0.8rem 0.5rem;

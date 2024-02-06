@@ -46,7 +46,7 @@ const Create = () => {
     const res = createAssessment(formData);
 
     if (res) {
-      navigate("/teacher/assessment");
+      navigate("/dashboard/teacher/assessment");
     }
   };
   return (
@@ -65,9 +65,7 @@ const Create = () => {
         <form className="form-wrapper" onSubmit={handleSubmit}>
           <div className="spacing-wrapper">
             <h1 className="my-3">
-             
-                <strong>Create New Assessment</strong>
-           
+              <strong>Create New Assessment</strong>
             </h1>
           </div>
           <div className="row">
