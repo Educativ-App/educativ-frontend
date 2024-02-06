@@ -52,7 +52,7 @@ const Course = () => {
   }
 
   return (
-    <>
+    <div className="container">
       <BackButton />
 
       <div className="grid-wrapper">
@@ -70,7 +70,7 @@ const Course = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

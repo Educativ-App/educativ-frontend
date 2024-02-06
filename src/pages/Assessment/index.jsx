@@ -32,6 +32,10 @@ const Index = () => {
     refetchAssessments();
   }, [selectedCourse]);
 
+  useEffect(() => {
+    refetchAssessments();
+  }, []);
+
   if (isLoading) {
     return <Loading />;
   }

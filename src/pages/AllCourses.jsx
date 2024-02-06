@@ -34,11 +34,10 @@ const AllCourses = () => {
       <div className="courses_grid">
         {courses
           ?.filter((val) => {
+            let searchVal = searchValue.toLowerCase();
             if (
-              val.courseTittle
-                .toLowerCase()
-                .startsWith(searchValue.toLowerCase()) ||
-              val.courseCode.toLowerCase().startsWith(searchValue.toLowerCase())
+              val.courseTittle.toLowerCase().startsWith(searchVal) ||
+              val.courseCode.toLowerCase().startsWith(searchVal)
             ) {
               return val;
             }
