@@ -7,7 +7,9 @@ const CourseCard = ({ courseName, courseTitle, onClick }) => {
     <div className="course-card">
       <h3>{courseName}</h3>
       <p>{courseTitle}</p>
-      <Button text="View Assessments" onClick={onClick} />
+      <button onClick={onClick} className="course-card-btn">
+        View Assessments
+      </button>
     </div>
   );
 };

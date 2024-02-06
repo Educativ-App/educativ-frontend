@@ -21,14 +21,16 @@
     margin-bottom: 20px;
   }
 
-  button {
+  .course-card-btn {
     background-color: var(--clr-lemon);
     color: #fff !important;
-    padding: 10px 15px;
+    padding: 0.5rem 1.5rem;
+    width: fit-content;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    font-size: 1.2rem;
   }
 
   button:hover {

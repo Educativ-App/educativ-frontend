@@ -7,7 +7,8 @@
   top: 0;
   margin-bottom: 0.75rem;
   width: 100%;
-  z-index: 999;
+  z-index: 9;
+  background: var(--clr-white);
 
   .search_input_container {
     flex: 1;
@@ -79,7 +80,7 @@
 
     .btn_container > button {
       float: left;
-      width: 40%;
+      width: 100%;
     }
   }
 }
