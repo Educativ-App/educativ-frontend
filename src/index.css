@@ -10,17 +10,19 @@
   --clr-yellow: #fbd718;
   --clr-gray: #808080;
   --clr-white: #ffffff;
-  --clr-black: #000;
+  --clr-black: #2d2929;
   --clr-dark-gray: #d9d9d9;
   --clr-red: #ff0000;
   --ff-intel: "Inter", system-ui, Avenir, Helvetica, Arial, sans-serif;
   --ff-itim: "Itim", cursive;
+  --text-clr: var(--clr-black);
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  color: var(--text-clr);
 }
 
 a {
@@ -35,6 +37,8 @@ img {
 
 body {
   font-family: var(--ff-intel);
+  color: var(--text-clr);
+  /* background: var(--clr-black); */
 
   &.hidden {
     position: fixed;
@@ -45,7 +49,6 @@ body {
     overflow: -moz-hidden-unscrollable;
   }
 }
-
 
 .spinner {
   animation-name: spin;

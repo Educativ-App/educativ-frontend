@@ -60,7 +60,7 @@ var tasks = [
     links: [
       {
         text: "View Results",
-        url: "#",
+        url: "teacher/results",
       },
       {
         text: "Print Results",
@@ -90,7 +90,9 @@ const TeacherDashBoard = () => {
                 <ul id="item-1">
                   {task.links.map((link, i) => (
                     <li key={i}>
-                      <NavLink to={link.url}>{link.text}</NavLink>
+                      <NavLink to={link.url} className="teacher_link">
+                        {link.text}
+                      </NavLink>
                     </li>
                   ))}
                 </ul>

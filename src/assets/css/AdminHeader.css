@@ -1,11 +1,11 @@
 .admin_header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   column-gap: 2rem;
   position: sticky;
   top: 0;
-  background: var(--clr-white);
-  padding-bottom: 0.75rem;
+  margin-bottom: 0.75rem;
   width: 100%;
   z-index: 999;
 
@@ -32,6 +32,12 @@
         font-size: 1.2rem;
         outline: none;
         border: none;
+        background: none;
+        color: var(--text-clr);
+
+        &::placeholder {
+          color: var(--text-clr);
+        }
       }
     }
   }
