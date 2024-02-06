@@ -68,6 +68,7 @@ const StudentDashBoard = () => {
           <div className="tasks">
             {taskTab.map((task) => (
               <TaskTab
+                style={{ maxWidth: "10rem" }}
                 key={task.task}
                 prefix={task.pre}
                 task={task.task}
@@ -102,9 +103,7 @@ const StudentDashBoard = () => {
         <div>
           <ExamList />
         </div>
-        <div>
-          <CourseList />
-        </div>
+
         <div>
           <DashboardCalendar />
         </div>

@@ -1,17 +1,21 @@
 import PropTypes from "prop-types";
 import { getDateString, getDateValue } from "../utils/helpers";
 import "../assets/css/CourseCard.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Modal from "./Modal";
 import { useState } from "react";
 import Button from "./Button";
 import { getTeacherCourses, updateAssessment } from "../service/courseService";
-import {  useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { FaEdit } from "react-icons/fa";
+import { useStoreContext } from "../Contexts/StoreContext";
 
 const AssessmentCard = ({ assessment }) => {
-const queryClient = useQueryClient();
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+
+  const { dispatch } = useStoreContext();
 
   const [formData, setFormData] = useState({
     assessmentId: assessment._id,
@@ -42,8 +46,8 @@ const queryClient = useQueryClient();
        return updateAssessment(formData);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["teacher-assessments"]})
-      toast("Update Successful", { type: "success" , autoClose: 1000});
+      queryClient.invalidateQueries({ queryKey: ["teacher-assessments"] });
+      toast("Update Successful", { type: "success", autoClose: 1000 });
       setIsEditing(false);
     },
   });
@@ -52,6 +56,15 @@ const queryClient = useQueryClient();
     e.preventDefault();
     mutation.mutate();
   };
+
+  const navigationHandler = (link, title) => {
+    dispatch({
+      type: "ASSESSMENT_TITLE",
+      payload: title,
+    });
+    navigate(link);
+  };
+
   return (
     <>
       <div className="assessment-card">
@@ -62,46 +75,58 @@ const queryClient = useQueryClient();
           <h1>{assessment.assessmentTittle}</h1>
         </center>
         <table>
-          <tr>
-            <td align="left">Course:</td>
-            <td align="right">{assessment.course.courseTittle}</td>
-          </tr>
-          <tr>
-            <td align="left">Start Date:</td>
-            <td align="right">{getDateString(assessment.startTime)}</td>
-          </tr>
-          <tr>
-            <td align="left">End Date:</td>
-            <td align="right">{getDateString(assessment.endTime)}</td>
-          </tr>
-          <tr>
-            <td align="left">Max Score:</td>
-            <td align="right">{assessment.maximumScore}</td>
-          </tr>
-          <tr>
-            <td align="left">Duration:</td>
-            <td align="right">{assessment.duration} mins</td>
-          </tr>
-          <tr>
-            <td align="left">Created On:</td>
-            <td align="right">{getDateString(assessment.createAt)}</td>
-          </tr>
-          <tr>
-            <td align="left">
-              <Link
-                to={`/dashboard/teacher/assessment/${assessment._id}/view-questions`}
-              >
-                <button>View Questions</button>
-              </Link>
-            </td>
-            <td align="right">
-              <Link
-                to={`/dashboard/teacher/assessment/${assessment._id}/add-questions`}
-              >
-                <button>Add Questions</button>
-              </Link>{" "}
-            </td>
-          </tr>
+          <tbody>
+            <tr>
+              <td align="left">Course:</td>
+              <td align="right">{assessment.course.courseTittle}</td>
+            </tr>
+            <tr>
+              <td align="left">Start Date:</td>
+              <td align="right">{getDateString(assessment.startTime)}</td>
+            </tr>
+            <tr>
+              <td align="left">End Date:</td>
+              <td align="right">{getDateString(assessment.endTime)}</td>
+            </tr>
+            <tr>
+              <td align="left">Max Score:</td>
+              <td align="right">{assessment.maximumScore}</td>
+            </tr>
+            <tr>
+              <td align="left">Duration:</td>
+              <td align="right">{assessment.duration} mins</td>
+            </tr>
+            <tr>
+              <td align="left">Created On:</td>
+              <td align="right">{getDateString(assessment.createAt)}</td>
+            </tr>
+            <tr>
+              <td align="left">
+                <button
+                  onClick={() =>
+                    navigationHandler(
+                      `/dashboard/teacher/assessment/${assessment._id}/view-questions`,
+                      assessment.assessmentTittle
+                    )
+                  }
+                >
+                  View Questions
+                </button>
+              </td>
+              <td align="right">
+                <button
+                  onClick={() =>
+                    navigationHandler(
+                      `/dashboard/teacher/assessment/${assessment._id}/add-questions`,
+                      assessment.assessmentTittle
+                    )
+                  }
+                >
+                  Add Questions
+                </button>
+              </td>
+            </tr>
+          </tbody>
         </table>
       </div>
       <Modal
@@ -214,7 +239,7 @@ AssessmentCard.propTypes = {
       courseTittle: PropTypes.string,
       _id: PropTypes.string,
     }),
-  }).isRequired
+  }).isRequired,
 };
 
 export default AssessmentCard;

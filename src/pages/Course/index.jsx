@@ -19,7 +19,7 @@ const Index = () => {
   }
 
   return (
-    <div>
+    <div className="container">
       <div className="spacing-wrapper mb-2 ">
         <Button
           text="Back"
@@ -41,8 +41,11 @@ const Index = () => {
                   
                     courseName={course.course.courseTittle}
                     courseTitle={course.course.courseCode}
-                    courseId={course.course._id}
-                   
+                    onClick={() =>
+                      navigate(
+                        `/dashboard/teacher/assessment/${course.course._id}`
+                      )
+                    }
                   />
                 </div>
               ))

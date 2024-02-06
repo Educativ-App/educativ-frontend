@@ -2757,30 +2757,26 @@ html {
 }
 
 .form-wrapper {
-   max-width: 400px;
-   margin: auto;
-  
- 
-   /* Style labels */
-   label {
-     display: block;
-     margin-bottom: 8px;
-     color: #333;
-   }
+  max-width: 400px;
+  margin: auto;
 
+  /* Style labels */
+  label {
+    display: block;
+    margin-bottom: 8px;
+  }
 
- 
-   /* Style select and input fields */
-   select,
-   textarea,
-   input {
-     width: 100%;
-     padding: 10px;
-     margin-bottom: 15px;
-     border: 1px solid #ccc;
-     border-radius: 5px;
-     box-sizing: border-box;
-     font-size: 16px;
-   }
- }
- 
+  /* Style select and input fields */
+  select,
+  textarea,
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+    background: none;
+  }
+}

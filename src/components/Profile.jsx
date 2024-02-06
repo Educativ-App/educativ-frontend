@@ -41,49 +41,50 @@ const Profile = ({
       </div>
       <div className="content">
         <table style={{ width: "100%", borderSpacing: "12px" }}>
-          {type === "profile" &&
-            (user.role === "teacher" ? (
+          <tbody>
+            {type === "profile" &&
+              (user.role === "teacher" ? (
+                <>
+                  <tr>
+                    <td align="left">Staff Number</td>
+                    <td align="right">{user.staff_no}</td>
+                  </tr>
+                  <tr>
+                    <td align="left">Session</td>
+                    <td align="right">{user.session}</td>
+                  </tr>
+                  <tr>
+                    <td align="left">Semester</td>
+                    <td align="right">{user.semester}</td>
+                  </tr>
+                </>
+              ) : (
+                <>
+                  <tr>
+                    <td align="left">Level</td>
+                    <td align="right">{user.level}</td>
+                  </tr>
+                  <tr>
+                    <td align="left">Matric. Number</td>
+                    <td align="right">{user.mat_no}</td>
+                  </tr>
+                  <tr>
+                    <td align="left">Session</td>
+                    <td align="right">{user.session}</td>
+                  </tr>
+                  <tr>
+                    <td align="left">Semester</td>
+                    <td align="right">{user.semester}</td>
+                  </tr>
+                </>
+              ))}
+            {type === "course" && (
               <>
                 <tr>
-                  <td align="left">Staff Number</td>
-                  <td align="right">{user.staff_no}</td>
+                  <td align="left">Course code</td>
+                  <td align="right">{course.courseCode}</td>
                 </tr>
-                <tr>
-                  <td align="left">Session</td>
-                  <td align="right">{user.session}</td>
-                </tr>
-                <tr>
-                  <td align="left">Semester</td>
-                  <td align="right">{user.semester}</td>
-                </tr>
-              </>
-            ) : (
-              <>
-                <tr>
-                  <td align="left">Level</td>
-                  <td align="right">{user.level}</td>
-                </tr>
-                <tr>
-                  <td align="left">Matric. Number</td>
-                  <td align="right">{user.mat_no}</td>
-                </tr>
-                <tr>
-                  <td align="left">Session</td>
-                  <td align="right">{user.session}</td>
-                </tr>
-                <tr>
-                  <td align="left">Semester</td>
-                  <td align="right">{user.semester}</td>
-                </tr>
-              </>
-            ))}
-          {type === "course" && (
-            <>
-              <tr>
-                <td align="left">Course code</td>
-                <td align="right">{course.courseCode}</td>
-              </tr>
-              {/* <tr>
+                {/* <tr>
                 <td align="left">Session</td>
                 <td align="right">{course.session}</td>
               </tr>
@@ -91,8 +92,9 @@ const Profile = ({
                 <td align="left">Semester</td>
                 <td align="right">{course.semester}</td>
               </tr> */}
-            </>
-          )}
+              </>
+            )}
+          </tbody>
         </table>
       </div>
     </div>

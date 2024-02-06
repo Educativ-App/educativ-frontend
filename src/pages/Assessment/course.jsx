@@ -15,6 +15,8 @@ const Course = () => {
   let assessments;
   let isLoading;
 
+  console.log(`Course Id ${courseId}`);
+
   if (user && user.role === "teacher") {
     const { data, isLoading: teacherLoading } = useQuery({
       queryKey: ["teacher-assessments"],
@@ -52,7 +54,7 @@ const Course = () => {
   }
 
   return (
-    <>
+    <div className="container">
       <BackButton />
 
       <div className="grid-wrapper">
@@ -70,7 +72,7 @@ const Course = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

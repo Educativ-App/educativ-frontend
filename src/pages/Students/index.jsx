@@ -10,6 +10,7 @@ import StudentCard from "../../components/StudentCard";
 
 const Students = () => {
   const [createModal, setCreateModal] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
 
   const { data: courses, isLoading } = useQuery({
     queryKey: ["teacher-courses"],
@@ -26,24 +27,22 @@ const Students = () => {
   } = useQuery({
     queryKey: ["students", selectedCourse],
     queryFn: async () => await getStudentsByCourse(selectedCourse),
-    enabled: !!selectedCourse
+    enabled: !!selectedCourse,
   });
-
-
-
-
 
   if (isLoading) {
     return <Loading />;
   }
 
   return (
-    <>
+    <div className="container">
       <div className="grid-wrapper">
-        <div className="container">
+        <div className="">
           <AdminHeader
             btnText="Add Student"
             type="students"
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target?.value)}
             onClick={() => setCreateModal(true)}
           />
 
@@ -85,11 +84,25 @@ const Students = () => {
             ) : (
               <div className="row">
                 {students ? (
-                  students.map((student) => (
-                    <div key={student._id} className="col-md-4">
-                      <StudentCard student={student} refetchStudents={()=>refetchStudents}/>
-                    </div>
-                  ))
+                  students
+                    .filter((val) => {
+                      let searchVal = searchValue.toLowerCase();
+                      if (
+                        val.firstName.toLowerCase().startsWith(searchVal) ||
+                        val.middleName.toLowerCase().startsWith(searchVal) ||
+                        val.user.email.toLowerCase().startsWith(searchVal) ||
+                        val.gender.toLowerCase().startsWith(searchVal) ||
+                        val.studentStatus.toLowerCase().startsWith(searchVal) ||
+                        val.lastName.toLowerCase().startsWith(searchVal)
+                      ) {
+                        return val;
+                      }
+                    })
+                    .map((student) => (
+                      <div key={student._id} className="col-md-4">
+                        <StudentCard student={student} />
+                      </div>
+                    ))
                 ) : (
                   <p>{selectedCourse && "No Students Registered"}</p>
                 )}
@@ -105,7 +118,7 @@ const Students = () => {
           <CreateUser role="student" setIsCreating={setCreateModal} />
         </Modal>
       </div>
-    </>
+    </div>
   );
 };
 

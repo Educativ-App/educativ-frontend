@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import {
   getQuestionsByAssessment,
   updateQuestion,
@@ -13,9 +13,17 @@ import { parseAnswerInt, parseArrayAnswerInt } from "../../utils/helpers";
 import Button from "../../components/Button";
 import { toast } from "react-toastify";
 import { MdNoteAdd } from "react-icons/md";
+import { useStoreContext } from "../../Contexts/StoreContext";
 
 const ViewQuestions = () => {
   const { assessmentId } = useParams();
+  const navigate = useNavigate();
+
+  const {
+    state: { assessmentTitle },
+    dispatch,
+  } = useStoreContext();
+
   const {
     data: questions,
     isLoading,
@@ -56,20 +64,35 @@ const ViewQuestions = () => {
     setIsUpdating(false);
     setIsModalOpen(false);
   };
+  const navigationHandler = (link, title) => {
+    dispatch({
+      type: "ASSESSMENT_TITLE",
+      payload: title,
+    });
+    navigate(link);
+  };
 
   return (
-    <>
+    <div className="container">
       <div className="d-flex">
         <BackButton />
-        <div className="btn">
-          <NavLink
-            to={`/dashboard/teacher/assessment/${assessmentId}/add-questions`}
-          >
-            Add  
-          </NavLink><MdNoteAdd size={20}/>
-        </div>
+        <button
+          className="btn btn-outline"
+          onClick={() =>
+            navigationHandler(
+              `/dashboard/teacher/assessment/${assessmentId}/add-questions`,
+              assessmentTitle
+            )
+          }
+        >
+          Add
+          <MdNoteAdd size={20} />
+        </button>
       </div>
 
+      <div className="center">
+        <h2>{assessmentTitle}</h2>
+      </div>
       <div className="assessment-table-container">
         <table className="assessment-table">
           <thead>
@@ -174,7 +197,7 @@ const ViewQuestions = () => {
           </div>
         </Modal>
       )}
-    </>
+    </div>
   );
 };
 

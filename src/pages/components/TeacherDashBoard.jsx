@@ -60,7 +60,7 @@ var tasks = [
     links: [
       {
         text: "View Results",
-        url: "#",
+        url: "teacher/results",
       },
       {
         text: "Print Results",
@@ -75,10 +75,10 @@ const TeacherDashBoard = () => {
     <>
       <div className="d-grid">
         <div id="item-0">
-          <div className="teacher" >
+          <div className="teacher">
             {tasks.map((task, i) => (
               <div key={i} className="teacher-tasks mini-grid">
-                <div id="item-0" style={{width : "10rem"}}>
+                <div id="item-0">
                   <TaskTab
                     prefix={task.pre}
                     task={task.task}
@@ -90,7 +90,9 @@ const TeacherDashBoard = () => {
                 <ul id="item-1">
                   {task.links.map((link, i) => (
                     <li key={i}>
-                      <NavLink to={link.url}>{link.text}</NavLink>
+                      <NavLink to={link.url} className="teacher_link">
+                        {link.text}
+                      </NavLink>
                     </li>
                   ))}
                 </ul>
