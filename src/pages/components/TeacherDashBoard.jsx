@@ -75,10 +75,10 @@ const TeacherDashBoard = () => {
     <>
       <div className="d-grid">
         <div id="item-0">
-          <div className="teacher">
+          <div className="teacher" >
             {tasks.map((task, i) => (
               <div key={i} className="teacher-tasks mini-grid">
-                <div id="item-0">
+                <div id="item-0" style={{width : "10rem"}}>
                   <TaskTab
                     prefix={task.pre}
                     task={task.task}

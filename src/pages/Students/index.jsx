@@ -24,15 +24,14 @@ const Students = () => {
     isFetching,
     refetch: refetchStudents,
   } = useQuery({
-    queryKey: ["students"],
-    queryFn: () => getStudentsByCourse(selectedCourse),
-    enabled: selectedCourse != "",
+    queryKey: ["students", selectedCourse],
+    queryFn: async () => await getStudentsByCourse(selectedCourse),
+    enabled: !!selectedCourse
   });
 
-  useEffect(() => {
-    if (selectedCourse == "") return;
-    refetchStudents();
-  }, [selectedCourse]);
+
+
+
 
   if (isLoading) {
     return <Loading />;
@@ -88,7 +87,7 @@ const Students = () => {
                 {students ? (
                   students.map((student) => (
                     <div key={student._id} className="col-md-4">
-                      <StudentCard student={student} />
+                      <StudentCard student={student} refetchStudents={()=>refetchStudents}/>
                     </div>
                   ))
                 ) : (

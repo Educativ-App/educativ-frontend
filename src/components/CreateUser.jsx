@@ -4,19 +4,42 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getTeacherCourses } from "../service/courseService";
 import Button from "./Button";
 import { createUser } from "../service/userService";
+import { getDateValue } from "../utils/helpers";
 
-const CreateUser = ({ role, setIsCreating }) => {
-  var initialState = {
-    email: "",
-    password: "",
-    role: role,
-    courseId: role === "student" ? "" : undefined,
-    firstName: "",
-    middleName: "",
-    lastName: "",
-    gender: "",
-    dateOfBirth: "",
-  };
+const CreateUser = ({
+  role,
+  setIsCreating,
+  user = undefined,
+  editing = false,
+  refetch = null
+}) => {
+  if (user !== undefined) {
+    var initialState = {
+      studentId: role === "student" ? user._id : undefined,
+      teacherId: role === "teacher" ? user._id : undefined,
+      email: user.user.email,
+      role: role,
+      courseId: role === "student" ? user.course._id : undefined,
+      firstName: user.firstName,
+      middleName: user.middleName,
+      lastName: user.lastName,
+      gender: user.gender,
+      dateOfBirth: getDateValue(user.dateOfBirth),
+    };
+  } else {
+    initialState = {
+      email: "",
+      password: "",
+      role: role,
+      courseId: role === "student" ? "" : undefined,
+      firstName: "",
+      middleName: "",
+      lastName: "",
+      gender: "",
+      dateOfBirth: "",
+    };
+  }
+
   const [formData, setFormData] = useState(initialState);
 
   const { data: courses } = useQuery({
@@ -33,10 +56,11 @@ const CreateUser = ({ role, setIsCreating }) => {
 
   const mutation = useMutation({
     mutationFn: () => {
-      createUser(formData);
+      createUser(formData, editing);
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["students", "teachers"] });
+    onSuccess: async () => {
+      // await queryClient.invalidateQueries({ queryKey: ["students", "teachers"] });
+      refetch()
       setIsCreating(false);
       setFormData(initialState);
     },
@@ -53,29 +77,34 @@ const CreateUser = ({ role, setIsCreating }) => {
         <div className="row">
           <div className="col-12">
             <center>
-              <h1>Create {role}</h1>
+              <h1>{editing ? "Update" : "Create"} {role}</h1>
             </center>
           </div>
-          <div className="col-md-12 ">
-            <label>Email</label>
-            <input
-              type="email"
-              name="email"
-              required
-              value={formData.email}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="col-md-12 ">
-            <label>Password</label>
-            <input
-              type="password"
-              name="password"
-              required
-              value={formData.password}
-              onChange={handleChange}
-            />
-          </div>
+          {editing == false && (
+            <>
+              <div className="col-md-12 ">
+                <label>Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  value={formData.email}
+                  onChange={handleChange}
+                />
+              </div>
+
+              <div className="col-md-12 ">
+                <label>Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  required
+                  value={formData.password}
+                  onChange={handleChange}
+                />
+              </div>
+            </>
+          )}
 
           <div className="col-md-6 ">
             <label>First Name</label>
@@ -161,6 +190,9 @@ const CreateUser = ({ role, setIsCreating }) => {
 CreateUser.propTypes = {
   role: PropTypes.oneOf(["student", "teacher"]),
   setIsCreating: PropTypes.func,
+  editing: PropTypes.bool,
+  user: PropTypes.any,
+  refetch: PropTypes.func
 };
 
 export default CreateUser;

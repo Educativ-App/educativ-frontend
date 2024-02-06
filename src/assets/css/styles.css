@@ -172,6 +172,15 @@
   background-color: var(--clr-lemon);
 }
 
+.btn-info {
+  background-color:  teal;
+  color: white !important;
+}
+
+.btn-info > .btn-text{
+  color: white !important;
+}
+
 .btn .btn-default::hover {
   background-color: var(--clr-lemon-hover);
 }
@@ -312,6 +321,38 @@
   box-shadow: 0px 3px 3px 0px rgba(20, 20, 20, 0.4);
   min-height: 400px;
   margin-bottom: 50px;
+  position: relative;
+
+
+  .menu {
+    position: absolute;
+    top: 30px;
+    right: 20px;
+   
+  }
+  .menu-list {
+    position: absolute;
+    top: 55px;
+    right: 24px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    padding: 8px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    z-index: 2;
+  }
+  
+  .menu-item {
+    cursor: pointer;
+    padding: 8px;
+    min-width: 60px;
+    font-size: small;
+    &:hover {
+      background-color: #f2f2f2;
+    }
+  }
 
   .user-image {
     height: 200px;
