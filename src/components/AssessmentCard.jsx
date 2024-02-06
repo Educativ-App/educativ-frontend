@@ -43,7 +43,9 @@ const AssessmentCard = ({ assessment }) => {
 
   const mutation = useMutation({
     mutationFn: () => {
-      updateAssessment(formData);
+
+       return updateAssessment(formData);
+
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["teacher-assessments"] });
