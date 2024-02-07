@@ -31,21 +31,21 @@ const AdminDashBoard = () => {
   const overview = [
     {
       pre: "Teachers",
-      task: `${teachers?.length}`,
+      task: `${teachers?.length ?? ""}`,
       image: boardWoman,
       colour: "yellow",
       link: "admin/teachers",
     },
     {
       pre: "Students",
-      task: `${students?.length}`,
+      task: `${students?.length ?? ""}`,
       image: femaleStudent,
       colour: "yellow",
       link: "#",
     },
     {
       pre: "Courses",
-      task: `${courses?.length}`,
+      task: `${courses?.length ?? ""}`,
       image: sleepGirl,
       colour: "yellow",
       link: "admin/courses",

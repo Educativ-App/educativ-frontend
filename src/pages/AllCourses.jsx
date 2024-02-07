@@ -7,9 +7,13 @@ import Loading from "../components/Loading";
 import { useState } from "react";
 import CourseCard from "../components/CourseCard";
 import { useNavigate } from "react-router-dom";
+import Modal from "../components/Modal";
+import CreateUser from "../components/CreateUser";
 
 const AllCourses = () => {
   const [searchValue, setSearchValue] = useState("");
+
+  const [createModal, setCreateModal] = useState(false);
 
   const navigate = useNavigate();
 
@@ -29,6 +33,7 @@ const AllCourses = () => {
         type="courses"
         value={searchValue}
         onChange={(e) => setSearchValue(e.target?.value)}
+        onClick={() => setCreateModal(true)}
       />
 
       <div className="courses_grid">
@@ -51,6 +56,14 @@ const AllCourses = () => {
             />
           ))}
       </div>
+
+      <Modal
+        isOpen={createModal}
+        onClose={() => setCreateModal(false)}
+        hasCloseBtn={true}
+      >
+        <CreateUser role="teacher" setIsCreating={setCreateModal} />
+      </Modal>
     </div>
   );
 };
