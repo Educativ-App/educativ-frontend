@@ -4,6 +4,7 @@ import { useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import CreateUser from "./CreateUser";
 import Modal from "./Modal";
+import ClickOutside from "./ClickOutside";
 
 const StudentCard = ({ img = "https://picsum.photos/200", student, refetchStudents }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,7 +21,10 @@ const StudentCard = ({ img = "https://picsum.photos/200", student, refetchStuden
         <div className="menu">
           <BsThreeDotsVertical size={24} onClick={() => handleMenuClick()} />
         </div>
-        {isMenuOpen && (
+        <ClickOutside
+          show={isMenuOpen}
+          onClickOutside={() => setIsMenuOpen(false)}
+        >
           <ul className="menu-list">
             {/* Add your menu items here */}
             <li className="menu-item" onClick={() => setIsEditing(true)}>
@@ -28,7 +32,7 @@ const StudentCard = ({ img = "https://picsum.photos/200", student, refetchStuden
             </li>
             <li className="menu-item">Delete</li>
           </ul>
-        )}
+        </ClickOutside>
         <div className="user-image" onClick={() => setIsMenuOpen(false)}>
           <img src={img} alt="userimage" />
           <div className="profile-info">
