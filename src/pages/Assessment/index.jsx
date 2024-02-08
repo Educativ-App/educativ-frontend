@@ -23,6 +23,7 @@ const Index = () => {
     isLoading: isAssessmentLoading,
     isFetching,
     refetch: refetchAssessments,
+    isSuccess,
   } = useQuery({
     queryKey: ["teacher-assessments"],
     queryFn: () => getTeacherAssessmentByCourse(selectedCourse),
@@ -93,15 +94,17 @@ const Index = () => {
             </div>
           ) : (
             <div className="row">
-              {assessments ? (
-                assessments.map((assessment) => (
-                  <div key={assessment._id} className="col-md-4">
-                    <AssessmentCard assessment={assessment} />
-                  </div>
-                ))
-              ) : (
-                <p></p>
-              )}
+              {isSuccess && assessments
+                ? assessments.map((assessment) => (
+                    <div key={assessment._id} className="col-md-4">
+                      <AssessmentCard assessment={assessment} />
+                    </div>
+                  ))
+                : selectedCourse && (
+                    <div className="center">
+                      <h2>No assessement found for the selected course</h2>
+                    </div>
+                  )}
             </div>
           )}
         </div>

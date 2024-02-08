@@ -24,6 +24,35 @@ const createAssessment = async (data) => {
   }
 };
 
+const assignTeacher = async (data) => {
+  try {
+    const res = await axiosClient.post("teacher-courses", data);
+    toast(res.data.message, { type: "success", autoClose: 2000 });
+    return res;
+  } catch (error) {
+    if (error.response.status) {
+      toast(error.response.data.error, { type: "error", autoClose: 5000 });
+    }
+  }
+};
+
+const createEditCourse = async (data, editing) => {
+  try {
+    if (editing) {
+      const res = await axiosClient.put("courses", data);
+      toast("Update Successful", { type: "success", autoClose: 2000 });
+      return res;
+    }
+    const res = await axiosClient.post("courses", data);
+    toast(res.data.message, { type: "success", autoClose: 2000 });
+    return res;
+  } catch (error) {
+    if (error.response.status) {
+      toast(error.response.data.error, { type: "error", autoClose: 5000 });
+    }
+  }
+};
+
 const createQuestion = async (rows) => {
   try {
     const postRequests = rows.map((data) =>
@@ -81,6 +110,30 @@ const getQuestionsByAssessment = async (assessmentId) => {
   }
 };
 
+const startAssessment = async (assessmentId) => {
+  try {
+    const res = await axiosClient.post(`assessments/${assessmentId}/start`);
+    return res.data;
+  } catch (error) {
+    if (error.response.status) {
+      toast(error.response.data.error, { type: "error", autoClose: 5000 });
+    }
+  }
+};
+const nextAssessment = async (assessmentId, data) => {
+  try {
+    const res = await axiosClient.post(
+      `assessments/${assessmentId}/submit`,
+      data
+    );
+    return res.data;
+  } catch (error) {
+    if (error.response.status) {
+      toast(error.response.data.error, { type: "error", autoClose: 5000 });
+    }
+  }
+};
+
 const updateQuestion = async (question) => {
   try {
     const res = await axiosClient.put(`questions`, question);
@@ -125,4 +178,8 @@ export {
   updateQuestion,
   updateAssessment,
   getAllCourses,
+  createEditCourse,
+  assignTeacher,
+  startAssessment,
+  nextAssessment,
 };

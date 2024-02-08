@@ -98,8 +98,8 @@ export const studentLinks = [
     type: "link",
   },
   {
-    title: "Quizzes",
-    link: "students/quiz",
+    title: "Assessments",
+    link: "students/assessment",
     type: "link",
   },
   {
