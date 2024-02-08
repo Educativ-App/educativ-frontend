@@ -55,20 +55,22 @@ const createEditCourse = async (data, editing) => {
 
 const createQuestion = async (rows) => {
   try {
-    const postRequests = rows.map((data) =>
-      axiosClient.post("questions", data)
-    );
-    const res = Promise.all(postRequests)
-      .then((responses) => {
-        // Handle responses here
-        responses.forEach((response) => {
-          console.log(response.data);
-        });
-      })
-      .catch((error) => {
-        // Handle errors here
-        console.error(error);
-      });
+    // const postRequests = rows.map((data) =>
+    //   axiosClient.post("questions", data)
+    // );
+    // const res = Promise.all(postRequests)
+    //   .then((responses) => {
+    //     // Handle responses here
+    //     responses.forEach((response) => {
+    //       console.log(response.data);
+    //     });
+    //   })
+    //   .catch((error) => {
+    //     // Handle errors here
+    //     console.error(error);
+    //   });
+
+    const res  = await axiosClient.post("questions", rows);
 
     return res;
   } catch (error) {
