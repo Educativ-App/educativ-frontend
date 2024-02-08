@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 import { reducer } from "./reducer";
 import { useAuth } from "./AuthContext";
-import { getStudentRecord } from "../service/userService";
+import { getStudentRecord, getTeachersRecord } from "../service/userService";
 
 const StoreContext = createContext();
 
@@ -30,11 +30,26 @@ const StoreContextProvider = ({ children }) => {
       return;
     }
   };
+  const getTeacherDetails = async () => {
+    try {
+      const data = await getTeachersRecord();
+      dispatch({
+        type: "ADD_USER",
+        payload: data,
+      });
+    } catch (error) {
+      return;
+    }
+  };
 
   useEffect(() => {
     // STUDENT'S DETAILS
     if (user && user.role === "student") {
       getStudentDetails();
+    }
+    // TEACHER'S DETAILS
+    if (user && user.role === "teacher") {
+      getTeacherDetails();
     }
   }, [user]);
 

@@ -14,7 +14,7 @@ const StudentAssessment = () => {
   const [assessment, setAssessment] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  let courseId = user_info.course?._id;
+  let courseId = user_info?.course?._id;
 
   useEffect(() => {
     const getAssessment = async () => {

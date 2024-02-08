@@ -8,16 +8,7 @@ import testBoard from "../../assets/images/testboard.png";
 // import gradeBook from "../../assets/images/grade book.png";
 import penGrade from "../../assets/images/grade_book.png";
 import { NavLink } from "react-router-dom";
-
-var user = {
-  name: "Monday Oshodi",
-  faculty: "Management Science",
-  dept: "Business Administration",
-  staff_no: "150203031",
-  session: "2023/24",
-  semester: "First",
-  role: "teacher",
-};
+import { useStoreContext } from "../../Contexts/StoreContext";
 
 var tasks = [
   // {
@@ -71,6 +62,10 @@ var tasks = [
 ];
 
 const TeacherDashBoard = () => {
+  const {
+    state: { user_info },
+  } = useStoreContext();
+
   return (
     <>
       <div className="d-grid">
@@ -102,7 +97,7 @@ const TeacherDashBoard = () => {
         </div>
         <div id="item-1">
           <div className="col">
-            <Profile img="https://i.pravatar.cc/200" user={user} />
+            <Profile img="https://i.pravatar.cc/200" user={user_info} />
             <DashboardCalendar />
           </div>
         </div>
