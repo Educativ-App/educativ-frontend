@@ -10,7 +10,7 @@ const Profile = ({ img = "https://picsum.photos/200", user }) => {
           <>
             <center>
               <span className="profile-name">
-                {user.firstName} {user.lastName}
+                {user?.firstName} {user?.lastName}
               </span>
             </center>
             <center>
@@ -28,19 +28,19 @@ const Profile = ({ img = "https://picsum.photos/200", user }) => {
             <>
               <tr>
                 <td align="left">First Name</td>
-                <td align="right">{user.firstName}</td>
+                <td align="right">{user?.firstName}</td>
               </tr>
               <tr>
                 <td align="left">Middle Name</td>
-                <td align="right">{user.middleName}</td>
+                <td align="right">{user?.middleName}</td>
               </tr>
               <tr>
                 <td align="left">Last Name</td>
-                <td align="right">{user.lastName}</td>
+                <td align="right">{user?.lastName}</td>
               </tr>
               <tr>
                 <td align="left">Gender</td>
-                <td align="right">{user.gender}</td>
+                <td align="right">{user?.gender}</td>
               </tr>
             </>
           </tbody>
