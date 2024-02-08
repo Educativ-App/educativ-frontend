@@ -5,10 +5,14 @@ import { Link, useNavigate } from "react-router-dom";
 import Modal from "./Modal";
 import { useState } from "react";
 import Button from "./Button";
-import { getTeacherCourses, updateAssessment } from "../service/courseService";
+import {
+  deleteAssessment,
+  getTeacherCourses,
+  updateAssessment,
+} from "../service/courseService";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import { FaEdit } from "react-icons/fa";
+import { FaEdit, FaTrash } from "react-icons/fa";
 import { useStoreContext } from "../Contexts/StoreContext";
 
 const AssessmentCard = ({ assessment }) => {
@@ -43,9 +47,7 @@ const AssessmentCard = ({ assessment }) => {
 
   const mutation = useMutation({
     mutationFn: () => {
-
-       return updateAssessment(formData);
-
+      return updateAssessment(formData);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["teacher-assessments"] });
@@ -67,11 +69,19 @@ const AssessmentCard = ({ assessment }) => {
     navigate(link);
   };
 
+  const handleDelete = () => {
+    deleteAssessment(assessment._id);
+    mutation.mutate();
+  };
+
   return (
     <>
       <div className="assessment-card">
         <div className="edit-btn" onClick={() => setIsEditing(true)}>
           <FaEdit size={20} />
+        </div>
+        <div className="delete-btn" onClick={handleDelete}>
+          <FaTrash size={20} />
         </div>
         <center>
           <h1>{assessment.assessmentTittle}</h1>

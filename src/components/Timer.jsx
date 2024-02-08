@@ -9,7 +9,6 @@ const Timer = ({ duration, onTime }) => {
         if (prevSeconds === 3) {
           clearInterval(intervalId);
           onTime();
-          return;
         }
         return prevSeconds - 1;
       });
@@ -24,7 +23,7 @@ const Timer = ({ duration, onTime }) => {
   const remainingSeconds = seconds % 60;
 
   return (
-    <div className="timer">
+    <div className={`timer ${minutes === 0 && remainingSeconds < 20 && "red"}`}>
       <h3>Time left</h3>
       <h2>{`${hours.toString().padStart(2, "0")}:${minutes
         .toString()

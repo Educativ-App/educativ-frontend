@@ -129,7 +129,7 @@ const nextAssessment = async (assessmentId, data) => {
     return res.data;
   } catch (error) {
     if (error.response.status) {
-      toast(error.response.data.error, { type: "error", autoClose: 5000 });
+      // toast(error.response.data.error, { type: "error", autoClose: 5000 });
     }
   }
 };
@@ -148,6 +148,16 @@ const updateQuestion = async (question) => {
 const updateAssessment = async (assessment) => {
   try {
     const res = await axiosClient.put(`assessments`, assessment);
+    return res.data;
+  } catch (error) {
+    if (error.response.status) {
+      toast(error.response.data.error, { type: "error", autoClose: 5000 });
+    }
+  }
+};
+const deleteAssessment = async (assessmentId) => {
+  try {
+    const res = await axiosClient.delete(`assessments/${assessmentId}`);
     return res.data;
   } catch (error) {
     if (error.response.status) {
@@ -182,4 +192,5 @@ export {
   assignTeacher,
   startAssessment,
   nextAssessment,
+  deleteAssessment,
 };
