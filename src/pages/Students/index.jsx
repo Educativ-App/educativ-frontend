@@ -100,7 +100,10 @@ const Students = () => {
                     })
                     .map((student) => (
                       <div key={student._id} className="col-md-4">
-                        <StudentCard student={student} />
+                        <StudentCard
+                          student={student}
+                          refetchStudents={refetchStudents}
+                        />
                       </div>
                     ))
                 ) : (

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../assets/css/QuestionCard.css";
 import Button from "./Button";
 import { useStoreContext } from "../Contexts/StoreContext";
@@ -15,6 +15,10 @@ const QuestionCard = ({ question, onClick, loading, questionNumber }) => {
   const submitHandler = () => {
     onClick(selectedOption);
   };
+
+  useEffect(() => {
+    return () => setSelectedOption("");
+  }, []);
 
   return (
     <article className="question_card">

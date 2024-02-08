@@ -55,20 +55,22 @@ const createEditCourse = async (data, editing) => {
 
 const createQuestion = async (rows) => {
   try {
-    const postRequests = rows.map((data) =>
-      axiosClient.post("questions", data)
-    );
-    const res = Promise.all(postRequests)
-      .then((responses) => {
-        // Handle responses here
-        responses.forEach((response) => {
-          console.log(response.data);
-        });
-      })
-      .catch((error) => {
-        // Handle errors here
-        console.error(error);
-      });
+    // const postRequests = rows.map((data) =>
+    //   axiosClient.post("questions", data)
+    // );
+    // const res = Promise.all(postRequests)
+    //   .then((responses) => {
+    //     // Handle responses here
+    //     responses.forEach((response) => {
+    //       console.log(response.data);
+    //     });
+    //   })
+    //   .catch((error) => {
+    //     // Handle errors here
+    //     console.error(error);
+    //   });
+
+    const res = await axiosClient.post("questions", rows);
 
     return res;
   } catch (error) {
@@ -129,7 +131,7 @@ const nextAssessment = async (assessmentId, data) => {
     return res.data;
   } catch (error) {
     if (error.response.status) {
-      toast(error.response.data.error, { type: "error", autoClose: 5000 });
+      // toast(error.response.data.error, { type: "error", autoClose: 5000 });
     }
   }
 };
@@ -155,10 +157,31 @@ const updateAssessment = async (assessment) => {
     }
   }
 };
+const deleteAssessment = async (assessmentId) => {
+  try {
+    const res = await axiosClient.delete(`assessments/${assessmentId}`);
+    return res.data;
+  } catch (error) {
+    if (error.response.status) {
+      toast(error.response.data.error, { type: "error", autoClose: 5000 });
+    }
+  }
+};
 
 const getAllCourses = async () => {
   try {
     const res = await axiosClient.get("courses/");
+    toast(res.data.message, { type: "success", autoClose: 2000 });
+    return res.data;
+  } catch (error) {
+    if (error.response.status) {
+      toast(error.response.data.error, { type: "error", autoClose: 5000 });
+    }
+  }
+};
+const getStudentResult = async (assId) => {
+  try {
+    const res = await axiosClient.get(`assessments/${assId}/result`);
     toast(res.data.message, { type: "success", autoClose: 2000 });
     return res.data;
   } catch (error) {
@@ -182,4 +205,6 @@ export {
   assignTeacher,
   startAssessment,
   nextAssessment,
+  deleteAssessment,
+  getStudentResult,
 };

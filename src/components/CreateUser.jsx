@@ -11,7 +11,7 @@ const CreateUser = ({
   setIsCreating,
   user = undefined,
   editing = false,
-  refetch = null
+  refetch = null,
 }) => {
   if (user !== undefined) {
     var initialState = {
@@ -59,7 +59,9 @@ const CreateUser = ({
       return createUser(formData, editing);
     },
     onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: ["students", "teachers"] });
+      await queryClient.invalidateQueries({
+        queryKey: ["students", "teachers"],
+      });
       setIsCreating(false);
       setFormData(initialState);
     },
@@ -76,7 +78,9 @@ const CreateUser = ({
         <div className="row">
           <div className="col-12">
             <center>
-              <h1>{editing ? "Update" : "Create"} {role}</h1>
+              <h1>
+                {editing ? "Update" : "Create"} {role}
+              </h1>
             </center>
           </div>
           {editing == false && (
@@ -95,7 +99,7 @@ const CreateUser = ({
               <div className="col-md-12 ">
                 <label>Password</label>
                 <input
-                  type="password"
+                  type="text"
                   name="password"
                   required
                   value={formData.password}
@@ -191,7 +195,7 @@ CreateUser.propTypes = {
   setIsCreating: PropTypes.func,
   editing: PropTypes.bool,
   user: PropTypes.any,
-  refetch: PropTypes.func
+  refetch: PropTypes.func,
 };
 
 export default CreateUser;
