@@ -15,6 +15,7 @@
     height: 2.8rem;
     .search_input {
       width: 50%;
+      max-width: 25rem;
       height: 100%;
       position: relative;
       display: flex;

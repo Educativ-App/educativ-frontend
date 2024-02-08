@@ -103,10 +103,9 @@ export const studentLinks = [
     type: "link",
   },
   {
-    title: "Courses",
-    link: "students/courses",
+    title: "Grades",
+    link: "students/grade",
     type: "link",
-    disabled: true,
   },
   {
     title: "Log out",

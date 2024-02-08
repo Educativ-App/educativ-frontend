@@ -32,7 +32,7 @@ const StudentAssessment = () => {
 
   return (
     <div className="container">
-      <center>
+      <center className="sticky mb-2">
         <h2>Student Assessment</h2>
       </center>
 
@@ -67,7 +67,7 @@ const StudentAssessment = () => {
                   }
                 })
                 ?.map((ass, index) => (
-                  <div className="col-md-4" key={index}>
+                  <div className="col-md-4 mb-2" key={index}>
                     <StudentAssessmentCard assessment={ass} />
                   </div>
                 ))}

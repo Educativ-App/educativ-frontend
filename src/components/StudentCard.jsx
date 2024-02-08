@@ -5,8 +5,13 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import CreateUser from "./CreateUser";
 import Modal from "./Modal";
 import ClickOutside from "./ClickOutside";
+import { deleteStudent } from "../service/userService";
 
-const StudentCard = ({ img = "https://picsum.photos/200", student, refetchStudents }) => {
+const StudentCard = ({
+  img = "https://picsum.photos/200",
+  student,
+  refetchStudents,
+}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const [isEditing, setIsEditing] = useState(false);
@@ -14,6 +19,14 @@ const StudentCard = ({ img = "https://picsum.photos/200", student, refetchStuden
   const handleMenuClick = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  const handleDelete = async () => {
+    const res = await deleteStudent(student?._id);
+    if (res) {
+      refetchStudents();
+    }
+  };
+
   return (
     <>
       {" "}
@@ -30,7 +43,9 @@ const StudentCard = ({ img = "https://picsum.photos/200", student, refetchStuden
             <li className="menu-item" onClick={() => setIsEditing(true)}>
               Edit
             </li>
-            <li className="menu-item">Delete</li>
+            <li className="menu-item" onClick={handleDelete}>
+              Delete
+            </li>
           </ul>
         </ClickOutside>
         <div className="user-image" onClick={() => setIsMenuOpen(false)}>
@@ -81,7 +96,13 @@ const StudentCard = ({ img = "https://picsum.photos/200", student, refetchStuden
         onClose={() => setIsEditing(false)}
         hasCloseBtn={true}
       >
-        <CreateUser editing={true} role="student" setIsCreating={setIsEditing} user={student}  refetch={()=>refetchStudents} />
+        <CreateUser
+          editing={true}
+          role="student"
+          setIsCreating={setIsEditing}
+          user={student}
+          refetch={() => refetchStudents}
+        />
       </Modal>
     </>
   );
@@ -99,6 +120,6 @@ StudentCard.propTypes = {
       email: PropTypes.string,
     }),
   }),
-  refetchStudents: PropTypes.func
+  refetchStudents: PropTypes.func,
 };
 export default StudentCard;
