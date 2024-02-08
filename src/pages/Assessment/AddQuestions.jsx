@@ -19,7 +19,7 @@ const AddQuestions = () => {
   const navigate = useNavigate();
 
   const initialRow = {
-    assessmentId: assessmentId,
+    assessment: assessmentId,
     text: "How many bytes make one megabyte?",
     options: [1028, 1010, 1000, 8],
     correctAnswer: "1028",
@@ -28,7 +28,7 @@ const AddQuestions = () => {
 
   const initialRows = [
     {
-      assessmentId: assessmentId,
+      assessment: assessmentId,
       text: "",
       options: [],
       correctAnswer: "",
@@ -43,7 +43,7 @@ const AddQuestions = () => {
     setRows([
       ...rows,
       {
-        assessmentId: assessmentId,
+        assessment: assessmentId,
         text: "",
         options: [],
         correctAnswer: "",
