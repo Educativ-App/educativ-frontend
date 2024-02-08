@@ -143,6 +143,11 @@
   width: 100%;
   cursor: pointer;
   transition: all 0.3s ease;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 50%;
+  }
 }
 
 .btn .btn-text {
@@ -226,6 +231,12 @@
 
 .gap-2 {
   gap: 0.6rem;
+}
+.align-end {
+  align-self: flex-end;
+}
+.align-center {
+  align-self: center;
 }
 
 .teacher_link {

@@ -23,15 +23,16 @@ const AdminHeader = (props) => {
           />
         </div>
       </div>
-
-      <div className="btn_container">
-        <Button
-          text={props.btnText}
-          type="info"
-          onClick={props.onClick}
-          icon={<FaPlus />}
-        />
-      </div>
+      {props.btnText && (
+        <div className="btn_container">
+          <Button
+            text={props.btnText}
+            type="info"
+            onClick={props.onClick}
+            icon={<FaPlus />}
+          />
+        </div>
+      )}
     </div>
   );
 };

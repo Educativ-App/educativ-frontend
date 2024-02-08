@@ -49,7 +49,7 @@ const Course = () => {
     isSuccess = adminSuccess;
   }
 
-  if (isLoading && isFetching) {
+  if (isLoading || isFetching) {
     return <Loading />;
   }
 

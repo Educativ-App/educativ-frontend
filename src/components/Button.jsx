@@ -4,18 +4,15 @@ const Button = ({
   type = "default",
   text = "Log In",
   onClick,
+  disabled,
   className,
-    icon,
-  loading = false
+  icon,
+  loading = false,
 }) => {
   return (
     <button
-    
-      disabled={loading}
-
+      disabled={loading || disabled}
       className={`btn btn-${type} ${className}`}
-      
-      
       onClick={onClick}
     >
       {icon && icon}
@@ -48,7 +45,7 @@ Button.propTypes = {
   onClick: PropTypes.func,
   className: PropTypes.string,
   loading: PropTypes.bool,
-  icon: PropTypes.element
+  icon: PropTypes.element,
 };
 
 export default Button;

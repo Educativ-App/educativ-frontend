@@ -9,7 +9,6 @@ import Login from "./pages/login.jsx";
 import SignUp from "./pages/SignUp.jsx";
 import DashBoardLayout from "./pages/layout/DashBoardLayout.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
-import QuizPage from "./pages/QuizPage.jsx";
 import About from "./pages/About.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import { AuthProvider } from "./Contexts/AuthContext";
@@ -28,6 +27,8 @@ import ViewQuestions from "./pages/Assessment/ViewQuestions.jsx";
 import Students from "./pages/Students/index.jsx";
 import StoreContextProvider from "./Contexts/StoreContext.jsx";
 import ResultPage from "./pages/Results/ResultPage";
+import StudentAssessment from "./pages/Students/StudentAssessment.jsx";
+import StudentTestPage from "./pages/Students/StudentTestPage.jsx";
 
 const queryClient = new QueryClient();
 
@@ -90,8 +91,12 @@ const router = createBrowserRouter([
         path: "students",
         children: [
           {
-            path: "quiz",
-            element: <QuizPage />,
+            path: "assessment",
+            element: <StudentAssessment />,
+          },
+          {
+            path: "assessment/:assId",
+            element: <StudentTestPage />,
           },
         ],
       },

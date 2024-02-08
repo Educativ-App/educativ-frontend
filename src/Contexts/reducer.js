@@ -5,6 +5,16 @@ export const reducer = (state, action) => {
         ...state,
         assessmentTitle: action.payload,
       };
+    case "ADD_USER":
+      return {
+        ...state,
+        user_info: action.payload,
+      };
+    case "SET_DURATION":
+      return {
+        ...state,
+        assessmentDuration: action.payload,
+      };
 
     default:
       return state;
