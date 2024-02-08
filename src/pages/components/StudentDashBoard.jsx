@@ -14,13 +14,15 @@ import Profile from "../../components/Profile";
 import CourseList from "../../components/CourseList";
 import ExamList from "../../components/ExamList";
 import DashboardCalendar from "../../components/Calendar";
+import { useStoreContext } from "../../Contexts/StoreContext";
 
 const taskTab = [
   {
-    pre: "take a",
-    task: "Report",
+    pre: "take an",
+    task: "Assessment",
     image: testBaord,
     colour: "yellow",
+    link: "/dashboard/students/assessment",
   },
   {
     pre: "check your",
@@ -39,23 +41,14 @@ const taskTab = [
     task: "Quiz",
     image: Quiz,
     colour: "teal",
-    link: "/dashboard/students/quiz",
   },
 ];
 
-var user = {
-  name: "Adaeze Igwe",
-  faculty: "Business Administration",
-  dept: "Accountancy Department",
-  mat_no: "150203031",
-  session: "2023/24",
-  level: "300L",
-  semester: "First",
-  role: "student",
-};
-
 const StudentDashBoard = () => {
   const navigate = useNavigate();
+  const {
+    state: { user_info },
+  } = useStoreContext();
 
   const pageNavigator = (page) => {
     navigate(`${page}`);
@@ -95,7 +88,7 @@ const StudentDashBoard = () => {
           </div>
         </div>
         <div className="profile_section">
-          <Profile img="https://i.pravatar.cc/200" user={user} />
+          <Profile img="https://i.pravatar.cc/200" user={user_info} />
         </div>
       </div>
 

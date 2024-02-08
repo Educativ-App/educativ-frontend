@@ -9,8 +9,6 @@ import { useNavigate } from "react-router-dom";
 import Modal from "../components/Modal";
 import CreateCourse from "../components/CreateCourse";
 
-
-
 const AllCourses = () => {
   const [searchValue, setSearchValue] = useState("");
   const [creatingCourse, setCreatingCourse] = useState(false);
@@ -32,7 +30,7 @@ const AllCourses = () => {
         btnText="Add Course"
         type="courses"
         value={searchValue}
-        onClick={()=>setCreatingCourse(true)}
+        onClick={() => setCreatingCourse(true)}
         onChange={(e) => setSearchValue(e.target?.value)}
       />
 
@@ -60,7 +58,7 @@ const AllCourses = () => {
         hasCloseBtn
         onClose={() => setCreatingCourse(false)}
       >
-        <CreateCourse setIsCreating={setCreatingCourse}/>
+        <CreateCourse setIsCreating={setCreatingCourse} />
       </Modal>
     </div>
   );

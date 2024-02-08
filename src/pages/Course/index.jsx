@@ -38,14 +38,9 @@ const Index = () => {
               courses.map((course) => (
                 <div key={course.course._id} className="col-md-4">
                   <TeacherCourseCard
-                  
                     courseName={course.course.courseTittle}
                     courseTitle={course.course.courseCode}
-                    onClick={() =>
-                      navigate(
-                        `/dashboard/teacher/assessment/${course.course._id}`
-                      )
-                    }
+                    courseId={course.course._id}
                   />
                 </div>
               ))

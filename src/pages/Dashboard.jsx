@@ -9,11 +9,13 @@ import Button from "../components/Button";
 import { MdArrowBackIos } from "react-icons/md";
 import { getStudentRecord, getTeachersRecord } from "../service/userService";
 import { useQuery } from "@tanstack/react-query";
+import { useStoreContext } from "../Contexts/StoreContext";
 
 const Dashboard = () => {
   const { authUser: user } = useAuth();
-
-  let userDetails;
+  const {
+    state: { user_info },
+  } = useStoreContext();
 
   const navigate = useNavigate();
 
@@ -23,32 +25,11 @@ const Dashboard = () => {
     }
   }, [user]);
 
-  // TEACHER'S DETAILS
-
-  if (user && user.role === "teacher") {
-    const { data } = useQuery({
-      queryKey: ["user-details"],
-      queryFn: () => getTeachersRecord(),
-    });
-
-    userDetails = data;
-  }
-
-  // STUDENT'S DETAILS
-  if (user && user.role === "student") {
-    const { data } = useQuery({
-      queryKey: ["user-details"],
-      queryFn: () => getStudentRecord(),
-    });
-
-    userDetails = data;
-  }
-
   return user ? (
     <section className="dashboard">
       <div className="user_profile">
         <div>
-          <h2>Hello, {userDetails?.firstName ?? ""}</h2>
+          <h2>Hello, {user_info?.firstName ?? ""}</h2>
           <p>What will you do today? </p>
         </div>
         <Button
@@ -66,8 +47,6 @@ const Dashboard = () => {
       ) : (
         <AdminDashBoard />
       )}
-
-      {/* {user?.role == "student" ? <StudentDashBoard /> : <TeacherDashBoard />} */}
     </section>
   ) : (
     <></>

@@ -17,13 +17,12 @@ const CourseCard = ({ course, onClick }) => {
     setIsMenuOpen(!isMenuOpen);
   };
   return (
-
     <>
       <div className="course-card">
         <div className="menu">
           <BsThreeDotsVertical size={20} onClick={() => handleMenuClick()} />
         </div>
-      
+
         <ClickOutside
           show={isMenuOpen}
           onClickOutside={() => setIsMenuOpen(false)}
@@ -59,10 +58,13 @@ const CourseCard = ({ course, onClick }) => {
         onClose={() => setIsAssigning(false)}
         hasCloseBtn={true}
       >
-       <AssignTeacherCourse courseId={course._id} setIsAssigning={setIsAssigning} courseName={course.courseTittle}/>
+        <AssignTeacherCourse
+          courseId={course._id}
+          setIsAssigning={setIsAssigning}
+          courseName={course.courseTittle}
+        />
       </Modal>
     </>
-
   );
 };
 
