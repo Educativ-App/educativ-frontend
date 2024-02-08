@@ -15,7 +15,7 @@ const ProgressBar = ({ percentage, type }) => {
       />
       <div className="percentage_container">
         <h4 style={{ color: colour }}>{percentage}%</h4>
-        <h6>{type}</h6>
+        {type && <h6>{type}</h6>}
       </div>
     </div>
   );

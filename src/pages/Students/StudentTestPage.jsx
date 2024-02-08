@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import {
   getQuestionsByAssessment,
@@ -9,59 +9,89 @@ import { useStoreContext } from "../../Contexts/StoreContext";
 import StartCard from "../../components/StartCard";
 import QuestionCard from "../../components/QuestionCard";
 import Timer from "../../components/Timer";
+import EndAssessmentCard from "../../components/EndAssessmentCard";
 
 const StudentTestPage = () => {
   const { assId } = useParams();
   const {
-    state: { assessmentDuration },
+    state: {
+      assessment_info: { duration },
+    },
+    dispatch,
   } = useStoreContext();
 
   if (!assId) {
     return;
   }
 
+  //HDR:   STATES
   const [assessmentQuestion, setAssessmentQuestion] = useState(null);
-  const [endAssessment, setEndAssessment] = useState("");
+  const [endAssessment, setEndAssessment] = useState(null);
+  const [questionNumber, setQuestionNumber] = useState(0);
 
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    const getQuestions = async () => {
+      const data = await getQuestionsByAssessment(assId);
+      if (data) {
+        dispatch({
+          type: "SET_QUEST_LENGTH",
+          payload: data.length,
+        });
+      }
+    };
+
+    getQuestions();
+  }, [assId]);
+
+  //HDR:   FUNCTIONS HANDLERS
   const startAssessmentHandler = async () => {
     setLoading(true);
     const data = await startAssessment(assId);
+    setQuestionNumber(1);
     setAssessmentQuestion(data?.question);
-    setEndAssessment(data?.endTime);
     setLoading(false);
   };
 
   const nextQuestionHandler = async (ans) => {
     setLoading(true);
     const data = await nextAssessment(assId, { studentOption: ans });
-    setAssessmentQuestion(data?.question);
+    if (data?.message) {
+      setEndAssessment(data);
+    }
+    if (data?.question) {
+      setQuestionNumber((prev) => prev + 1);
+      setAssessmentQuestion(data?.question);
+    }
+
     setLoading(false);
   };
 
   return (
     <>
-      {assessmentQuestion ? (
+      {endAssessment ? (
+        <div className="center">
+          <EndAssessmentCard data={endAssessment} />
+        </div>
+      ) : assessmentQuestion ? (
         <div className="flex-col container">
           <div className="align-end">
-            <Timer
-              duration={assessmentDuration}
-              onTime={() => console.log("end time called")}
-            />
+            <Timer duration={duration} onTime={() => nextQuestionHandler("")} />
           </div>
           <div className="align-center">
             <QuestionCard
               question={assessmentQuestion}
               onClick={nextQuestionHandler}
               loading={loading}
+              questionNumber={questionNumber}
             />
           </div>
         </div>
       ) : (
         <div className="center">
           <StartCard
-            duration={assessmentDuration}
+            duration={duration}
             onClick={startAssessmentHandler}
             loading={loading}
           />
