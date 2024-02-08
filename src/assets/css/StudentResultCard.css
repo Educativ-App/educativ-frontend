@@ -1,0 +1,22 @@
+.result_card {
+  max-width: 50rem;
+  width: 95%;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  gap: 1rem;
+  justify-content: space-between;
+  border-bottom: 2px solid var(--clr-lemon);
+  border-top: 2px solid var(--clr-lemon);
+
+  > h4:first-of-type {
+    flex: 0.6;
+    text-transform: capitalize;
+  }
+  > h4:nth-of-type(2) {
+    flex: 0.4;
+    font-size: 0.8rem;
+    font-weight: 500;
+    font-style: italic;
+  }
+}

@@ -32,7 +32,7 @@ const StudentAssessment = () => {
 
   return (
     <div className="container">
-      <center>
+      <center className="sticky mb-2">
         <h2>Student Assessment</h2>
       </center>
 

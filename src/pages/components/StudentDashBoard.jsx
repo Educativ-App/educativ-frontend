@@ -29,6 +29,7 @@ const taskTab = [
     task: "Grades",
     image: gradeBook,
     colour: "lemon",
+    link: "/dashboard/students/grade",
   },
   {
     pre: "Visit the library",

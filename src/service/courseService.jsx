@@ -70,7 +70,7 @@ const createQuestion = async (rows) => {
     //     console.error(error);
     //   });
 
-    const res  = await axiosClient.post("questions", rows);
+    const res = await axiosClient.post("questions", rows);
 
     return res;
   } catch (error) {
@@ -179,6 +179,17 @@ const getAllCourses = async () => {
     }
   }
 };
+const getStudentResult = async (assId) => {
+  try {
+    const res = await axiosClient.get(`assessments/${assId}/result`);
+    toast(res.data.message, { type: "success", autoClose: 2000 });
+    return res.data;
+  } catch (error) {
+    if (error.response.status) {
+      toast(error.response.data.error, { type: "error", autoClose: 5000 });
+    }
+  }
+};
 
 export {
   getTeacherCourses,
@@ -195,4 +206,5 @@ export {
   startAssessment,
   nextAssessment,
   deleteAssessment,
+  getStudentResult,
 };

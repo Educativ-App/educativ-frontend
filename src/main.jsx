@@ -29,6 +29,7 @@ import StoreContextProvider from "./Contexts/StoreContext.jsx";
 import ResultPage from "./pages/Results/ResultPage";
 import StudentAssessment from "./pages/Students/StudentAssessment.jsx";
 import StudentTestPage from "./pages/Students/StudentTestPage.jsx";
+import StudentGradePage from "./pages/Students/StudentGradePage.jsx";
 
 const queryClient = new QueryClient();
 
@@ -90,6 +91,10 @@ const router = createBrowserRouter([
       {
         path: "students",
         children: [
+          {
+            path: "grade",
+            element: <StudentGradePage />,
+          },
           {
             path: "assessment",
             element: <StudentAssessment />,
