@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import "../assets/css/QuestionCard.css";
 import Button from "./Button";
+import { useStoreContext } from "../Contexts/StoreContext";
 
 const alphabets = ["A", "B", "C", "D", "E", "F", "G", "H", "I"];
 
-const QuestionCard = ({ question, onClick, loading }) => {
+const QuestionCard = ({ question, onClick, loading, questionNumber }) => {
   const [selectedOption, setSelectedOption] = useState("");
+
+  const {
+    state: { questionLength },
+  } = useStoreContext();
 
   const submitHandler = () => {
     onClick(selectedOption);
@@ -13,7 +18,9 @@ const QuestionCard = ({ question, onClick, loading }) => {
 
   return (
     <article className="question_card">
-      <p className="quest_header">Question 01</p>
+      <p className="quest_header">
+        Question {questionNumber} / {questionLength}
+      </p>
 
       <h2 className="quest">{question.text}</h2>
       {question?.options?.map((option, index) => {
@@ -34,7 +41,7 @@ const QuestionCard = ({ question, onClick, loading }) => {
 
       <Button
         type="info"
-        text="Next"
+        text={questionNumber === questionLength ? "Finish" : "Next"}
         onClick={submitHandler}
         loading={loading}
       />

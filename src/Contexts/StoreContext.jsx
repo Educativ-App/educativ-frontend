@@ -8,7 +8,11 @@ const StoreContext = createContext();
 const initialState = {
   assessmentTitle: "",
   user_info: {},
-  assessmentDuration: null,
+  assessment_info: {
+    duration: null,
+    maximumScore: null,
+  },
+  questionLength: 0,
 };
 
 const StoreContextProvider = ({ children }) => {
@@ -32,7 +36,7 @@ const StoreContextProvider = ({ children }) => {
     if (user && user.role === "student") {
       getStudentDetails();
     }
-  }, []);
+  }, [user]);
 
   return (
     <StoreContext.Provider value={{ state, dispatch }}>

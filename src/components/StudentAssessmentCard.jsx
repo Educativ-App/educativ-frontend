@@ -27,8 +27,11 @@ const StudentAssessmentCard = ({ assessment }) => {
 
   const clickNavigator = () => {
     dispatch({
-      type: "SET_DURATION",
-      payload: assessment.duration,
+      type: "SET_ASSESSMENT_INFO",
+      payload: {
+        duration: assessment?.duration,
+        maximumScore: assessment?.maximumScore,
+      },
     });
 
     navigate(`${assessment._id}`);
@@ -55,7 +58,7 @@ const StudentAssessmentCard = ({ assessment }) => {
       <Button
         type="info"
         text="Take assessment"
-        // disabled={testValidity}
+        disabled={testValidity}
         onClick={clickNavigator}
       />
       {testValidity && (

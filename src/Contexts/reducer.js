@@ -10,10 +10,15 @@ export const reducer = (state, action) => {
         ...state,
         user_info: action.payload,
       };
-    case "SET_DURATION":
+    case "SET_ASSESSMENT_INFO":
       return {
         ...state,
-        assessmentDuration: action.payload,
+        assessment_info: action.payload,
+      };
+    case "SET_QUEST_LENGTH":
+      return {
+        ...state,
+        questionLength: action.payload,
       };
 
     default:
