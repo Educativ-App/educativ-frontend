@@ -7,14 +7,17 @@ import Loading from "../../components/Loading";
 import BackButton from "../../components/BackButton";
 import { useEffect, useState } from "react";
 import AssessmentCard from "../../components/AssessmentCard";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { FaPlusSquare } from "react-icons/fa";
+import { useStoreContext } from "../../Contexts/StoreContext";
 
 const Index = () => {
   const { data: courses, isLoading } = useQuery({
     queryKey: ["teacher-courses"],
     queryFn: () => getTeacherCourses(),
   });
+  const { dispatch } = useStoreContext();
+  const navigate = useNavigate();
 
   const [selectedCourse, setSelectedCourse] = useState("");
 
@@ -42,6 +45,14 @@ const Index = () => {
   if (isLoading) {
     return <Loading />;
   }
+
+  const navigationHandler = (link, title) => {
+    dispatch({
+      type: "ASSESSMENT_TITLE",
+      payload: title,
+    });
+    navigate(link);
+  };
 
   return (
     <div className="grid-wrapper">
@@ -97,7 +108,21 @@ const Index = () => {
               {isSuccess && assessments
                 ? assessments.map((assessment) => (
                     <div key={assessment._id} className="col-md-4">
-                      <AssessmentCard assessment={assessment} />
+                      <AssessmentCard
+                        assessment={assessment}
+                        onView={() =>
+                          navigationHandler(
+                            `/dashboard/teacher/assessment/${assessment._id}/view-questions`,
+                            assessment.assessmentTittle
+                          )
+                        }
+                        onAdd={() =>
+                          navigationHandler(
+                            `/dashboard/teacher/assessment/${assessment._id}/add-questions`,
+                            assessment.assessmentTittle
+                          )
+                        }
+                      />
                     </div>
                   ))
                 : selectedCourse && (

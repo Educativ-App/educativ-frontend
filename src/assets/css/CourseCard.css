@@ -136,6 +136,17 @@
     background-color: var(--clr-lemon);
     margin: 10px 0;
     border: none;
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 50%;
+      color: black;
+
+      &:hover {
+        color: black;
+        opacity: 50%;
+      }
+    }
   }
 
   button:hover {

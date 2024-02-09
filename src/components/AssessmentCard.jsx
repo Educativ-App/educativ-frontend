@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import { getDateString, getDateValue } from "../utils/helpers";
 import "../assets/css/CourseCard.css";
-import { Link, useNavigate } from "react-router-dom";
 import Modal from "./Modal";
 import { useState } from "react";
 import Button from "./Button";
@@ -13,13 +12,12 @@ import {
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { FaEdit, FaTrash } from "react-icons/fa";
-import { useStoreContext } from "../Contexts/StoreContext";
+import { useAuth } from "../Contexts/AuthContext";
 
-const AssessmentCard = ({ assessment }) => {
+const AssessmentCard = ({ assessment, onView, onAdd }) => {
   const queryClient = useQueryClient();
-  const navigate = useNavigate();
 
-  const { dispatch } = useStoreContext();
+  const { authUser: user } = useAuth();
 
   const [formData, setFormData] = useState({
     assessmentId: assessment._id,
@@ -30,6 +28,8 @@ const AssessmentCard = ({ assessment }) => {
     maximumScore: assessment.maximumScore,
     duration: assessment.duration,
   });
+
+  console.log(user);
 
   const { data: courses } = useQuery({
     queryKey: ["teacher-courses"],
@@ -59,14 +59,6 @@ const AssessmentCard = ({ assessment }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     mutation.mutate();
-  };
-
-  const navigationHandler = (link, title) => {
-    dispatch({
-      type: "ASSESSMENT_TITLE",
-      payload: title,
-    });
-    navigate(link);
   };
 
   const handleDelete = () => {
@@ -114,26 +106,10 @@ const AssessmentCard = ({ assessment }) => {
             </tr>
             <tr>
               <td align="left">
-                <button
-                  onClick={() =>
-                    navigationHandler(
-                      `/dashboard/teacher/assessment/${assessment._id}/view-questions`,
-                      assessment.assessmentTittle
-                    )
-                  }
-                >
-                  View Questions
-                </button>
+                <button onClick={onView}>View Questions</button>
               </td>
               <td align="right">
-                <button
-                  onClick={() =>
-                    navigationHandler(
-                      `/dashboard/teacher/assessment/${assessment._id}/add-questions`,
-                      assessment.assessmentTittle
-                    )
-                  }
-                >
+                <button onClick={onAdd} disabled={user?.role !== "teacher"}>
                   Add Questions
                 </button>
               </td>
@@ -238,6 +214,8 @@ const AssessmentCard = ({ assessment }) => {
 };
 
 AssessmentCard.propTypes = {
+  onView: PropTypes.func,
+  onAdd: PropTypes.func,
   assessment: PropTypes.shape({
     _id: PropTypes.string,
     assessmentTittle: PropTypes.string,

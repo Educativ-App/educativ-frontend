@@ -85,6 +85,14 @@ const router = createBrowserRouter([
             path: "courses/assessment/:courseId",
             element: <AssessmentCoursePage />,
           },
+          {
+            path: "courses/:assessmentId/add-questions",
+            element: <AddQuestions />,
+          },
+          {
+            path: "courses/:assessmentId/view-questions",
+            element: <ViewQuestions />,
+          },
         ],
       },
       // STUDENT PAGES
