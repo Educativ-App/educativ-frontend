@@ -232,6 +232,13 @@
   top: 0;
   z-index: 10;
 }
+@media (max-width: 600px) {
+  .sticky {
+    position: static;
+    top: 0;
+    z-index: 10;
+  }
+}
 
 .d-flex {
   display: flex;

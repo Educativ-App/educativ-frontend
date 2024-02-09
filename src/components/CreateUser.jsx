@@ -70,6 +70,7 @@ const CreateUser = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     mutation.mutate();
+    refetch;
   };
 
   return (
