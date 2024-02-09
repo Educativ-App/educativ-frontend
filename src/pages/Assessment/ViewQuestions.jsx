@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import {
+  deleteQuestion,
   getQuestionsByAssessment,
   updateQuestion,
 } from "../../service/courseService";
@@ -14,6 +15,7 @@ import Button from "../../components/Button";
 import { toast } from "react-toastify";
 import { MdNoteAdd } from "react-icons/md";
 import { useStoreContext } from "../../Contexts/StoreContext";
+import { useAuth } from "../../Contexts/AuthContext";
 
 const ViewQuestions = () => {
   const { assessmentId } = useParams();
@@ -23,6 +25,7 @@ const ViewQuestions = () => {
     state: { assessmentTitle },
     dispatch,
   } = useStoreContext();
+  const { authUser: user } = useAuth();
 
   const {
     data: questions,
@@ -50,9 +53,9 @@ const ViewQuestions = () => {
     setIsModalOpen(true);
   };
 
-  const handleDelete = () => {
-    // Handle delete logic here
-    // setQuestions(questions.filter(question => question.id !== id));
+  const handleDelete = async (id) => {
+    await deleteQuestion();
+    refetch();
   };
 
   const saveEditQuestion = async (e) => {
@@ -76,18 +79,20 @@ const ViewQuestions = () => {
     <div className="container">
       <div className="d-flex">
         <BackButton />
-        <button
-          className="btn btn-outline"
-          onClick={() =>
-            navigationHandler(
-              `/dashboard/teacher/assessment/${assessmentId}/add-questions`,
-              assessmentTitle
-            )
-          }
-        >
-          Add
-          <MdNoteAdd size={20} />
-        </button>
+        {user?.role === "teacher" && (
+          <button
+            className="btn btn-outline"
+            onClick={() =>
+              navigationHandler(
+                `/dashboard/teacher/assessment/${assessmentId}/add-questions`,
+                assessmentTitle
+              )
+            }
+          >
+            Add
+            <MdNoteAdd size={20} />
+          </button>
+        )}
       </div>
 
       <div className="center">

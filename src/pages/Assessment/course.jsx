@@ -3,14 +3,18 @@ import {
   getAssessmentByCourse,
   getTeacherAssessmentByCourse,
 } from "../../service/courseService";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import AssessmentCard from "../../components/AssessmentCard";
 import BackButton from "../../components/BackButton";
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "../../Contexts/AuthContext";
+import { useStoreContext } from "../../Contexts/StoreContext";
 
 const Course = () => {
   const { authUser: user } = useAuth();
+  const { dispatch } = useStoreContext();
+  const navigate = useNavigate();
+
   let { courseId } = useParams();
   let assessments;
   let isLoading;
@@ -53,6 +57,14 @@ const Course = () => {
     return <Loading />;
   }
 
+  const navigationHandler = (link, title) => {
+    dispatch({
+      type: "ASSESSMENT_TITLE",
+      payload: title,
+    });
+    navigate(link);
+  };
+
   if (!isFetching && isSuccess) {
     return (
       <div className="container">
@@ -64,7 +76,21 @@ const Course = () => {
               {assessments ? (
                 assessments.map((assessment) => (
                   <div key={assessment._id} className="col-md-4">
-                    <AssessmentCard assessment={assessment} />
+                    <AssessmentCard
+                      assessment={assessment}
+                      onView={() =>
+                        navigationHandler(
+                          `/dashboard/admin/courses/${assessment._id}/view-questions`,
+                          assessment.assessmentTittle
+                        )
+                      }
+                      onAdd={() =>
+                        navigationHandler(
+                          `/dashboard/admin/courses/${assessment._id}/add-questions`,
+                          assessment.assessmentTittle
+                        )
+                      }
+                    />
                   </div>
                 ))
               ) : (

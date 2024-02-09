@@ -167,6 +167,16 @@ const deleteAssessment = async (assessmentId) => {
     }
   }
 };
+const deleteQuestion = async (questId) => {
+  try {
+    const res = await axiosClient.delete(`questions/${questId}`);
+    return res.data;
+  } catch (error) {
+    if (error.response.status) {
+      toast(error.response.data.error, { type: "error", autoClose: 5000 });
+    }
+  }
+};
 
 const getAllCourses = async () => {
   try {
@@ -207,4 +217,5 @@ export {
   nextAssessment,
   deleteAssessment,
   getStudentResult,
+  deleteQuestion,
 };
