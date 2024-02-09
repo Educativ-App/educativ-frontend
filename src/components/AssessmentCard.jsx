@@ -29,8 +29,6 @@ const AssessmentCard = ({ assessment, onView, onAdd }) => {
     duration: assessment.duration,
   });
 
-  console.log(user);
-
   const { data: courses } = useQuery({
     queryKey: ["teacher-courses"],
     queryFn: () => getTeacherCourses(),
