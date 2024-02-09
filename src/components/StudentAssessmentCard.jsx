@@ -58,7 +58,7 @@ const StudentAssessmentCard = ({ assessment }) => {
       <Button
         type="info"
         text="Take assessment"
-        // disabled={testValidity}
+        disabled={testValidity}
         onClick={clickNavigator}
       />
       {testValidity && (
