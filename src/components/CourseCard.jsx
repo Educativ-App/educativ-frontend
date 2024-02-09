@@ -38,8 +38,8 @@ const CourseCard = ({ course, onClick }) => {
             <li className="menu-item">Delete</li>
           </ul>
         </ClickOutside>
-        <h3>{course.courseTittle}</h3>
-        <p>{course.courseCode}</p>
+        <h3>{course?.courseTittle}</h3>
+        <p>{course?.courseCode}</p>
         <Button text="View Assessments" onClick={onClick} />
       </div>
       <Modal
@@ -59,9 +59,9 @@ const CourseCard = ({ course, onClick }) => {
         hasCloseBtn={true}
       >
         <AssignTeacherCourse
-          courseId={course._id}
+          courseId={course?._id}
           setIsAssigning={setIsAssigning}
-          courseName={course.courseTittle}
+          courseName={course?.courseTittle}
         />
       </Modal>
     </>

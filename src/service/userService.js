@@ -79,6 +79,17 @@ const deleteStudent = async (id) => {
     }
   }
 };
+const deleteTeacher = async (id) => {
+  try {
+    const res = await axiosClient.delete(`teachers/${id}`);
+    toast(res.data.message, { type: "success", autoClose: 2000 });
+    return res.data;
+  } catch (error) {
+    if (error.response.status) {
+      toast(error.response.data.error, { type: "error", autoClose: 5000 });
+    }
+  }
+};
 
 export {
   getTeachersRecord,
@@ -87,4 +98,5 @@ export {
   getAllTeachers,
   getAllStudents,
   deleteStudent,
+  deleteTeacher,
 };

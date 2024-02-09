@@ -5,7 +5,7 @@ import Profile from "../components/Profile";
 import { useState } from "react";
 import Modal from "../components/Modal";
 import CreateUser from "../components/CreateUser";
-import { getAllTeachers } from "../service/userService";
+import { deleteTeacher, getAllTeachers } from "../service/userService";
 import { useQuery } from "@tanstack/react-query";
 import StudentCard from "../components/StudentCard";
 import TeacherCard from "../components/TeacherCard";
@@ -16,7 +16,11 @@ const AllTeacher = () => {
 
   const [createModal, setCreateModal] = useState(false);
 
-  const { data: teachers, isLoading } = useQuery({
+  const {
+    data: teachers,
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["teachers"],
     queryFn: () => getAllTeachers(),
   });
@@ -24,6 +28,11 @@ const AllTeacher = () => {
   if (isLoading) {
     return <Loading />;
   }
+
+  const handleDelete = async (id) => {
+    await deleteTeacher(id);
+    refetch();
+  };
 
   return (
     <div className="admin_teacher">
@@ -50,7 +59,11 @@ const AllTeacher = () => {
             }
           })
           ?.map((teacher, index) => (
-            <TeacherCard key={index} teacher={teacher} />
+            <TeacherCard
+              key={index}
+              teacher={teacher}
+              onClick={() => handleDelete(teacher?._id)}
+            />
           ))}
       </div>
       {!teachers && (

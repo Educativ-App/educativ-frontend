@@ -1,9 +1,17 @@
+import { FaTrash } from "react-icons/fa";
 import "../assets/css/styles.css";
 import PropTypes from "prop-types";
 
-const TeacherCard = ({ img = "https://picsum.photos/200", teacher }) => {
+const TeacherCard = ({
+  img = "https://picsum.photos/200",
+  teacher,
+  onClick,
+}) => {
   return (
     <div className="profile-card">
+      <div className="menu" onClick={onClick}>
+        <FaTrash size={20} />
+      </div>
       <div className="user-image">
         <img src={img} alt="userimage" />
         <div className="profile-info">
@@ -22,23 +30,23 @@ const TeacherCard = ({ img = "https://picsum.photos/200", teacher }) => {
         <table style={{ width: "100%", borderSpacing: "12px" }}>
           <tr>
             <td align="left">FirstName</td>
-            <td align="right">{teacher.firstName}</td>
+            <td align="right">{teacher?.firstName}</td>
           </tr>
           <tr>
             <td align="left">MiddleName</td>
-            <td align="right">{teacher.middleName}</td>
+            <td align="right">{teacher?.middleName}</td>
           </tr>
           <tr>
             <td align="left">LastName</td>
-            <td align="right">{teacher.lastName}</td>
+            <td align="right">{teacher?.lastName}</td>
           </tr>
           <tr>
             <td align="left">Gender</td>
-            <td align="right">{teacher.gender}</td>
+            <td align="right">{teacher?.gender}</td>
           </tr>
           <tr>
             <td align="left">Status</td>
-            <td align="right">{teacher.teacherStatus}</td>
+            <td align="right">{teacher?.teacherStatus}</td>
           </tr>
         </table>
       </div>
