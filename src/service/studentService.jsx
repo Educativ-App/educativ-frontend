@@ -11,6 +11,7 @@ const getAllStudents = async () => {
     }
   }
 };
+
 const getStudentsByCourse = async (courseId) => {
   try {
     const res = await axiosClient.get(`students/course/${courseId}`);
@@ -21,5 +22,15 @@ const getStudentsByCourse = async (courseId) => {
     }
   }
 };
+const getResultsByAssessment = async (assessmentId) => {
+  try {
+    const res = await axiosClient.get(`assessments/${assessmentId}/getResult`);
+    return res.data;
+  } catch (error) {
+    if (error.response.status) {
+      toast(error.response.data.error, { type: "error", autoClose: 5000 });
+    }
+  }
+};
 
-export { getAllStudents, getStudentsByCourse };
+export { getAllStudents, getStudentsByCourse , getResultsByAssessment};

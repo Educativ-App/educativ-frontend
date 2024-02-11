@@ -80,6 +80,11 @@ export const adminLinks = [
     type: "link",
   },
   {
+    title: "Results",
+    link: "admin/results",
+    type: "link",
+  },
+  {
     title: "Log out",
     type: "button",
   },

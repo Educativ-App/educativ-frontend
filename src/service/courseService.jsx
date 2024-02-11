@@ -80,9 +80,9 @@ const createQuestion = async (rows) => {
   }
 };
 
-const getTeacherAssessmentByCourse = async (courseId) => {
+const getTeacherAssessmentByCourse = async (courseId, role='user') => {
   try {
-    const res = await axiosClient.get(`assessments/user/${courseId}`);
+    const res = await axiosClient.get(`assessments/${role}/${courseId}`);
     return res.data;
   } catch (error) {
     if (error.response.status) {
@@ -181,7 +181,7 @@ const deleteQuestion = async (questId) => {
 const getAllCourses = async () => {
   try {
     const res = await axiosClient.get("courses/");
-    toast(res.data.message, { type: "success", autoClose: 2000 });
+    // toast(res.data.message, { type: "success", autoClose: 2000 });
     return res.data;
   } catch (error) {
     if (error.response.status) {

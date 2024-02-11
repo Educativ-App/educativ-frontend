@@ -6,6 +6,7 @@ import { useState } from "react";
 import Button from "./Button";
 import {
   deleteAssessment,
+  getAllCourses,
   getTeacherCourses,
   updateAssessment,
 } from "../service/courseService";
@@ -14,14 +15,18 @@ import { toast } from "react-toastify";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { useAuth } from "../Contexts/AuthContext";
 
-const AssessmentCard = ({ assessment, onView, onAdd }) => {
+const AssessmentCard = ({
+  assessment,
+  onView,
+  onAdd,
+  onResults,
+  isResult = false,
+}) => {
   const queryClient = useQueryClient();
-
-  const { authUser: user } = useAuth();
 
   const [formData, setFormData] = useState({
     assessmentId: assessment._id,
-    courseId: assessment.course._id,
+    courseId: assessment.course ? assessment.course : assessment?.course?._id,
     assessmentTittle: assessment.assessmentTittle,
     startTime: getDateValue(assessment.startTime),
     endTime: getDateValue(assessment.endTime),
@@ -29,9 +34,17 @@ const AssessmentCard = ({ assessment, onView, onAdd }) => {
     duration: assessment.duration,
   });
 
+  const { authUser: user } = useAuth();
+
   const { data: courses } = useQuery({
     queryKey: ["teacher-courses"],
-    queryFn: () => getTeacherCourses(),
+    queryFn: () => {
+      if (user.role == "admin") {
+        return getAllCourses();
+      } else {
+        return getTeacherCourses();
+      }
+    },
   });
 
   const [isEditing, setIsEditing] = useState(false);
@@ -106,11 +119,21 @@ const AssessmentCard = ({ assessment, onView, onAdd }) => {
               <td align="left">
                 <button onClick={onView}>View Questions</button>
               </td>
-              <td align="right">
-                <button onClick={onAdd} disabled={user?.role !== "teacher"}>
-                  Add Questions
-                </button>
-              </td>
+              {isResult ? (
+                <td align="right">
+                  <button
+                    onClick={onResults}
+                  >
+                    View Results
+                  </button>
+                </td>
+              ) : (
+                <td align="right">
+                  <button onClick={onAdd} disabled={user?.role !== "teacher"}>
+                    Add Questions
+                  </button>
+                </td>
+              )}
             </tr>
           </tbody>
         </table>
@@ -139,8 +162,19 @@ const AssessmentCard = ({ assessment, onView, onAdd }) => {
                   <option value="">Select a course</option>
                   {courses ? (
                     courses.map((course, i) => (
-                      <option key={i} value={course.course._id}>
-                        {`${course.course.courseTittle} (${course.course.courseCode})`}
+                      <option
+                        key={i}
+                        value={course._id ? course._id : course?.course?._id}
+                      >
+                        {`${
+                          course.courseTittle
+                            ? course.courseTittle
+                            : course.course?.courseTittle
+                        } (${
+                          course.courseCode
+                            ? course.courseCode
+                            : course.course.courseCode
+                        })`}
                       </option>
                     ))
                   ) : (
@@ -214,6 +248,8 @@ const AssessmentCard = ({ assessment, onView, onAdd }) => {
 AssessmentCard.propTypes = {
   onView: PropTypes.func,
   onAdd: PropTypes.func,
+  onResults: PropTypes.func,
+  isResult: PropTypes.bool,
   assessment: PropTypes.shape({
     _id: PropTypes.string,
     assessmentTittle: PropTypes.string,

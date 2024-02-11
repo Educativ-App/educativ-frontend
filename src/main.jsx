@@ -30,6 +30,7 @@ import ResultPage from "./pages/Results/ResultPage";
 import StudentAssessment from "./pages/Students/StudentAssessment.jsx";
 import StudentTestPage from "./pages/Students/StudentTestPage.jsx";
 import StudentGradePage from "./pages/Students/StudentGradePage.jsx";
+import ShowResult from "./pages/Results/ShowResult.jsx";
 
 const queryClient = new QueryClient();
 
@@ -93,6 +94,14 @@ const router = createBrowserRouter([
             path: "courses/:assessmentId/view-questions",
             element: <ViewQuestions />,
           },
+          {
+            path: "results",
+            element: <ResultPage />,
+          },
+          {
+            path: "results/:assessmentId",
+            element: <ShowResult />,
+          },
         ],
       },
       // STUDENT PAGES
@@ -133,6 +142,10 @@ const router = createBrowserRouter([
           {
             path: "results",
             element: <ResultPage />,
+          },
+          {
+            path: "results/:assessmentId",
+            element: <ShowResult />,
           },
           {
             path: "assessment/create",
