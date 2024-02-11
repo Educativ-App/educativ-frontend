@@ -22,10 +22,10 @@ const CourseList = () => {
         <tbody>
           {courses && courses?.length > 0 ? (
             courses?.map((course, i) => (
-              <tr key={course.course._id}>
+              <tr key={i}>
                 <td align="left">{`${i + 1}.`}</td>
-                <td align="left">{course.course.courseCode}</td>
-                <td align="left">{course.course.courseTittle}</td>
+                <td align="left">{course.course?.courseCode}</td>
+                <td align="left">{course.course?.courseTittle}</td>
               </tr>
             ))
           ) : (
