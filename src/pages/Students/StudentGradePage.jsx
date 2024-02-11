@@ -16,7 +16,7 @@ const StudentGradePage = () => {
   } = useStoreContext();
   const [searchValue, setSearchValue] = useState("");
   const [assessment, setAssessment] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState("");
   const [results, setResults] = useState(null);
   const [title, setTitle] = useState("");
 

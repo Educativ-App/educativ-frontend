@@ -9,6 +9,7 @@
   align-items: center;
   gap: 0.5rem;
   position: relative;
+  background-color: var(--clr-white);
 
   > p {
     font-style: italic;

@@ -22,7 +22,7 @@ const ResultPage = () => {
   const { data: courses, isLoading } = useQuery({
     queryKey: ["teacher-courses"],
     queryFn: () => {
-      if (user.role == "admin") {
+      if (user.role === "admin") {
         return getAllCourses();
       } else {
         return getTeacherCourses();
@@ -38,13 +38,17 @@ const ResultPage = () => {
     refetch: refetchAssessments,
     isSuccess,
   } = useQuery({
-    queryKey: ["teacher-assessments"],
-    queryFn: () =>  getTeacherAssessmentByCourse(selectedCourse, user.role == 'admin' ? 'course' : 'user' ),
-    enabled: selectedCourse != "",
+    queryKey: ["assessments-results"],
+    queryFn: () =>
+      getTeacherAssessmentByCourse(
+        selectedCourse,
+        user.role == "admin" ? "course" : "user"
+      ),
+    enabled: selectedCourse !== "",
   });
 
   useEffect(() => {
-    if (selectedCourse == "") return;
+    // if (selectedCourse === "") return;
     refetchAssessments();
   }, [selectedCourse]);
 
@@ -73,13 +77,16 @@ const ResultPage = () => {
         <div className="container">
           <div className="d-flex">
             <BackButton />
-            <NavLink
-              to={"/dashboard/teacher/assessment/create"}
-              className="btn btn-info"
-            >
-              <FaPlusSquare />
-              Add
-            </NavLink>
+
+            {user.role === "teacher" && (
+              <NavLink
+                to={"/dashboard/teacher/assessment/create"}
+                className="btn btn-info"
+              >
+                <FaPlusSquare />
+                Add
+              </NavLink>
+            )}
           </div>
 
           <div className="form-wrapper">
@@ -98,16 +105,20 @@ const ResultPage = () => {
                   courses.map((course, i) => (
                     <option
                       key={i}
-                      value={course._id ? course._id : course?.course?._id}
+                      value={
+                        user.role === "admin"
+                          ? course?._id
+                          : course?.course?._id
+                      }
                     >
                       {`${
-                        course.courseTittle
-                          ? course.courseTittle
-                          : course.course?.courseTittle
+                        course?.courseTittle
+                          ? course?.courseTittle
+                          : course?.course?.courseTittle
                       } (${
-                        course.courseCode
-                          ? course.courseCode
-                          : course.course.courseCode
+                        course?.courseCode
+                          ? course?.courseCode
+                          : course?.course?.courseCode
                       })`}
                     </option>
                   ))
