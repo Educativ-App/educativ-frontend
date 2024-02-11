@@ -34,7 +34,10 @@ const EndAssessmentCard = ({ data }) => {
       </div>
 
       <div className="result_btns">
-        <Button text="All results" disabled={true} />
+        <Button
+          text="All grades"
+          onClick={() => navigate("/dashboard/students/grade")}
+        />
         <Button
           type="info"
           text="All assessment"

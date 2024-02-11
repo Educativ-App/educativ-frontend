@@ -68,8 +68,8 @@ const ShowResult = () => {
         <div className="grid-wrapper">
           <div className="row">
             {results &&
-              results.map((result) => (
-                <div key={result.student._id} className="col-md-4 gy-2 my-2">
+              results?.map((result, index) => (
+                <div key={index} className="col-md-4 gy-2 my-2">
                   <ResultCard result={result} />
                 </div>
               ))}

@@ -46,6 +46,8 @@ const Index = () => {
     return <Loading />;
   }
 
+  console.log(assessments);
+
   const navigationHandler = (link, title) => {
     dispatch({
       type: "ASSESSMENT_TITLE",

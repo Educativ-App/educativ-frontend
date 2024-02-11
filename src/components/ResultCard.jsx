@@ -5,11 +5,11 @@ const ResultCard = ({ result }) => {
   return (
     <div className="result-card">
       <h3>
-        {result.student.firstName} {result.student.lastName}
+        {result.student?.firstName} {result.student?.lastName}
       </h3>
-      <p>Total Score: {result.totalScore}</p>
-      <p>Percentage Score: {result.percentageScore}</p>
-      <p>Submitted On: {new Date(result.createAt).toLocaleString()}</p>
+      <p>Total Score: {result?.totalScore}</p>
+      <p>Percentage Score: {result?.percentageScore}</p>
+      <p>Submitted On: {new Date(result?.createAt).toLocaleString()}</p>
     </div>
   );
 };
