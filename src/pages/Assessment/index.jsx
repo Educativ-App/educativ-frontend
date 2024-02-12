@@ -46,8 +46,6 @@ const Index = () => {
     return <Loading />;
   }
 
-  console.log(assessments);
-
   const navigationHandler = (link, title) => {
     dispatch({
       type: "ASSESSMENT_TITLE",
@@ -112,6 +110,7 @@ const Index = () => {
                     <div key={assessment._id} className="col-md-4">
                       <AssessmentCard
                         assessment={assessment}
+                        isResult={false}
                         onView={() =>
                           navigationHandler(
                             `/dashboard/teacher/assessment/${assessment._id}/view-questions`,

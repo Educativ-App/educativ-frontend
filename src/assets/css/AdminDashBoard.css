@@ -13,9 +13,18 @@
       grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
       gap: 1rem;
     }
+
+    .admin_middle_container {
+      display: flex;
+      gap: 0.8rem;
+    }
   }
+
   .admin_right_container {
     flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 
@@ -23,5 +32,11 @@
 @media (max-width: 600px) {
   .admin_dashboard {
     flex-direction: column;
+
+    .admin_left_container {
+      .admin_middle_container {
+        flex-direction: column;
+      }
+    }
   }
 }

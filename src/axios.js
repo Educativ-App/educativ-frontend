@@ -29,8 +29,7 @@ axiosClient.interceptors.response.use(
     if (
       error.response.status === 401 &&
       !originalRequest._retry &&
-      (error.response.data.error !== "Ivalid credentials" ||
-        error.response.data.error !== "User not found")
+      error.response.data.error === "access_token"
     ) {
       originalRequest._retry = true;
 

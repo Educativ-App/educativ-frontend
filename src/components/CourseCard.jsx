@@ -8,7 +8,7 @@ import CreateCourse from "./CreateCourse.jsx";
 import ClickOutside from "./ClickOutside";
 import AssignTeacherCourse from "./AssignTeacherCourse";
 
-const CourseCard = ({ course, onClick }) => {
+const CourseCard = ({ course, onClick, onDelete }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [isAssigning, setIsAssigning] = useState(false);
@@ -16,6 +16,7 @@ const CourseCard = ({ course, onClick }) => {
   const handleMenuClick = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
   return (
     <>
       <div className="course-card">
@@ -35,7 +36,9 @@ const CourseCard = ({ course, onClick }) => {
             <li className="menu-item" onClick={() => setIsEditing(true)}>
               Edit
             </li>
-            <li className="menu-item">Delete</li>
+            <li className="menu-item" onClick={onDelete}>
+              Delete
+            </li>
           </ul>
         </ClickOutside>
         <h3>{course?.courseTittle}</h3>
@@ -76,6 +79,7 @@ CourseCard.propTypes = {
     courseStatus: PropTypes.string,
   }),
   onClick: PropTypes.func,
+  onDelete: PropTypes.func,
 };
 
 export default CourseCard;
