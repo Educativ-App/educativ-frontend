@@ -5,10 +5,13 @@ import CourseList from "../../components/CourseList";
 import ExamList from "../../components/ExamList";
 import TaskTab from "../../components/TaskTab";
 import testBoard from "../../assets/images/testboard.png";
-// import gradeBook from "../../assets/images/grade book.png";
+import gradeBook from "../../assets/images/grade book.png";
 import penGrade from "../../assets/images/grade_book.png";
 import { NavLink } from "react-router-dom";
 import { useStoreContext } from "../../Contexts/StoreContext";
+import Modal from "../../components/Modal";
+import CreateUser from "../../components/CreateUser";
+import { useState } from "react";
 
 var tasks = [
   // {
@@ -59,9 +62,27 @@ var tasks = [
       },
     ],
   },
+  {
+    pre: "",
+    task: "Students",
+    image: gradeBook,
+    colour: "gradient",
+    links: [
+      {
+        text: "Add student",
+        url: "teacher/results",
+        type: "button",
+      },
+      {
+        text: "View Student",
+        url: "teacher/students",
+      },
+    ],
+  },
 ];
 
 const TeacherDashBoard = () => {
+  const [createModal, setCreateModal] = useState(false);
   const {
     state: { user_info },
   } = useStoreContext();
@@ -85,9 +106,18 @@ const TeacherDashBoard = () => {
                 <ul id="item-1">
                   {task.links.map((link, i) => (
                     <li key={i}>
-                      <NavLink to={link.url} className="teacher_link">
-                        {link.text}
-                      </NavLink>
+                      {link?.type === "button" ? (
+                        <p
+                          className="cursor_pointer teacher_link"
+                          onClick={() => setCreateModal(true)}
+                        >
+                          {link.text}
+                        </p>
+                      ) : (
+                        <NavLink to={link.url} className="teacher_link">
+                          {link.text}
+                        </NavLink>
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -108,6 +138,13 @@ const TeacherDashBoard = () => {
           <CourseList />
         </div>
       </div>
+      <Modal
+        isOpen={createModal}
+        onClose={() => setCreateModal(false)}
+        hasCloseBtn={true}
+      >
+        <CreateUser role="student" setIsCreating={setCreateModal} />
+      </Modal>
     </>
   );
 };

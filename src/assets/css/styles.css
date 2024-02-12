@@ -240,6 +240,10 @@
   }
 }
 
+.cursor_pointer {
+  cursor: pointer;
+}
+
 .d-flex {
   display: flex;
   align-items: center;
