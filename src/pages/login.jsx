@@ -50,7 +50,11 @@ const Login = () => {
 
   return (
     <div>
-      <h1>Login</h1>
+      <div className="d-flex">
+        <h1>Login</h1>
+
+        <Button text="Back to Home" type="info" onClick={() => navigate("/")} />
+      </div>
 
       <div className="form_section">
         <form className="form" onSubmit={handleSubmit(submitHandler)}>
@@ -91,13 +95,6 @@ const Login = () => {
             Create an account
           </Link>
         </p> */}
-
-        <Button
-          text="Back to Home"
-          type="info"
-          className="back_btn"
-          onClick={() => navigate("/")}
-        />
       </div>
     </div>
   );
