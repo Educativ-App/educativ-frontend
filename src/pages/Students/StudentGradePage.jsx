@@ -83,7 +83,7 @@ const StudentGradePage = () => {
                   <div className="col-md-4 mb-2" key={index}>
                     <StudentResultCard
                       title={ass?.assessmentTittle}
-                      assignBy={ass?.teacher.firstName}
+                      assignBy={ass?.teacher?.firstName}
                       onClick={() =>
                         viewResultHandler(ass?._id, ass?.assessmentTittle)
                       }
