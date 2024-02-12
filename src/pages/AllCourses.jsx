@@ -1,6 +1,6 @@
 import AdminHeader from "./components/AdminHeader";
 import "../assets/css/AllCourses.css";
-import { getAllCourses } from "../service/courseService";
+import { deleteCourse, getAllCourses } from "../service/courseService";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "../components/Loading";
 import { useState } from "react";
@@ -15,7 +15,11 @@ const AllCourses = () => {
 
   const navigate = useNavigate();
 
-  const { data: courses, isLoading } = useQuery({
+  const {
+    data: courses,
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["courses"],
     queryFn: () => getAllCourses(),
   });
@@ -23,6 +27,11 @@ const AllCourses = () => {
   if (isLoading) {
     return <Loading />;
   }
+
+  const deleteCourseById = async (id) => {
+    await deleteCourse(id);
+    refetch();
+  };
 
   return (
     <div className="admin_courses">
@@ -49,7 +58,8 @@ const AllCourses = () => {
             <CourseCard
               key={index}
               course={course}
-              onClick={() => navigate(`assessment/${course._id}`)}
+              onClick={() => navigate(`assessment/${course?._id}`)}
+              onDelete={() => deleteCourseById(course?._id)}
             />
           ))}
       </div>

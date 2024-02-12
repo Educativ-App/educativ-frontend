@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "../../assets/css/AdminDashBoard.css";
 
@@ -11,8 +11,19 @@ import { useQuery } from "@tanstack/react-query";
 import { getAllStudents, getAllTeachers } from "../../service/userService";
 import { getAllCourses } from "../../service/courseService";
 import { useNavigate } from "react-router-dom";
+import AdminDisplayCard from "../../components/AdminDisplayCard";
+import Modal from "../../components/Modal";
+import CreateCourse from "../../components/CreateCourse";
+import CreateUser from "../../components/CreateUser";
+import DashboardCalendar from "../../components/Calendar";
+import Profile from "../../components/Profile";
+import { useStoreContext } from "../../Contexts/StoreContext";
 
 const AdminDashBoard = () => {
+  const {
+    state: { user_info },
+  } = useStoreContext();
+
   const { data: teachers } = useQuery({
     queryKey: ["teachers"],
     queryFn: () => getAllTeachers(),
@@ -27,6 +38,9 @@ const AdminDashBoard = () => {
   });
 
   const navigate = useNavigate();
+
+  const [creatingCourse, setCreatingCourse] = useState(false);
+  const [createModal, setCreateModal] = useState(false);
 
   const overview = [
     {
@@ -53,25 +67,55 @@ const AdminDashBoard = () => {
   ];
 
   return (
-    <div className="admin_dashboard">
-      <section className="admin_left_container">
-        <div className="admin_top_container">
-          {overview.map((item, index) => (
-            <TaskTab
-              key={index}
-              prefix={item.pre}
-              task={item.task}
-              image={item.image}
-              colour={item.colour}
-              onClick={() => navigate(item?.link)}
+    <>
+      <div className="admin_dashboard">
+        <section className="admin_left_container">
+          <div className="admin_top_container">
+            {overview.map((item, index) => (
+              <TaskTab
+                key={index}
+                prefix={item.pre}
+                task={item.task}
+                image={item.image}
+                colour={item.colour}
+                onClick={() => navigate(item?.link)}
+              />
+            ))}
+          </div>
+          <div className="admin_middle_container">
+            <AdminDisplayCard
+              name="Teacher"
+              onManage="admin/teachers"
+              onCreate={() => setCreateModal(true)}
             />
-          ))}
-        </div>
-        <div>Chart</div>
-        <div>Chart</div>
-      </section>
-      <section className="admin_right_container">Right section</section>
-    </div>
+            <AdminDisplayCard
+              name="Course"
+              onManage="admin/courses"
+              onCreate={() => setCreatingCourse(true)}
+            />
+          </div>
+        </section>
+        <section className="admin_right_container">
+          <DashboardCalendar />
+        </section>
+      </div>
+
+      <Modal
+        isOpen={creatingCourse}
+        hasCloseBtn
+        onClose={() => setCreatingCourse(false)}
+      >
+        <CreateCourse setIsCreating={setCreatingCourse} />
+      </Modal>
+
+      <Modal
+        isOpen={createModal}
+        onClose={() => setCreateModal(false)}
+        hasCloseBtn={true}
+      >
+        <CreateUser role="teacher" setIsCreating={setCreateModal} />
+      </Modal>
+    </>
   );
 };
 

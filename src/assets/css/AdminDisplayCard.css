@@ -1,0 +1,38 @@
+.admin_d_card {
+  width: 90%;
+  max-width: 50rem;
+  padding: 1.8rem 0.8rem;
+  border-radius: 0.5rem;
+  background: var(--clr-light-lemon-20);
+  box-shadow: 8px 8px 13px 0px rgba(12, 171, 137, 0.318);
+
+  > h1 {
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--clr-teal-green);
+  }
+
+  .manage_section {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-left: 3rem;
+
+    li {
+      p {
+        cursor: pointer;
+      }
+    }
+
+    li::marker {
+      color: var(--clr-teal-green);
+      font-size: 24px;
+    }
+
+    li:hover {
+      text-decoration: underline;
+      text-underline-offset: 0.3rem;
+      text-decoration-color: var(--clr-teal-green);
+    }
+  }
+}
