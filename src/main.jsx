@@ -31,6 +31,7 @@ import StudentAssessment from "./pages/Students/StudentAssessment.jsx";
 import StudentTestPage from "./pages/Students/StudentTestPage.jsx";
 import StudentGradePage from "./pages/Students/StudentGradePage.jsx";
 import ShowResult from "./pages/Results/ShowResult.jsx";
+import TeacherProtectedRoute from "./pages/protectedRoute/TeacherProtectedRoute.jsx";
 
 const queryClient = new QueryClient();
 
@@ -126,6 +127,7 @@ const router = createBrowserRouter([
       // TEACHERS PAGES
       {
         path: "teacher",
+        element: <TeacherProtectedRoute />,
         children: [
           {
             path: "courses",
