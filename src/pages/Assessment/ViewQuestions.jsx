@@ -37,6 +37,8 @@ const ViewQuestions = () => {
   });
 
   const [editedQuestion, setEditedQuestion] = useState(null);
+  const [deleteLoading, setDeleteLoading] = useState("");
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
 
@@ -54,8 +56,10 @@ const ViewQuestions = () => {
   };
 
   const handleDelete = async (id) => {
-    await deleteQuestion();
+    setDeleteLoading(id);
+    await deleteQuestion(id);
     refetch();
+    setDeleteLoading("");
   };
 
   const saveEditQuestion = async (e) => {
@@ -113,7 +117,7 @@ const ViewQuestions = () => {
           <tbody>
             {questions &&
               questions.map((question, i) => (
-                <tr key={question._id}>
+                <tr key={question?._id}>
                   <td>{i + 1}.</td>
                   <td>{question.text}</td>
                   <td>{question.options.join(", ")}</td>
@@ -128,9 +132,9 @@ const ViewQuestions = () => {
                     </button>
                     <button
                       className="btn-delete"
-                      onClick={() => handleDelete(question.id)}
+                      onClick={() => handleDelete(question?._id)}
                     >
-                      Delete
+                      {deleteLoading === question?._id ? "Del..." : "Delete"}
                     </button>
                   </td>
                 </tr>
