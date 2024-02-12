@@ -78,17 +78,28 @@ const Course = () => {
                   <div key={assessment._id} className="col-md-4">
                     <AssessmentCard
                       assessment={assessment}
+                      isResult={false}
                       onView={() =>
-                        navigationHandler(
-                          `/dashboard/admin/courses/${assessment._id}/view-questions`,
-                          assessment.assessmentTittle
-                        )
+                        user && user.role === "admin"
+                          ? navigationHandler(
+                              `/dashboard/admin/courses/${assessment._id}/view-questions`,
+                              assessment.assessmentTittle
+                            )
+                          : navigationHandler(
+                              `/dashboard/teacher/assessment/${assessment._id}/view-questions`,
+                              assessment.assessmentTittle
+                            )
                       }
                       onAdd={() =>
-                        navigationHandler(
-                          `/dashboard/admin/courses/${assessment._id}/add-questions`,
-                          assessment.assessmentTittle
-                        )
+                        user && user.role === "admin"
+                          ? navigationHandler(
+                              `/dashboard/admin/courses/${assessment._id}/add-questions`,
+                              assessment.assessmentTittle
+                            )
+                          : navigationHandler(
+                              `/dashboard/teacher/assessment/${assessment._id}/add-questions`,
+                              assessment.assessmentTittle
+                            )
                       }
                     />
                   </div>

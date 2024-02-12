@@ -121,11 +121,7 @@ const AssessmentCard = ({
               </td>
               {isResult ? (
                 <td align="right">
-                  <button
-                    onClick={onResults}
-                  >
-                    View Results
-                  </button>
+                  <button onClick={onResults}>View Results</button>
                 </td>
               ) : (
                 <td align="right">

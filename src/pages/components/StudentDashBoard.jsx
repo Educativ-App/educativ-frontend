@@ -36,12 +36,14 @@ const taskTab = [
     task: "Library",
     image: library,
     colour: "pink",
+    link: ".",
   },
   {
     pre: "Take a",
     task: "Quiz",
     image: Quiz,
     colour: "teal",
+    link: ".",
   },
 ];
 
