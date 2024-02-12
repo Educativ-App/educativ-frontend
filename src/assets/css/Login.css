@@ -1,3 +1,7 @@
+.login_header {
+  /* display: flex; */
+}
+
 .form_section {
   width: 85%;
   margin-inline: auto;
@@ -16,12 +20,6 @@
   .link {
     color: var(--clr-lemon);
     text-decoration: underline;
-  }
-
-  .back_btn {
-    margin-top: 1.5rem;
-    margin-inline: auto;
-    width: fit-content;
   }
 }
 
