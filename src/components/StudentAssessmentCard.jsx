@@ -39,20 +39,20 @@ const StudentAssessmentCard = ({ assessment }) => {
 
   return (
     <article className={`assess_card ${testValidity && "not-valid"}`}>
-      <h2>{assessment.assessmentTittle}</h2>
-      <p>Assigned by {assessment.teacher.firstName}</p>
+      <h2>{assessment?.assessmentTittle}</h2>
+      <p>Assigned by {assessment.teacher?.firstName}</p>
       <div className="details">
         <p>
-          Maximum score: <span>{assessment.maximumScore}</span>
+          Maximum score: <span>{assessment?.maximumScore}</span>
         </p>
         <p>
-          Duration: <span>{assessment.duration} mins </span>
+          Duration: <span>{assessment?.duration} mins </span>
         </p>
         <p>
-          Start Date : <span>{getDateString(assessment.startTime)}</span>
+          Start Date : <span>{getDateString(assessment?.startTime)}</span>
         </p>
         <p>
-          End Date : <span>{getDateString(assessment.endTime)}</span>
+          End Date : <span>{getDateString(assessment?.endTime)}</span>
         </p>
       </div>
       <Button
