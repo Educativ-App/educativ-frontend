@@ -57,3 +57,18 @@ export const parseArrayAnswerInt = (string) => {
 export const getDateValue = (originalDate)=>{
   return new Date(originalDate).toISOString().slice(0, 10);
 }
+
+export const cleanAndParseString = (inputString) => {
+  try {
+    // Remove \n and \t escapes from the string
+    const cleanedString = inputString.replace(/\\n/g, '').replace(/\\t/g, '');
+
+    // Parse the cleaned string
+    const parsedData = JSON.parse(cleanedString);
+
+    return parsedData.questions;
+  } catch (error) {
+    console.error('Error parsing string:', error);
+    return [];
+  }
+};
