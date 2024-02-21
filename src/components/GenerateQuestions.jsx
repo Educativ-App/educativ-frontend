@@ -1,10 +1,10 @@
-import  { useState } from "react";
+import { useState } from "react";
 import { generateQuestions } from "../service/aiService";
 import { toast } from "react-toastify";
 import Button from "./Button";
 import PropTypes from "prop-types";
 
-const GenerateQuestions = ({saveQuestions}) => {
+const GenerateQuestions = ({ saveQuestions }) => {
   const [formData, setFormData] = useState({
     topic: "",
   });
@@ -25,10 +25,10 @@ const GenerateQuestions = ({saveQuestions}) => {
       toast("Enter a topic", { type: "error", autoClose: 1000 });
       return;
     }
-    setLoading(true)
+    setLoading(true);
     var res = await generateQuestions(formData.topic);
     await saveQuestions(res);
-    setLoading(false)
+    setLoading(false);
   };
   return (
     <>
@@ -40,29 +40,28 @@ const GenerateQuestions = ({saveQuestions}) => {
             </h1>
           </div>
           <div className="row">
-            
             <div className="col-12">
               <label htmlFor="assessmentTittle">Topic:</label>
               <input
                 type="text"
                 id="topic"
                 name="topic"
+                placeholder="Enter a topic"
                 value={formData.topic}
                 onChange={handleChange}
               />
             </div>
-          
           </div>
 
-          <Button text="Generate"  loading={loading} />
+          <Button text="Generate" loading={loading} />
         </form>
       </div>
     </>
   );
 };
 
-GenerateQuestions.propTypes = ({
-    saveQuestions : PropTypes.func
-})
+GenerateQuestions.propTypes = {
+  saveQuestions: PropTypes.func,
+};
 
 export default GenerateQuestions;

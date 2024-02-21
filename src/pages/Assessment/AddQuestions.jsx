@@ -1,4 +1,4 @@
-import {  useState } from "react";
+import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { parseAnswerInt, parseArrayAnswerInt } from "../../utils/helpers";
 import Button from "../../components/Button";
@@ -20,8 +20,6 @@ const AddQuestions = () => {
   } = useStoreContext();
 
   const [isGenerating, setIsGenerating] = useState(false);
-
- 
 
   const navigate = useNavigate();
 
@@ -92,7 +90,7 @@ const AddQuestions = () => {
       marks: 2, // Adjust the marks value as needed
     }));
 
-    console.log(questions);
+    // console.log(questions);
     setRows([...rows, ...questions]);
     setIsGenerating(false);
   };
@@ -101,10 +99,20 @@ const AddQuestions = () => {
     <>
       {" "}
       <div className="container">
-        <div style={{width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center"}}>
-
-        <BackButton />
-        <Button icon={<RiRobot2Line size={20}/>} text="A.I" onClick={()=>setIsGenerating(true)}/>
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <BackButton />
+          <Button
+            icon={<RiRobot2Line size={20} />}
+            text="A.I"
+            onClick={() => setIsGenerating(true)}
+          />
         </div>
 
         <div className="center">
@@ -234,7 +242,7 @@ const AddQuestions = () => {
         onClose={() => setIsGenerating(false)}
         hasCloseBtn={true}
       >
-        <GenerateQuestions saveQuestions={(e)=>saveQuestions(e)} />
+        <GenerateQuestions saveQuestions={(e) => saveQuestions(e)} />
       </Modal>
     </>
   );
