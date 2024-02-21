@@ -12,7 +12,11 @@ const Students = () => {
   const [createModal, setCreateModal] = useState(false);
   const [searchValue, setSearchValue] = useState("");
 
-  const { data: courses, isLoading } = useQuery({
+  const {
+    data: courses,
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: ["teacher-courses"],
     queryFn: () => getTeacherCourses(),
   });
@@ -32,6 +36,14 @@ const Students = () => {
 
   if (isLoading) {
     return <Loading />;
+  }
+
+  if (isError) {
+    return (
+      <div className="center">
+        <h2>No course assigned to this teacher</h2>
+      </div>
+    );
   }
 
   return (
