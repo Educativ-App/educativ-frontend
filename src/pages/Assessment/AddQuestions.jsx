@@ -7,6 +7,9 @@ import { toast } from "react-toastify";
 import { createQuestion } from "../../service/courseService";
 import BackButton from "../../components/BackButton";
 import { useStoreContext } from "../../Contexts/StoreContext";
+import Modal from "../../components/Modal";
+import GenerateQuestions from "../../components/GenerateQuestions";
+import { RiRobot2Line } from "react-icons/ri";
 
 const AddQuestions = () => {
   let { assessmentId } = useParams();
@@ -15,6 +18,8 @@ const AddQuestions = () => {
   const {
     state: { assessmentTitle },
   } = useStoreContext();
+
+  const [isGenerating, setIsGenerating] = useState(false);
 
   const navigate = useNavigate();
 
@@ -78,128 +83,168 @@ const AddQuestions = () => {
     });
   };
 
+  const saveQuestions = async (questions) => {
+    questions = await questions.map((question) => ({
+      ...question,
+      assessment: assessmentId,
+      marks: 2, // Adjust the marks value as needed
+    }));
+
+    // console.log(questions);
+    setRows([...rows, ...questions]);
+    setIsGenerating(false);
+  };
+
   return (
-    <div className="container">
-      <BackButton />
-
-      <div className="center">
-        <h2>{assessmentTitle}</h2>
-      </div>
-
-      <form onSubmit={handleSubmit} className="assessment-form">
-        <table style={{ width: "100%" }}>
-          <thead>
-            <tr>
-              <th>No.</th>
-              <th style={{ width: "30%" }}>Question</th>
-              <th style={{ width: "30%" }}>Options</th>
-              <th style={{ width: "20%" }}>Correct Answer</th>
-              <th>Marks</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr className="assessment-row">
-              <td>Demo:</td>
-              <td>
-                <textarea disabled rows={1} value={initialRow.text} />
-              </td>
-
-              <td>
-                <textarea
-                  disabled
-                  rows={1}
-                  value={initialRow.options.join(",")}
-                />
-              </td>
-
-              <td>
-                <input disabled type="text" value={initialRow.correctAnswer} />
-              </td>
-
-              <td>
-                <input type="number" disabled value={initialRow.marks} />
-              </td>
-              <td></td>
-            </tr>
-            {rows.map((row, index) => (
-              <tr key={index} className="assessment-row">
-                <td>{index + 1}.</td>
-                <td>
-                  <textarea
-                    required
-                    rows={3}
-                    value={row.text}
-                    onChange={(e) =>
-                      handleInputChange(index, "text", e.target.value)
-                    }
-                  />
-                </td>
-
-                <td>
-                  <textarea
-                    required
-                    rows={3}
-                    value={row.options.join(",")}
-                    onChange={(e) =>
-                      handleInputChange(
-                        index,
-                        "options",
-                        parseArrayAnswerInt(e.target.value)
-                      )
-                    }
-                  />
-                </td>
-
-                <td>
-                  <input
-                    required
-                    type="text"
-                    value={row.correctAnswer}
-                    onChange={(e) =>
-                      handleInputChange(
-                        index,
-                        "correctAnswer",
-                        parseAnswerInt(e.target.value)
-                      )
-                    }
-                  />
-                </td>
-
-                <td>
-                  <input
-                    required
-                    type="number"
-                    value={row.marks}
-                    onChange={(e) =>
-                      handleInputChange(
-                        index,
-                        "marks",
-                        parseAnswerInt(e.target.value)
-                      )
-                    }
-                  />
-                </td>
-                <td>
-                  <div
-                    className="btn-del"
-                    onClick={() => handleDeleteRow(index)}
-                  >
-                    <FaTrash />
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <div className="d-flex">
-          <button type="button" onClick={handleAddRow}>
-            Add Row
-          </button>
-          <Button loading={isLoading} text="Submit" onClick={handleSubmit} />
+    <>
+      {" "}
+      <div className="container">
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <BackButton />
+          <Button
+            icon={<RiRobot2Line size={20} />}
+            text="A.I"
+            onClick={() => setIsGenerating(true)}
+          />
         </div>
-      </form>
-    </div>
+
+        <div className="center">
+          <h2>{assessmentTitle}</h2>
+        </div>
+
+        <form onSubmit={handleSubmit} className="assessment-form">
+          <table style={{ width: "100%" }}>
+            <thead>
+              <tr>
+                <th>No.</th>
+                <th style={{ width: "30%" }}>Question</th>
+                <th style={{ width: "30%" }}>Options</th>
+                <th style={{ width: "20%" }}>Correct Answer</th>
+                <th>Marks</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="assessment-row">
+                <td>Demo:</td>
+                <td>
+                  <textarea disabled rows={1} value={initialRow.text} />
+                </td>
+
+                <td>
+                  <textarea
+                    disabled
+                    rows={1}
+                    value={initialRow.options.join(",")}
+                  />
+                </td>
+
+                <td>
+                  <input
+                    disabled
+                    type="text"
+                    value={initialRow.correctAnswer}
+                  />
+                </td>
+
+                <td>
+                  <input type="number" disabled value={initialRow.marks} />
+                </td>
+                <td></td>
+              </tr>
+              {rows.map((row, index) => (
+                <tr key={index} className="assessment-row">
+                  <td>{index + 1}.</td>
+                  <td>
+                    <textarea
+                      required
+                      rows={3}
+                      value={row.text}
+                      onChange={(e) =>
+                        handleInputChange(index, "text", e.target.value)
+                      }
+                    />
+                  </td>
+
+                  <td>
+                    <textarea
+                      required
+                      rows={3}
+                      value={row.options.join(",")}
+                      onChange={(e) =>
+                        handleInputChange(
+                          index,
+                          "options",
+                          parseArrayAnswerInt(e.target.value)
+                        )
+                      }
+                    />
+                  </td>
+
+                  <td>
+                    <input
+                      required
+                      type="text"
+                      value={row.correctAnswer}
+                      onChange={(e) =>
+                        handleInputChange(
+                          index,
+                          "correctAnswer",
+                          parseAnswerInt(e.target.value)
+                        )
+                      }
+                    />
+                  </td>
+
+                  <td>
+                    <input
+                      required
+                      type="number"
+                      value={row.marks}
+                      onChange={(e) =>
+                        handleInputChange(
+                          index,
+                          "marks",
+                          parseAnswerInt(e.target.value)
+                        )
+                      }
+                    />
+                  </td>
+                  <td>
+                    <div
+                      className="btn-del"
+                      onClick={() => handleDeleteRow(index)}
+                    >
+                      <FaTrash />
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <div className="d-flex">
+            <button type="button" onClick={handleAddRow}>
+              Add Row
+            </button>
+            <Button loading={isLoading} text="Submit" onClick={handleSubmit} />
+          </div>
+        </form>
+      </div>
+      <Modal
+        isOpen={isGenerating}
+        onClose={() => setIsGenerating(false)}
+        hasCloseBtn={true}
+      >
+        <GenerateQuestions saveQuestions={(e) => saveQuestions(e)} />
+      </Modal>
+    </>
   );
 };
 

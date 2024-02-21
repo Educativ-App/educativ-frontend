@@ -74,10 +74,9 @@ const StudentGradePage = () => {
               })
               ?.map((ass, index) => {
                 let currentDate = new Date();
-                let endDate = new Date(ass.endTime);
                 let startDate = new Date(ass.startTime);
 
-                let disabled = currentDate > endDate || currentDate < startDate;
+                let disabled = currentDate < startDate;
 
                 return (
                   <div className="col-md-4 mb-2" key={index}>
