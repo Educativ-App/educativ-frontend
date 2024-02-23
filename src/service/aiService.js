@@ -1,7 +1,7 @@
 import axios from "axios";
 import { cleanAndParseString } from "../utils/helpers";
 
-const api_key = import.meta.env.VITE_OPEN_AI_KEY;
+const api_key = import.meta.env.VITE_OPEN_AI;
 
 export const generateQuestions = async (topic, numQuestions = 5) => {
   try {
