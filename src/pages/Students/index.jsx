@@ -72,8 +72,8 @@ const Students = () => {
                 <option value="">Select a course</option>
                 {courses ? (
                   courses.map((course, i) => (
-                    <option key={i} value={course.course._id}>
-                      {`${course.course.courseTittle} (${course.course.courseCode})`}
+                    <option key={i} value={course?.course?._id}>
+                      {`${course?.course?.courseTittle} (${course?.course?.courseCode})`}
                     </option>
                   ))
                 ) : (
@@ -111,7 +111,7 @@ const Students = () => {
                       }
                     })
                     .map((student) => (
-                      <div key={student._id} className="col-md-4">
+                      <div key={student?._id} className="col-md-4">
                         <StudentCard
                           student={student}
                           refetchStudents={refetchStudents}

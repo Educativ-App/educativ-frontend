@@ -51,7 +51,7 @@ const ViewQuestions = () => {
   }
 
   const handleEdit = (question) => {
-    setEditedQuestion({ ...question, questionId: question._id });
+    setEditedQuestion({ ...question, questionId: question?._id });
     setIsModalOpen(true);
   };
 
@@ -119,10 +119,10 @@ const ViewQuestions = () => {
               questions.map((question, i) => (
                 <tr key={question?._id}>
                   <td>{i + 1}.</td>
-                  <td>{question.text}</td>
-                  <td>{question.options.join(", ")}</td>
-                  <td>{question.correctAnswer}</td>
-                  <td>{question.marks}</td>
+                  <td>{question?.text}</td>
+                  <td>{question?.options.join(", ")}</td>
+                  <td>{question?.correctAnswer}</td>
+                  <td>{question?.marks}</td>
                   <td>
                     <button
                       className="btn-edit"

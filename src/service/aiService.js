@@ -1,9 +1,9 @@
 import axios from "axios";
 import { cleanAndParseString } from "../utils/helpers";
 
-const api_key = import.meta.env.VITE_OPEN_AI_SECRET_KEY;
+const api_key = import.meta.env.VITE_OPEN_AI_KEY;
 
-export const generateQuestions = async (topic, numQuestions=5) => {
+export const generateQuestions = async (topic, numQuestions = 5) => {
   try {
     const response = await axios.post(
       "https://api.openai.com/v1/chat/completions",
@@ -28,8 +28,6 @@ export const generateQuestions = async (topic, numQuestions=5) => {
         },
       }
     );
-
-   
 
     return cleanAndParseString(response.data.choices[0].message.content);
   } catch (error) {

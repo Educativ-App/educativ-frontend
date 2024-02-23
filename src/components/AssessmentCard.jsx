@@ -25,13 +25,13 @@ const AssessmentCard = ({
   const queryClient = useQueryClient();
 
   const [formData, setFormData] = useState({
-    assessmentId: assessment._id,
-    courseId: assessment.course ? assessment.course : assessment?.course?._id,
-    assessmentTittle: assessment.assessmentTittle,
-    startTime: getDateValue(assessment.startTime),
-    endTime: getDateValue(assessment.endTime),
-    maximumScore: assessment.maximumScore,
-    duration: assessment.duration,
+    assessmentId: assessment?._id,
+    courseId: assessment?.course ? assessment?.course : assessment?.course?._id,
+    assessmentTittle: assessment?.assessmentTittle,
+    startTime: getDateValue(assessment?.startTime),
+    endTime: getDateValue(assessment?.endTime),
+    maximumScore: assessment?.maximumScore,
+    duration: assessment?.duration,
   });
 
   const { authUser: user } = useAuth();
@@ -73,7 +73,7 @@ const AssessmentCard = ({
   };
 
   const handleDelete = () => {
-    deleteAssessment(assessment._id);
+    deleteAssessment(assessment?._id);
     mutation.mutate();
   };
 
@@ -87,33 +87,33 @@ const AssessmentCard = ({
           <FaTrash size={20} />
         </div>
         <center>
-          <h1>{assessment.assessmentTittle}</h1>
+          <h1>{assessment?.assessmentTittle}</h1>
         </center>
         <table>
           <tbody>
             <tr>
               <td align="left">Course:</td>
-              <td align="right">{assessment.course.courseTittle}</td>
+              <td align="right">{assessment?.course.courseTittle}</td>
             </tr>
             <tr>
               <td align="left">Start Date:</td>
-              <td align="right">{getDateString(assessment.startTime)}</td>
+              <td align="right">{getDateString(assessment?.startTime)}</td>
             </tr>
             <tr>
               <td align="left">End Date:</td>
-              <td align="right">{getDateString(assessment.endTime)}</td>
+              <td align="right">{getDateString(assessment?.endTime)}</td>
             </tr>
             <tr>
               <td align="left">Max Score:</td>
-              <td align="right">{assessment.maximumScore}</td>
+              <td align="right">{assessment?.maximumScore}</td>
             </tr>
             <tr>
               <td align="left">Duration:</td>
-              <td align="right">{assessment.duration} mins</td>
+              <td align="right">{assessment?.duration} mins</td>
             </tr>
             <tr>
               <td align="left">Created On:</td>
-              <td align="right">{getDateString(assessment.createAt)}</td>
+              <td align="right">{getDateString(assessment?.createAt)}</td>
             </tr>
             <tr>
               <td align="left">
@@ -160,16 +160,16 @@ const AssessmentCard = ({
                     courses.map((course, i) => (
                       <option
                         key={i}
-                        value={course._id ? course._id : course?.course?._id}
+                        value={course?._id ? course?._id : course?.course?._id}
                       >
                         {`${
                           course.courseTittle
-                            ? course.courseTittle
+                            ? course?.courseTittle
                             : course.course?.courseTittle
                         } (${
-                          course.courseCode
-                            ? course.courseCode
-                            : course.course.courseCode
+                          course?.courseCode
+                            ? course?.courseCode
+                            : course.course?.courseCode
                         })`}
                       </option>
                     ))

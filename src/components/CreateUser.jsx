@@ -15,16 +15,16 @@ const CreateUser = ({
 }) => {
   if (user !== undefined) {
     var initialState = {
-      studentId: role === "student" ? user._id : undefined,
-      teacherId: role === "teacher" ? user._id : undefined,
-      email: user.user.email,
+      studentId: role === "student" ? user?._id : undefined,
+      teacherId: role === "teacher" ? user?._id : undefined,
+      email: user.user?.email,
       role: role,
-      courseId: role === "student" ? user.course._id : undefined,
-      firstName: user.firstName,
-      middleName: user.middleName,
-      lastName: user.lastName,
-      gender: user.gender,
-      dateOfBirth: getDateValue(user.dateOfBirth),
+      courseId: role === "student" ? user?.course?._id : undefined,
+      firstName: user?.firstName,
+      middleName: user?.middleName,
+      lastName: user?.lastName,
+      gender: user?.gender,
+      dateOfBirth: getDateValue(user?.dateOfBirth),
     };
   } else {
     initialState = {
@@ -92,7 +92,7 @@ const CreateUser = ({
                   type="email"
                   name="email"
                   required
-                  value={formData.email}
+                  value={formData?.email}
                   onChange={handleChange}
                 />
               </div>
@@ -103,7 +103,7 @@ const CreateUser = ({
                   type="text"
                   name="password"
                   required
-                  value={formData.password}
+                  value={formData?.password}
                   onChange={handleChange}
                 />
               </div>
@@ -116,7 +116,7 @@ const CreateUser = ({
               type="text"
               name="firstName"
               required
-              value={formData.firstName}
+              value={formData?.firstName}
               onChange={handleChange}
             />
           </div>
@@ -125,7 +125,7 @@ const CreateUser = ({
             <input
               type="text"
               name="middleName"
-              value={formData.middleName}
+              value={formData?.middleName}
               onChange={handleChange}
             />
           </div>
@@ -135,7 +135,7 @@ const CreateUser = ({
             <input
               type="text"
               name="lastName"
-              value={formData.lastName}
+              value={formData?.lastName}
               onChange={handleChange}
             />
           </div>
@@ -159,7 +159,7 @@ const CreateUser = ({
               type="date"
               required
               name="dateOfBirth"
-              value={formData.dateOfBirth}
+              value={formData?.dateOfBirth}
               onChange={handleChange}
             />
           </div>
@@ -175,9 +175,13 @@ const CreateUser = ({
               >
                 <option value="">Select Course</option>
                 {courses &&
-                  courses.map((course) => (
-                    <option key={course.course._id} value={course.course._id}>
-                      {course.course.courseTittle} ({course.course.courseCode})
+                  courses?.map((course) => (
+                    <option
+                      key={course?.course?._id}
+                      value={course?.course?._id}
+                    >
+                      {course.course.courseTittle} ({course?.course?.courseCode}
+                      )
                     </option>
                   ))}
               </select>
