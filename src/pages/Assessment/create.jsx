@@ -74,14 +74,14 @@ const Create = () => {
               <select
                 id="courseId"
                 name="courseId"
-                value={formData.courseId}
+                value={formData?.courseId}
                 onChange={handleChange}
               >
                 <option value="">Select a course</option>
                 {courses ? (
                   courses.map((course, i) => (
-                    <option key={i} value={course.course._id}>
-                      {`${course.course.courseTittle} (${course.course.courseCode})`}
+                    <option key={i} value={course?.course?._id}>
+                      {`${course?.course?.courseTittle} (${course?.course?.courseCode})`}
                     </option>
                   ))
                 ) : (
@@ -96,7 +96,7 @@ const Create = () => {
                 type="text"
                 id="assessmentTittle"
                 name="assessmentTittle"
-                value={formData.assessmentTittle}
+                value={formData?.assessmentTittle}
                 onChange={handleChange}
               />
             </div>
@@ -106,7 +106,7 @@ const Create = () => {
                 type="date"
                 id="startTime"
                 name="startTime"
-                value={formData.startTime}
+                value={formData?.startTime}
                 onChange={handleChange}
               />
             </div>
@@ -116,7 +116,7 @@ const Create = () => {
                 type="date"
                 id="endTime"
                 name="endTime"
-                value={formData.endTime}
+                value={formData?.endTime}
                 onChange={handleChange}
               />
             </div>
@@ -128,7 +128,7 @@ const Create = () => {
                 name="maximumScore"
                 max={100}
                 min={1}
-                value={formData.maximumScore}
+                value={formData?.maximumScore}
                 onChange={handleChange}
               />
             </div>
@@ -138,7 +138,7 @@ const Create = () => {
                 type="number"
                 id="duration"
                 name="duration"
-                value={formData.duration}
+                value={formData?.duration}
                 onChange={handleChange}
               />
             </div>

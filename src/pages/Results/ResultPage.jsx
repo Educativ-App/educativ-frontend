@@ -143,26 +143,26 @@ const ResultPage = () => {
               <div className="row">
                 {isSuccess && assessments
                   ? assessments.map((assessment) => (
-                      <div key={assessment._id} className="col-md-4">
+                      <div key={assessment?._id} className="col-md-4">
                         <AssessmentCard
                           assessment={assessment}
                           isResult={true}
                           onResults={() =>
                             navigationHandler(
-                              `/dashboard/${user.role}/results/${assessment._id}`,
-                              assessment.assessmentTittle
+                              `/dashboard/${user.role}/results/${assessment?._id}`,
+                              assessment?.assessmentTittle
                             )
                           }
                           onView={() =>
                             navigationHandler(
-                              `/dashboard/teacher/assessment/${assessment._id}/view-questions`,
-                              assessment.assessmentTittle
+                              `/dashboard/teacher/assessment/${assessment?._id}/view-questions`,
+                              assessment?.assessmentTittle
                             )
                           }
                           onAdd={() =>
                             navigationHandler(
-                              `/dashboard/teacher/assessment/${assessment._id}/add-questions`,
-                              assessment.assessmentTittle
+                              `/dashboard/teacher/assessment/${assessment?._id}/add-questions`,
+                              assessment?.assessmentTittle
                             )
                           }
                         />

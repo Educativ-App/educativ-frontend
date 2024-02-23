@@ -5,7 +5,7 @@ import Button from "./Button";
 import { getAllTeachers } from "../service/userService";
 import { assignTeacher } from "../service/courseService";
 
-const AssignTeacherCourse = ({ courseId,courseName, setIsAssigning }) => {
+const AssignTeacherCourse = ({ courseId, courseName, setIsAssigning }) => {
   var initialState = {
     courseId: courseId,
     teacherId: "",
@@ -57,13 +57,7 @@ const AssignTeacherCourse = ({ courseId,courseName, setIsAssigning }) => {
           </div> */}
           <div className="col-12 ">
             <label>Course Title</label>
-            <input
-              type="text"
-              name="courseName"
-              disabled
-              value={courseName}
-             
-            />
+            <input type="text" name="courseName" disabled value={courseName} />
           </div>
 
           <div className="col-12 ">
@@ -71,14 +65,14 @@ const AssignTeacherCourse = ({ courseId,courseName, setIsAssigning }) => {
             <select
               name="teacherId"
               required
-              value={formData.teacherId}
+              value={formData?.teacherId}
               onChange={handleChange}
             >
               <option value="">Select Teacher</option>
               {teachers &&
                 teachers.map((teacher) => (
-                  <option key={teacher._id} value={teacher._id}>
-                    {`${teacher.firstName} ${teacher.middleName} ${teacher.lastName}`}
+                  <option key={teacher?._id} value={teacher?._id}>
+                    {`${teacher?.firstName} ${teacher?.middleName} ${teacher?.lastName}`}
                   </option>
                 ))}
             </select>
@@ -94,7 +88,7 @@ const AssignTeacherCourse = ({ courseId,courseName, setIsAssigning }) => {
 AssignTeacherCourse.propTypes = {
   courseId: PropTypes.string,
   setIsAssigning: PropTypes.func,
-  courseName: PropTypes.string
+  courseName: PropTypes.string,
 };
 
 export default AssignTeacherCourse;

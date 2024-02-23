@@ -12,8 +12,8 @@ const StudentAssessmentCard = ({ assessment }) => {
 
   let currentDate = new Date();
 
-  let startDate = new Date(assessment.startTime);
-  let endDate = new Date(assessment.endTime);
+  let startDate = new Date(assessment?.startTime);
+  let endDate = new Date(assessment?.endTime);
 
   useMemo(() => {
     if (currentDate > endDate) {
@@ -34,13 +34,13 @@ const StudentAssessmentCard = ({ assessment }) => {
       },
     });
 
-    navigate(`${assessment._id}`);
+    navigate(`${assessment?._id}`);
   };
 
   return (
     <article className={`assess_card ${testValidity && "not-valid"}`}>
       <h2>{assessment?.assessmentTittle}</h2>
-      <p>Assigned by {assessment.teacher?.firstName}</p>
+      <p>Assigned by {assessment?.teacher?.firstName}</p>
       <div className="details">
         <p>
           Maximum score: <span>{assessment?.maximumScore}</span>

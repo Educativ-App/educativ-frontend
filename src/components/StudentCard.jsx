@@ -52,7 +52,7 @@ const StudentCard = ({
           <img src={img} alt="userimage" />
           <div className="profile-info">
             <center>
-              <span className="profile-name">{`${student.firstName}  ${student.lastName}`}</span>
+              <span className="profile-name">{`${student?.firstName}  ${student?.lastName}`}</span>
             </center>
             <center>
               <span>{`Faculty of Management`}</span>
@@ -66,27 +66,27 @@ const StudentCard = ({
           <table style={{ width: "100%", borderSpacing: "12px" }}>
             <tr>
               <td align="left">FirstName</td>
-              <td align="right">{student.firstName}</td>
+              <td align="right">{student?.firstName}</td>
             </tr>
             <tr>
               <td align="left">MiddleName</td>
-              <td align="right">{student.middleName}</td>
+              <td align="right">{student?.middleName}</td>
             </tr>
             <tr>
               <td align="left">LastName</td>
-              <td align="right">{student.lastName}</td>
+              <td align="right">{student?.lastName}</td>
             </tr>
             <tr>
               <td align="left">Email</td>
-              <td align="right">{student.user.email}</td>
+              <td align="right">{student?.user.email}</td>
             </tr>
             <tr>
               <td align="left">Gender</td>
-              <td align="right">{student.gender}</td>
+              <td align="right">{student?.gender}</td>
             </tr>
             <tr>
               <td align="left">Status</td>
-              <td align="right">{student.studentStatus}</td>
+              <td align="right">{student?.studentStatus}</td>
             </tr>
           </table>
         </div>

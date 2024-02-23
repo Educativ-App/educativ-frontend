@@ -74,30 +74,30 @@ const Course = () => {
           <div className="container">
             <div className="row">
               {assessments ? (
-                assessments.map((assessment) => (
-                  <div key={assessment._id} className="col-md-4">
+                assessments?.map((assessment) => (
+                  <div key={assessment?._id} className="col-md-4">
                     <AssessmentCard
                       assessment={assessment}
                       isResult={false}
                       onView={() =>
                         user && user.role === "admin"
                           ? navigationHandler(
-                              `/dashboard/admin/courses/${assessment._id}/view-questions`,
+                              `/dashboard/admin/courses/${assessment?._id}/view-questions`,
                               assessment.assessmentTittle
                             )
                           : navigationHandler(
-                              `/dashboard/teacher/assessment/${assessment._id}/view-questions`,
+                              `/dashboard/teacher/assessment/${assessment?._id}/view-questions`,
                               assessment.assessmentTittle
                             )
                       }
                       onAdd={() =>
                         user && user.role === "admin"
                           ? navigationHandler(
-                              `/dashboard/admin/courses/${assessment._id}/add-questions`,
+                              `/dashboard/admin/courses/${assessment?._id}/add-questions`,
                               assessment.assessmentTittle
                             )
                           : navigationHandler(
-                              `/dashboard/teacher/assessment/${assessment._id}/add-questions`,
+                              `/dashboard/teacher/assessment/${assessment?._id}/add-questions`,
                               assessment.assessmentTittle
                             )
                       }

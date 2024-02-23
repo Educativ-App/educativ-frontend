@@ -82,8 +82,8 @@ const Index = () => {
               <option value="">Select a course</option>
               {courses ? (
                 courses.map((course, i) => (
-                  <option key={i} value={course.course._id}>
-                    {`${course.course.courseTittle} (${course.course.courseCode})`}
+                  <option key={i} value={course?.course?._id}>
+                    {`${course?.course?.courseTittle} (${course?.course?.courseCode})`}
                   </option>
                 ))
               ) : (
@@ -106,20 +106,20 @@ const Index = () => {
           ) : (
             <div className="row">
               {isSuccess && assessments
-                ? assessments.map((assessment) => (
-                    <div key={assessment._id} className="col-md-4">
+                ? assessments?.map((assessment) => (
+                    <div key={assessment?._id} className="col-md-4">
                       <AssessmentCard
                         assessment={assessment}
                         isResult={false}
                         onView={() =>
                           navigationHandler(
-                            `/dashboard/teacher/assessment/${assessment._id}/view-questions`,
+                            `/dashboard/teacher/assessment/${assessment?._id}/view-questions`,
                             assessment.assessmentTittle
                           )
                         }
                         onAdd={() =>
                           navigationHandler(
-                            `/dashboard/teacher/assessment/${assessment._id}/add-questions`,
+                            `/dashboard/teacher/assessment/${assessment?._id}/add-questions`,
                             assessment.assessmentTittle
                           )
                         }

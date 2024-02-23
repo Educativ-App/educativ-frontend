@@ -11,10 +11,10 @@ const CreateCourse = ({
 }) => {
   if (course !== undefined) {
     var initialState = {
-      courseId: course._id,
-      courseTittle: course.courseTittle,
-      courseCode: course.courseCode,
-      courseStatus: course.courseStatus,
+      courseId: course?._id,
+      courseTittle: course?.courseTittle,
+      courseCode: course?.courseCode,
+      courseStatus: course?.courseStatus,
     };
   } else {
     initialState = {
@@ -62,7 +62,7 @@ const CreateCourse = ({
               type="text"
               name="courseTittle"
               required
-              value={formData.courseTittle}
+              value={formData?.courseTittle}
               onChange={handleChange}
             />
           </div>
@@ -72,7 +72,7 @@ const CreateCourse = ({
               type="text"
               name="courseCode"
               required
-              value={formData.courseCode}
+              value={formData?.courseCode}
               onChange={handleChange}
             />
           </div>
@@ -82,7 +82,7 @@ const CreateCourse = ({
             <select
               name="courseStatus"
               required
-              value={formData.courseStatus}
+              value={formData?.courseStatus}
               onChange={handleChange}
             >
               <option value="">Select Status</option>
